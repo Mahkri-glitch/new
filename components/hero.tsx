@@ -68,14 +68,19 @@ export function Hero() {
             transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
             className="rounded-2xl border border-[rgba(255,213,30,0.45)] bg-[rgba(0,0,0,0.9)] p-4 shadow-[0_14px_45px_rgba(255,213,30,0.22)]"
           >
-            <Image
-              src="/scro-logo-animated.svg"
-              alt="Animated SCRO @ UCF logo"
-              width={560}
-              height={560}
-              priority
-              className="h-auto w-full rounded-xl object-cover"
-            />
+            <motion.div
+              animate={{ scale: [1, 1.02, 1], opacity: [0.88, 1, 0.88] }}
+              transition={{ duration: 3.2, repeat: Infinity, ease: 'easeInOut' }}
+            >
+              <Image
+                src="/scro-logo.png"
+                alt="Animated SCRO @ UCF logo"
+                width={560}
+                height={560}
+                priority
+                className="h-auto w-full rounded-xl object-cover drop-shadow-[0_0_22px_rgba(255,213,30,0.35)]"
+              />
+            </motion.div>
           </motion.div>
         </motion.div>
       </div>
