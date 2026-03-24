@@ -11,6 +11,8 @@ export const metadata: Metadata = {
   icons: {
     icon: '/scro-logo.svg'
   }
+  title: 'MotionCraft UI',
+  description: 'Production-ready Next.js + React + TypeScript + Tailwind + Framer Motion implementation.'
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
