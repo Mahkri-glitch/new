@@ -1,16 +1,12 @@
 'use client';
 
-import { motion } from 'framer-motion';
-import { type HTMLAttributes, type PropsWithChildren } from 'react';
+import { motion, type HTMLMotionProps } from 'framer-motion';
 
 import { cn } from '@/lib/utils';
 
-type SectionMotionProps = PropsWithChildren<
-  {
-    className?: string;
-    delay?: number;
-  } & HTMLAttributes<HTMLElement>
->;
+type SectionMotionProps = HTMLMotionProps<'section'> & {
+  delay?: number;
+};
 
 export function SectionMotion({ className, children, delay = 0, ...props }: SectionMotionProps) {
   return (
