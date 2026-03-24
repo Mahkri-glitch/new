@@ -1,26 +1,22 @@
-# SCRO @ UCF Website
+# MotionCraft UI
 
-Production-quality Next.js website for the **Semiconductor Career Readiness Organization at UCF**.
+Production-ready starter built with:
 
-## What you should see
-
-After starting the app, open:
-
-- `http://localhost:3000/` → SCRO homepage (hero, about, events, why join, contact)
-- `http://localhost:3000/new-members` → dedicated onboarding page
-
-## Stack
-
-- Next.js 14 App Router
-- React + TypeScript
+- Next.js 14 (App Router)
+- React 18 + TypeScript (strict)
 - Tailwind CSS
 - Framer Motion
-- shadcn-style reusable UI primitives
-- custom SVG icon set (local, no extra dependency)
 
-## Run
+## Run locally
 
 ```bash
 npm install
 npm run dev
+```
+
+## Build
+
+```bash
+npm run build
+npm run start
 ```

@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { CalendarClockIcon, MapPinIcon } from '@/lib/icons';
+import { CalendarClock, MapPin } from 'lucide-react';
 
 import { events } from '@/lib/data';
 import { SectionMotion } from '@/components/section-motion';
@@ -29,10 +29,10 @@ export function EventsSection() {
               <h3 className="mt-4 text-xl font-semibold text-[var(--scro-white)]">{event.title}</h3>
               <div className="mt-4 space-y-2 text-sm text-[rgba(255,255,255,0.88)]">
                 <p className="flex items-center gap-2">
-                  <CalendarClockIcon className="h-4 w-4 text-[var(--scro-gold)]" /> {event.time}
+                  <CalendarClock className="h-4 w-4 text-[var(--scro-gold)]" /> {event.time}
                 </p>
                 <p className="flex items-center gap-2">
-                  <MapPinIcon className="h-4 w-4 text-[var(--scro-gold)]" /> {event.location}
+                  <MapPin className="h-4 w-4 text-[var(--scro-gold)]" /> {event.location}
                 </p>
               </div>
               <p className="mt-4 text-sm text-[rgba(255,255,255,0.84)]">{event.description}</p>
