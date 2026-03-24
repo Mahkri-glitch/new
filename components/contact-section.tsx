@@ -1,5 +1,4 @@
 import { MailIcon, MessageCircleIcon } from '@/lib/icons';
-import { Mail, MessageCircle } from 'lucide-react';
 
 import { SectionMotion } from '@/components/section-motion';
 import { Button } from '@/components/ui/button';
@@ -25,10 +24,6 @@ export function ContactSection() {
           </Button>
           <Button href="https://discord.gg/hFK2s8eh" variant="outline" className="min-w-40">
             <MessageCircleIcon className="mr-2 h-4 w-4" /> Join Our Discord
-            <Mail className="mr-2 h-4 w-4" /> Email Us
-          </Button>
-          <Button href="https://discord.gg/hFK2s8eh" variant="outline" className="min-w-40">
-            <MessageCircle className="mr-2 h-4 w-4" /> Join Our Discord
           </Button>
         </div>
       </div>

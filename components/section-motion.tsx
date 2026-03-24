@@ -1,11 +1,5 @@
 'use client';
 
-import { motion, type HTMLMotionProps } from 'framer-motion';
-
-type SectionMotionProps = {
-  className?: string;
-  delay?: number;
-} & HTMLMotionProps<'section'>;
 import { motion } from 'framer-motion';
 import { type HTMLAttributes, type PropsWithChildren } from 'react';
 
@@ -21,7 +15,6 @@ type SectionMotionProps = PropsWithChildren<
 export function SectionMotion({ className, children, delay = 0, ...props }: SectionMotionProps) {
   return (
     <motion.section
-      className={className}
       className={cn(className)}
       initial={{ opacity: 0, y: 22 }}
       whileInView={{ opacity: 1, y: 0 }}
