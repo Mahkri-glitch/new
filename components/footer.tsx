@@ -9,7 +9,7 @@ export function Footer() {
       <div className="mx-auto grid max-w-7xl gap-8 px-4 sm:px-6 md:grid-cols-[1.2fr_1fr_1fr] lg:px-8">
         <div>
           <div className="flex items-center gap-2">
-            <Image src="/scro-logo.svg" alt="SCRO @ UCF logo" width={36} height={36} />
+            <Image src="/scro-logo.png" alt="SCRO @ UCF logo" width={36} height={36} />
             <p className="font-semibold text-[var(--scro-white)]">SCRO @ UCF</p>
           </div>
           <p className="mt-3 max-w-sm text-sm text-[rgba(255,255,255,0.75)]">

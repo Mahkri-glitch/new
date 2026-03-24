@@ -14,7 +14,7 @@ export function Hero() {
       <div className="relative mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 md:grid-cols-2 lg:px-8">
         <div className="space-y-6">
           <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.45 }}>
-            <Image src="/scro-logo.svg" alt="SCRO @ UCF logo" width={86} height={86} className="rounded-xl border border-[rgba(255,213,30,0.5)] bg-black/80 p-2" />
+            <Image src="/scro-logo.png" alt="SCRO @ UCF logo" width={86} height={86} className="rounded-xl border border-[rgba(255,213,30,0.5)] bg-black/80 p-2" />
           </motion.div>
           <motion.h1
             initial={{ opacity: 0, y: 14 }}
@@ -68,14 +68,19 @@ export function Hero() {
             transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
             className="rounded-2xl border border-[rgba(255,213,30,0.45)] bg-[rgba(0,0,0,0.9)] p-4 shadow-[0_14px_45px_rgba(255,213,30,0.22)]"
           >
-            <Image
-              src="/scro-logo-animated.svg"
-              alt="Animated SCRO @ UCF logo"
-              width={560}
-              height={560}
-              priority
-              className="h-auto w-full rounded-xl object-cover"
-            />
+            <motion.div
+              animate={{ scale: [1, 1.02, 1], opacity: [0.88, 1, 0.88] }}
+              transition={{ duration: 3.2, repeat: Infinity, ease: 'easeInOut' }}
+            >
+              <Image
+                src="/scro-logo.png"
+                alt="Animated SCRO @ UCF logo"
+                width={560}
+                height={560}
+                priority
+                className="h-auto w-full rounded-xl object-cover drop-shadow-[0_0_22px_rgba(255,213,30,0.35)]"
+              />
+            </motion.div>
           </motion.div>
         </motion.div>
       </div>
