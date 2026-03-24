@@ -2,7 +2,6 @@
 
 import { AnimatePresence, motion } from 'framer-motion';
 import { MenuIcon, XIcon } from '@/lib/icons';
-import { Menu, X } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
@@ -61,7 +60,6 @@ export function Navbar() {
           aria-expanded={open}
         >
           {open ? <XIcon className="h-5 w-5" /> : <MenuIcon className="h-5 w-5" />}
-          {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
         </button>
       </div>
 
