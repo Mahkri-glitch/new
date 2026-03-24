@@ -14,7 +14,7 @@ export function Hero() {
       <div className="relative mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 md:grid-cols-2 lg:px-8">
         <div className="space-y-6">
           <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.45 }}>
-            <Image src="/scro-logo.svg" alt="SCRO @ UCF logo" width={86} height={86} className="rounded-xl border border-[rgba(255,213,30,0.5)] bg-black/80 p-2" />
+            <Image src="/scro-logo.png" alt="SCRO @ UCF logo" width={86} height={86} className="rounded-xl border border-[rgba(255,213,30,0.5)] bg-black/80 p-2" />
           </motion.div>
           <motion.h1
             initial={{ opacity: 0, y: 14 }}

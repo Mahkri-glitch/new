@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   title: 'SCRO @ UCF',
   description: 'Semiconductor Career Readiness Organization at the University of Central Florida.',
   icons: {
-    icon: '/scro-logo.svg'
+    icon: '/scro-logo.png'
   }
 };
 
