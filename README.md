@@ -2,12 +2,33 @@
 
 Production-quality Next.js website for the **Semiconductor Career Readiness Organization at UCF**.
 
-## What you should see
+## Start the site
 
-After starting the app, open:
+From the project root (`/workspace/new`):
 
-- `http://localhost:3000/` → SCRO homepage (hero, about, events, why join, contact)
-- `http://localhost:3000/new-members` → dedicated onboarding page
+```bash
+npm install
+npm run dev
+```
+
+The dev server is configured to bind to `0.0.0.0:3000`.
+
+## Open the pages
+
+- Homepage: `http://localhost:3000/`
+- New member page: `http://localhost:3000/new-members`
+
+If you are using a cloud IDE/container, open the **forwarded URL for port 3000** (not your local machine's localhost).
+
+## If "site cannot be reached"
+
+1. Confirm the server is running and prints `ready` in the terminal.
+2. If port 3000 is busy, run:
+   ```bash
+   lsof -i :3000
+   ```
+   then stop the existing process.
+3. In remote environments, use the platform's "Open Port 3000" action.
 
 ## Stack
 
