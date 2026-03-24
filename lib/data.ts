@@ -90,18 +90,18 @@ export const missionCards: ValueCard[] = [
 export const events: EventItem[] = [
   {
     title: 'First General Body Meeting',
-    date: 'September 10, 2026',
-    time: '6:30 PM – 7:45 PM',
-    location: 'UCF Engineering Building I, Room 243',
+    date: 'March 24th, 2026',
+    time: '3:30 PM – 4:30 PM',
+    location: 'UCF Research 1 Room 101',
     description: 'Meet SCRO @ UCF, learn about the club mission, upcoming opportunities, and how to get involved.',
     ctaLabel: 'RSVP on Discord',
     ctaHref: 'https://discord.gg/hFK2s8eh'
   },
   {
     title: 'Semiconductor Career Readiness Session',
-    date: 'September 24, 2026',
-    time: '6:30 PM – 8:00 PM',
-    location: 'UCF Student Union, Pegasus Ballroom C',
+    date: 'TBD',
+    time: 'TBD',
+    location: 'TBD',
     description: 'A professional development event focused on internships, networking, and navigating semiconductor career pathways.',
     ctaLabel: 'Get Event Details',
     ctaHref: 'https://discord.gg/hFK2s8eh'
