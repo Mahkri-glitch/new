@@ -49,7 +49,7 @@ export function Navbar() {
         </nav>
 
         <div className="hidden md:block">
-          <Button href="#contact">Join SCRO</Button>
+          <Button href="/#contact">Join SCRO</Button>
         </div>
 
         <button
@@ -82,7 +82,7 @@ export function Navbar() {
                   {link.label}
                 </Link>
               ))}
-              <Button href="#contact" className="w-full" onClick={() => setOpen(false)}>
+              <Button href="/#contact" className="w-full" onClick={() => setOpen(false)}>
                 Join SCRO
               </Button>
             </div>
