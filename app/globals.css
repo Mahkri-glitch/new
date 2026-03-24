@@ -3,6 +3,24 @@
 @tailwind utilities;
 
 :root {
+  --scro-black: #000000;
+  --scro-gold: #ffd51e;
+  --scro-gold-dark: #ccaa18;
+  --scro-white: #ffffff;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--scro-black);
+  color: var(--scro-white);
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: rgba(255, 213, 30, 0.25);
   color-scheme: dark;
 }
 

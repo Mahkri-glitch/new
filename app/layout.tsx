@@ -6,6 +6,11 @@ import './globals.css';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
+  title: 'SCRO @ UCF',
+  description: 'Semiconductor Career Readiness Organization at the University of Central Florida.',
+  icons: {
+    icon: '/scro-logo.svg'
+  }
   title: 'MotionCraft UI',
   description: 'Production-ready Next.js + React + TypeScript + Tailwind + Framer Motion implementation.'
 };

@@ -1,3 +1,17 @@
+import {
+  AtomIcon,
+  BriefcaseBusinessIcon,
+  HandshakeIcon,
+  LightbulbIcon,
+  MailIcon,
+  MapPinIcon,
+  MegaphoneIcon,
+  RocketIcon,
+  UsersIcon
+} from '@/lib/icons';
+import { type ComponentType, type SVGProps } from 'react';
+
+export type IconType = ComponentType<SVGProps<SVGSVGElement>>;
 import { Atom, BriefcaseBusiness, Handshake, Lightbulb, Mail, MapPin, Megaphone, Rocket, Users } from 'lucide-react';
 import { type LucideIcon } from 'lucide-react';
 
@@ -9,6 +23,7 @@ export type NavLink = {
 export type ValueCard = {
   title: string;
   description: string;
+  icon: IconType;
   icon: LucideIcon;
 };
 
@@ -25,6 +40,7 @@ export type EventItem = {
 export type BenefitCard = {
   title: string;
   description: string;
+  icon: IconType;
   icon: LucideIcon;
 };
 
@@ -41,6 +57,7 @@ export type JoinStep = {
 export type ContactLink = {
   label: string;
   href: string;
+  icon: IconType;
   icon: LucideIcon;
 };
 
@@ -56,21 +73,25 @@ export const missionCards: ValueCard[] = [
   {
     title: 'Professional Development',
     description: 'Build confidence with resume support, interview readiness, and practical career guidance for the semiconductor space.',
+    icon: BriefcaseBusinessIcon
     icon: BriefcaseBusiness
   },
   {
     title: 'Industry Exposure',
     description: 'Learn how semiconductor ecosystems work through speaker sessions, roadmap discussions, and real-world career insight.',
+    icon: MegaphoneIcon
     icon: Megaphone
   },
   {
     title: 'Technical Learning',
     description: 'Explore microelectronics, devices, fabrication fundamentals, and materials in a student-friendly environment.',
+    icon: AtomIcon
     icon: Atom
   },
   {
     title: 'Community',
     description: 'Connect with peers across majors who are serious about learning, building skills, and growing together.',
+    icon: UsersIcon
     icon: Users
   }
 ];
@@ -100,21 +121,25 @@ export const benefits: BenefitCard[] = [
   {
     title: 'Explore Semiconductor Careers',
     description: 'Understand pathways across design, process, materials, manufacturing, and emerging hardware roles.',
+    icon: RocketIcon
     icon: Rocket
   },
   {
     title: 'Build Professional Confidence',
     description: 'Gain practical communication and career readiness skills before internship and full-time recruiting seasons.',
+    icon: HandshakeIcon
     icon: Handshake
   },
   {
     title: 'Learn with a Motivated Community',
     description: 'Stay accountable with students who care about technical growth and long-term career development.',
+    icon: UsersIcon
     icon: Users
   },
   {
     title: 'Stay Connected to Opportunities',
     description: 'Discover club events, networking channels, and resources that keep you plugged into momentum.',
+    icon: LightbulbIcon
     icon: Lightbulb
   }
 ];
@@ -158,6 +183,8 @@ export const faqItems: FaqItem[] = [
 ];
 
 export const contactLinks: ContactLink[] = [
+  { label: 'Email: scro.ucf@gmail.com', href: 'mailto:scro.ucf@gmail.com', icon: MailIcon },
+  { label: 'Discord: discord.gg/hFK2s8eh', href: 'https://discord.gg/hFK2s8eh', icon: MapPinIcon }
   { label: 'Email: scro.ucf@gmail.com', href: 'mailto:scro.ucf@gmail.com', icon: Mail },
   { label: 'Discord: discord.gg/hFK2s8eh', href: 'https://discord.gg/hFK2s8eh', icon: MapPin }
 ];
@@ -175,21 +202,25 @@ export const whatToExpect: ValueCard[] = [
   {
     title: 'Club Meetings',
     description: 'Regular sessions that keep members informed, connected, and aligned on upcoming opportunities.',
+    icon: UsersIcon
     icon: Users
   },
   {
     title: 'Technical Exposure',
     description: 'Accessible discussions around semiconductor concepts, tools, and real-world applications.',
+    icon: AtomIcon
     icon: Atom
   },
   {
     title: 'Professional Development',
     description: 'Career-focused sessions covering networking, internships, and preparation strategies.',
+    icon: BriefcaseBusinessIcon
     icon: BriefcaseBusiness
   },
   {
     title: 'Community & Networking',
     description: 'A collaborative environment where students support each other academically and professionally.',
+    icon: HandshakeIcon
     icon: Handshake
   }
 ];
