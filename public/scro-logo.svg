@@ -1,0 +1,10 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="SCRO @ UCF logo">
+  <rect width="512" height="512" rx="110" fill="#000000"/>
+  <path d="M84 136L120 108M84 376L120 404M428 136L392 108M428 376L392 404" stroke="#FFD51E" stroke-width="22" stroke-linecap="round"/>
+  <circle cx="84" cy="136" r="18" fill="#FFD51E"/>
+  <circle cx="84" cy="376" r="18" fill="#FFD51E"/>
+  <circle cx="428" cy="136" r="18" fill="#FFD51E"/>
+  <circle cx="428" cy="376" r="18" fill="#FFD51E"/>
+  <text x="256" y="280" text-anchor="middle" fill="#FFD51E" font-family="Inter, Arial, sans-serif" font-size="138" font-weight="800" letter-spacing="5">SCRO</text>
+  <text x="256" y="328" text-anchor="middle" fill="#CCAA18" font-family="Inter, Arial, sans-serif" font-size="34" font-weight="700">@ UCF</text>
+</svg>
