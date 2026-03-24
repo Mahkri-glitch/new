@@ -1,4 +1,5 @@
 import { CheckCircle2Icon } from '@/lib/icons';
+import { CheckCircle2 } from 'lucide-react';
 
 import { Footer } from '@/components/footer';
 import { Navbar } from '@/components/navbar';
@@ -92,6 +93,7 @@ export default function NewMembersPage() {
         <SectionMotion className="bg-black pb-20">
           <div className="mx-auto max-w-5xl rounded-3xl border border-[rgba(255,213,30,0.35)] bg-[rgba(255,213,30,0.08)] px-6 py-9 text-center sm:px-10">
             <CheckCircle2Icon className="mx-auto h-8 w-8 text-[var(--scro-gold)]" />
+            <CheckCircle2 className="mx-auto h-8 w-8 text-[var(--scro-gold)]" />
             <h2 className="mt-3 text-2xl font-bold text-[var(--scro-white)]">Ready to get started?</h2>
             <div className="mt-6 flex flex-wrap justify-center gap-3">
               <Button href="https://discord.gg/hFK2s8eh">Join the Discord</Button>

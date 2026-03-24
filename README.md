@@ -38,3 +38,27 @@ If you are using a cloud IDE/container, open the **forwarded URL for port 3000**
 - Framer Motion
 - shadcn-style reusable UI primitives
 - custom SVG icon set (local, no extra dependency)
+
+## Run
+# MotionCraft UI
+
+Production-ready starter built with:
+
+- Next.js 14 (App Router)
+- React 18 + TypeScript (strict)
+- Tailwind CSS
+- Framer Motion
+
+## Run locally
+
+```bash
+npm install
+npm run dev
+```
+
+## Build
+
+```bash
+npm run build
+npm run start
+```

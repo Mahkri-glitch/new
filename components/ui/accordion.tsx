@@ -1,6 +1,7 @@
 'use client';
 
 import { ChevronDownIcon } from '@/lib/icons';
+import { ChevronDown } from 'lucide-react';
 import { useState } from 'react';
 
 import { cn } from '@/lib/utils';
@@ -25,6 +26,7 @@ export function Accordion({ items }: Props) {
             >
               {item.question}
               <ChevronDownIcon className={cn('h-4 w-4 text-[var(--scro-gold)] transition-transform', isOpen && 'rotate-180')} />
+              <ChevronDown className={cn('h-4 w-4 text-[var(--scro-gold)] transition-transform', isOpen && 'rotate-180')} />
             </button>
             {isOpen ? <p className="px-4 pb-4 text-sm text-[rgba(255,255,255,0.82)]">{item.answer}</p> : null}
           </div>
