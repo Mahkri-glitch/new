@@ -98,13 +98,13 @@ export const events: EventItem[] = [
     ctaHref: 'https://discord.gg/F9PTT3FJFS'
   },
   {
-    title: 'Semiconductor Career Readiness Session',
-    date: 'TBD',
-    time: 'TBD',
-    location: 'TBD',
-    description: 'A professional development event focused on internships, networking, and navigating semiconductor career pathways.',
+    title: 'Second General Body Meeting',
+    date: 'April 14th, 2026',
+    time: '5:00 PM - 6:30 PM',
+    location: 'Classroom Building 1 Room 109',
+    description: 'Fun event packed with officer elections, semiconductor pitch competition, a SkyWater speaker, and some free pizza to top it off.',
     ctaLabel: 'Get Event Details',
-    ctaHref: 'https://discord.gg/hFK2s8eh'
+    ctaHref: 'https://discord.gg/F9PTT3FJFS'
   }
 ];
 
