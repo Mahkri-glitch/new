@@ -95,7 +95,7 @@ export const events: EventItem[] = [
     location: 'UCF Research 1 Room 101',
     description: 'Meet SCRO @ UCF, learn about the club mission, upcoming opportunities, and how to get involved.',
     ctaLabel: 'RSVP on Discord',
-    ctaHref: 'https://discord.gg/hFK2s8eh'
+    ctaHref: 'https://discord.gg/F9PTT3FJFS'
   },
   {
     title: 'Semiconductor Career Readiness Session',
@@ -171,7 +171,7 @@ export const faqItems: FaqItem[] = [
 
 export const contactLinks: ContactLink[] = [
   { label: 'Email: scro.ucf@gmail.com', href: 'mailto:scro.ucf@gmail.com', icon: MailIcon },
-  { label: 'Discord: discord.gg/hFK2s8eh', href: 'https://discord.gg/hFK2s8eh', icon: MapPinIcon }
+  { label: 'Discord: https://discord.gg/F9PTT3FJFS', href: 'https://discord.gg/F9PTT3FJFS', icon: MapPinIcon }
 ];
 
 export const whoShouldJoin = [
