@@ -22,7 +22,7 @@ export function ContactSection() {
           <Button href="mailto:scro.ucf@gmail.com" className="min-w-40">
             <MailIcon className="mr-2 h-4 w-4" /> Email Us
           </Button>
-          <Button href="https://discord.gg/hFK2s8eh" variant="outline" className="min-w-40">
+          <Button href="https://discord.gg/F9PTT3FJFS" variant="outline" className="min-w-40">
             <MessageCircleIcon className="mr-2 h-4 w-4" /> Join Our Discord
           </Button>
         </div>
