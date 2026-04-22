@@ -15,7 +15,7 @@ export function ContactSection() {
 
         <div className="mt-5 space-y-2 text-sm text-[var(--scro-white)]">
           <p>Email: scro.ucf@gmail.com</p>
-          <p>Discord: https://discord.gg/hFK2s8eh</p>
+          <p>Discord: https://discord.gg/F9PTT3FJFS</p>
         </div>
 
         <div className="mt-6 flex flex-wrap justify-center gap-3">
