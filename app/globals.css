@@ -10,22 +10,21 @@
 }
 
 html {
+  background: #000000;
   scroll-behavior: smooth;
 }
 
 body {
-  background: var(--scro-black);
+  /* transparent so the fixed THREE.js canvas at z-[-1] shows through */
+  background: transparent;
   color: var(--scro-white);
   text-rendering: optimizeLegibility;
+  @apply text-slate-100 antialiased;
 }
 
 ::selection {
   background: rgba(255, 213, 30, 0.25);
   color-scheme: dark;
-}
-
-body {
-  @apply bg-slate-950 text-slate-100 antialiased;
 }
 
 .gradient-grid {
@@ -39,4 +38,205 @@ body {
 
 .container-x {
   @apply mx-auto w-full max-w-7xl px-6 lg:px-8;
+}
+
+.transform-style-3d {
+  transform-style: preserve-3d;
+}
+
+/* ============================================================
+   SCRO Apple Watch Loading Screen
+   ============================================================ */
+.scro-watch-inner {
+  position: relative;
+}
+
+/* Top and bottom watch bands */
+.scro-watch-inner::after,
+.scro-watch-inner::before {
+  content: "";
+  width: 10rem;
+  height: 200px;
+  background: radial-gradient(circle at 200px, #050505, #111);
+  box-shadow: inset 0px -10px 18px rgba(255, 213, 30, 0.05), 8px 0px 20px rgba(0, 0, 0, 0.6);
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 0%);
+  border-radius: 3px;
+}
+.scro-watch-inner::before {
+  box-shadow: inset 0px 10px 18px rgba(255, 213, 30, 0.05), 8px 0px 20px rgba(0, 0, 0, 0.6);
+  transform: translate(-50%, -100%);
+}
+
+/* Band connector dots */
+.scro-watch-dots {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 140%);
+  padding: 3px;
+  z-index: 20;
+}
+.scro-dot {
+  width: 17px;
+  aspect-ratio: 1;
+  background-color: #0d0d0d;
+  border-radius: 100px;
+  display: block;
+  margin-bottom: 50px;
+  box-shadow: inset 2px 0 5px rgba(255, 213, 30, 0.15);
+}
+
+/* Watch frame body */
+.scro-watch-frame {
+  background: #080808;
+  border-radius: 92px;
+  box-shadow:
+    inset 0 0 24px 1px #050505,
+    inset 0 0 0 12px #1c1c1e,
+    0 24px 60px rgba(0, 0, 0, 0.95),
+    0 0 120px rgba(255, 213, 30, 0.03);
+  height: 380px;
+  margin: 0 20px;
+  padding: 28px 26px;
+  position: relative;
+  width: 20rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Inner bezel ring */
+.scro-watch-frame::before {
+  border: 1px solid #1c1c1e;
+  border-radius: 80px;
+  box-shadow: 0 0 28px rgba(255, 213, 30, 0.07), inset 0 0 20px rgba(255, 213, 30, 0.03);
+  content: "";
+  height: 356px;
+  left: 12px;
+  position: absolute;
+  top: 12px;
+  width: 18.625rem;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Scan-line texture overlay */
+.scro-watch-frame::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 80px;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(255, 213, 30, 0.008) 2px,
+    rgba(255, 213, 30, 0.008) 4px
+  );
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Time display */
+.scro-watch-time {
+  color: #ffd51e;
+  font-size: 3.6rem;
+  font-family: ui-monospace, 'SF Mono', 'Courier New', monospace;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  text-shadow: 0 0 40px rgba(255, 213, 30, 0.55), 0 0 80px rgba(255, 213, 30, 0.18);
+}
+
+/* Date string */
+.scro-watch-date {
+  color: rgba(255, 213, 30, 0.5);
+  font-size: 0.6rem;
+  font-family: ui-monospace, 'SF Mono', monospace;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+
+/* Enter button */
+.scro-enter-btn {
+  margin-top: 6px;
+  padding: 7px 22px;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 213, 30, 0.3);
+  color: #ffd51e;
+  font-size: 0.6rem;
+  font-family: ui-monospace, 'SF Mono', monospace;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  background: rgba(255, 213, 30, 0.04);
+  cursor: pointer;
+  transition: background 0.25s, border-color 0.25s, box-shadow 0.25s;
+  position: relative;
+  z-index: 10;
+}
+.scro-enter-btn:hover {
+  background: rgba(255, 213, 30, 0.1);
+  border-color: rgba(255, 213, 30, 0.65);
+  box-shadow: 0 0 22px rgba(255, 213, 30, 0.18);
+}
+
+/* Side crown button */
+.scro-side-btn {
+  background: #1c1c1e;
+  border-left: 1px solid #000;
+  border-radius: 8px 6px 6px 8px / 20px 6px 6px 20px;
+  box-shadow: inset 8px 0 8px 0 #0a0a0a, inset -2px 0 6px #111, -4px 0 8px rgba(0,0,0,0.4);
+  height: 72px;
+  position: absolute;
+  right: 6px;
+  top: 108px;
+  width: 18px;
+  z-index: 9;
+}
+.scro-side-btn::before {
+  background: #111;
+  border-radius: 20%;
+  box-shadow:
+    0 -30px rgba(30,30,30,.75), 0 -27px #111, 0 -25px #000,
+    0 -21px rgba(30,30,30,.75), 0 -18px #111, 0 -16px #000,
+    0 -12px rgba(30,30,30,.75), 0 -9px  #111, 0 -7px  #000,
+    0 -3px  rgba(30,30,30,.75), 0   0   #111, 0  2px  #000,
+    0  6px  rgba(30,30,30,.75), 0   9px #111, 0  11px #000,
+    0  15px rgba(30,30,30,.75), 0  18px #111, 0  20px #000,
+    0  24px rgba(30,30,30,.75), 0  27px #111, 0  29px #000;
+  content: "";
+  height: 3px;
+  margin-top: -2px;
+  position: absolute;
+  right: 2px;
+  top: 50%;
+  width: 10px;
+}
+.scro-side-btn::after {
+  background: #080808;
+  border-radius: 2px 4px 4px 2px / 20px 8px 8px 20px;
+  box-shadow: inset -2px 0 2px 0 #000, inset -6px 0 18px #111;
+  content: "";
+  height: 72px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 6px;
+}
+
+/* Power / digital crown button */
+.scro-power-btn {
+  background: #1a1a1a;
+  border-radius: 2px 4px 4px 2px / 2px 8px 8px 2px;
+  box-shadow: inset 0 0 2px 1px #080808;
+  height: 72px;
+  position: absolute;
+  right: 18px;
+  top: 212px;
+  width: 4px;
 }

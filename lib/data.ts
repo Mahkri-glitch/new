@@ -60,6 +60,8 @@ export const navLinks: NavLink[] = [
   { label: 'Home', href: '/' },
   { label: 'About Us', href: '/#about' },
   { label: 'Events', href: '/#events' },
+  { label: 'Officers', href: '/officers' },
+  { label: 'Gallery', href: '/gallery' },
   { label: 'New Member Page', href: '/new-members' },
   { label: 'Contact Us', href: '/#contact' }
 ];
@@ -94,8 +96,8 @@ export const events: EventItem[] = [
     time: '3:30 PM – 4:30 PM',
     location: 'UCF Research 1 Room 101',
     description: 'Meet SCRO @ UCF, learn about the club mission, upcoming opportunities, and how to get involved.',
-    ctaLabel: 'RSVP on Discord',
-    ctaHref: 'https://discord.gg/F9PTT3FJFS'
+    ctaLabel: 'View in Gallery',
+    ctaHref: '/gallery'
   },
   {
     title: 'Second General Body Meeting',
@@ -103,8 +105,8 @@ export const events: EventItem[] = [
     time: '5:00 PM - 6:30 PM',
     location: 'Classroom Building 1 Room 109',
     description: 'Fun event packed with officer elections, semiconductor pitch competition, a SkyWater speaker, and some free pizza to top it off.',
-    ctaLabel: 'Get Event Details',
-    ctaHref: 'https://discord.gg/F9PTT3FJFS'
+    ctaLabel: 'View in Gallery',
+    ctaHref: '/gallery'
   }
 ];
 

@@ -5,7 +5,7 @@ import { navLinks } from '@/lib/data';
 
 export function Footer() {
   return (
-    <footer className="border-t border-[rgba(255,213,30,0.35)] bg-black py-10">
+    <footer className="border-t border-[rgba(255,213,30,0.35)] bg-transparent py-10">
       <div className="mx-auto grid max-w-7xl gap-8 px-4 sm:px-6 md:grid-cols-[1.2fr_1fr_1fr] lg:px-8">
         <div>
           <div className="flex items-center gap-2">

@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 
 export function ContactSection() {
   return (
-    <SectionMotion id="contact" className="bg-black py-16 sm:py-20">
+    <SectionMotion id="contact" className="bg-transparent py-16 sm:py-20">
       <div className="mx-auto max-w-4xl rounded-3xl border border-[rgba(255,213,30,0.35)] bg-[rgba(255,213,30,0.06)] px-6 py-10 text-center sm:px-10">
         <h2 className="text-3xl font-bold text-[var(--scro-white)] sm:text-4xl">Contact Us</h2>
         <p className="mx-auto mt-4 max-w-2xl text-sm text-[rgba(255,255,255,0.86)]">
