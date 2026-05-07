@@ -1,94 +1,89 @@
 'use client';
 
-import { AnimatePresence, motion } from 'framer-motion';
-import { MenuIcon, XIcon } from '@/lib/icons';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
-
+import { useState } from 'react';
+import GradientMenu from '@/components/ui/gradient-menu';
 import { navLinks } from '@/lib/data';
-import { cn } from '@/lib/utils';
-import { Button } from '@/components/ui/button';
 
 export function Navbar() {
-  const [open, setOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 18);
-    window.addEventListener('scroll', onScroll);
-    return () => window.removeEventListener('scroll', onScroll);
-  }, []);
+  const [isOpen, setIsOpen] = useState(false);
+  const links = navLinks.filter((l) => l.label !== 'Home');
 
   return (
-    <header
-      className={cn(
-        'fixed inset-x-0 top-0 z-50 border-b transition-all duration-300',
-        scrolled
-          ? 'border-[rgba(255,213,30,0.25)] bg-black/92 backdrop-blur'
-          : 'border-transparent bg-[rgba(0,0,0,0.45)] backdrop-blur-sm'
-      )}
-    >
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        <Link href="/" className="flex items-center gap-2" aria-label="SCRO homepage">
-          <Image src="/scro-logo.png" alt="SCRO @ UCF logo" width={36} height={36} className="rounded-md border border-[rgba(255,213,30,0.5)]" />
-          <span className="text-sm font-bold tracking-wide text-[var(--scro-white)]">SCRO @ UCF</span>
+    <>
+      {/* Desktop: logo pill + gradient menu */}
+      <header className="fixed top-5 left-1/2 z-50 -translate-x-1/2 hidden sm:flex items-center gap-3">
+        <Link
+          href="/"
+          aria-label="SCRO homepage"
+          className="flex items-center gap-2 px-3 py-2.5 rounded-full bg-[rgba(8,8,8,0.82)] border border-[rgba(255,213,30,0.2)] backdrop-blur-md"
+        >
+          <Image src="/scro-logo.png" alt="SCRO @ UCF" width={24} height={24} className="rounded-md" />
+          <span className="text-[0.65rem] font-black tracking-[0.2em] text-white uppercase">SCRO</span>
         </Link>
 
-        <nav className="hidden items-center gap-6 md:flex">
-          {navLinks.map((link) => (
-            <Link
-              key={link.label}
-              href={link.href}
-              className="group relative text-sm font-medium text-[rgba(255,255,255,0.92)] transition hover:text-[var(--scro-gold)]"
-            >
-              {link.label}
-              <span className="absolute -bottom-1 left-0 h-px w-0 bg-[var(--scro-gold)] transition-all duration-300 group-hover:w-full" />
-            </Link>
-          ))}
-        </nav>
+        <GradientMenu />
+      </header>
 
-        <div className="hidden md:block">
-          <Button href="/#contact">Join SCRO</Button>
+      {/* Mobile: floating pill with hamburger */}
+      <header className="fixed top-5 left-1/2 z-50 -translate-x-1/2 sm:hidden flex flex-col items-center w-[calc(100%-2rem)]">
+        <div
+          className={`flex w-full items-center justify-between px-4 py-3 bg-[rgba(8,8,8,0.82)] border border-[rgba(255,213,30,0.2)] backdrop-blur-md transition-[border-radius] duration-300 ${
+            isOpen ? 'rounded-2xl' : 'rounded-full'
+          }`}
+        >
+          <Link href="/" className="flex items-center gap-2">
+            <Image src="/scro-logo.png" alt="SCRO @ UCF" width={22} height={22} className="rounded-md" />
+            <span className="text-[0.65rem] font-black tracking-[0.2em] text-white uppercase">SCRO</span>
+          </Link>
+
+          <button
+            type="button"
+            onClick={() => setIsOpen((v) => !v)}
+            aria-label={isOpen ? 'Close menu' : 'Open menu'}
+            className="flex h-8 w-8 items-center justify-center text-[rgba(255,255,255,0.75)]"
+          >
+            {isOpen ? (
+              <svg className="h-4.5 w-4.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            ) : (
+              <svg className="h-4.5 w-4.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            )}
+          </button>
         </div>
 
-        <button
-          type="button"
-          onClick={() => setOpen((prev) => !prev)}
-          className="rounded-md p-2 text-[var(--scro-white)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--scro-gold)] md:hidden"
-          aria-label="Toggle menu"
-          aria-expanded={open}
+        {/* Dropdown */}
+        <div
+          className={`flex w-full flex-col items-center overflow-hidden transition-all duration-300 ease-in-out ${
+            isOpen ? 'max-h-[400px] pt-3 opacity-100' : 'pointer-events-none max-h-0 pt-0 opacity-0'
+          }`}
         >
-          {open ? <XIcon className="h-5 w-5" /> : <MenuIcon className="h-5 w-5" />}
-        </button>
-      </div>
-
-      <AnimatePresence>
-        {open ? (
-          <motion.div
-            initial={{ opacity: 0, y: -8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            className="border-t border-[rgba(255,213,30,0.2)] bg-black md:hidden"
-          >
-            <div className="space-y-2 px-4 py-4">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.label}
-                  href={link.href}
-                  onClick={() => setOpen(false)}
-                  className="block rounded-lg px-3 py-2 text-sm text-[var(--scro-white)] hover:bg-[rgba(255,213,30,0.12)]"
-                >
-                  {link.label}
-                </Link>
-              ))}
-              <Button href="/#contact" className="w-full" onClick={() => setOpen(false)}>
-                Join SCRO
-              </Button>
-            </div>
-          </motion.div>
-        ) : null}
-      </AnimatePresence>
-    </header>
+          <nav className="flex w-full flex-col items-center gap-2 bg-[rgba(8,8,8,0.82)] border border-[rgba(255,213,30,0.2)] backdrop-blur-md rounded-2xl px-4 py-4">
+            {links.map((l) => (
+              <a
+                key={l.label}
+                href={l.href}
+                onClick={() => setIsOpen(false)}
+                className="w-full py-2 text-center text-sm text-[rgba(255,255,255,0.65)] hover:text-white transition-colors"
+              >
+                {l.label}
+              </a>
+            ))}
+            <a
+              href="https://discord.gg/F9PTT3FJFS"
+              target="_blank"
+              rel="noreferrer noopener"
+              className="mt-1 w-full rounded-full bg-[#FFD51E] py-2.5 text-center text-sm font-bold text-black hover:bg-[#CCAA18] transition-colors"
+            >
+              Join Discord
+            </a>
+          </nav>
+        </div>
+      </header>
+    </>
   );
 }
