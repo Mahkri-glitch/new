@@ -5,7 +5,7 @@ import { navLinks } from '@/lib/data';
 
 export function Footer() {
   return (
-    <footer className="border-t border-zinc-800 bg-black py-16">
+    <footer className="border-t border-white/5 bg-[#050505] py-16">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
           <div className="md:col-span-2">
@@ -53,7 +53,7 @@ export function Footer() {
           </div>
         </div>
         
-        <div className="border-t border-zinc-800 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
+        <div className="border-t border-white/5 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-xs text-zinc-600">
             © {new Date().getFullYear()} SCRO @ UCF. All rights reserved.
           </p>

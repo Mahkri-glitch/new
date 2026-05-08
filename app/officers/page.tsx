@@ -1,3 +1,5 @@
+'use client';
+
 import Image from 'next/image';
 import { Navbar } from '@/components/navbar';
 import { Footer } from '@/components/footer';
@@ -30,20 +32,23 @@ const officers = [
 ];
 
 const roleBadgeColor: Record<string, string> = {
-  President: 'bg-white text-black',
-  'Vice President': 'bg-zinc-800 text-zinc-300',
-  Treasurer: 'bg-zinc-800 text-zinc-300',
-  Secretary: 'bg-zinc-800 text-zinc-300',
+  President: 'bg-[#FFD51E] text-black border border-[#FFD51E]/20',
+  'Vice President': 'bg-white/10 text-white border border-white/20 backdrop-blur-md',
+  Treasurer: 'bg-white/10 text-white border border-white/20 backdrop-blur-md',
+  Secretary: 'bg-white/10 text-white border border-white/20 backdrop-blur-md',
 };
 
 export default function OfficersPage() {
   return (
     <>
       <Navbar />
-      <main className="min-h-screen bg-black text-white pt-32 pb-24 px-6">
+      <main className="min-h-screen bg-[#050505] text-white pt-32 pb-24 px-6 relative overflow-hidden">
+        {/* Subtle grid background */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none" />
+
         {/* Header */}
-        <div className="max-w-6xl mx-auto mb-16">
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mb-4">
+        <div className="max-w-6xl mx-auto mb-16 relative z-10 text-center sm:text-left">
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight mb-6">
             Meet the Officers
           </h1>
           <p className="text-zinc-400 text-lg max-w-2xl leading-relaxed">
@@ -52,31 +57,35 @@ export default function OfficersPage() {
         </div>
 
         {/* Officers grid */}
-        <div className="mx-auto max-w-6xl grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="mx-auto max-w-6xl grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 relative z-10">
           {officers.map((officer) => (
             <div
               key={officer.name}
-              className="flex flex-col rounded-xl overflow-hidden bg-[#111] border border-zinc-800 transition-colors duration-300 hover:border-zinc-700"
+              className="group flex flex-col rounded-2xl overflow-hidden bg-white/5 backdrop-blur-xl border border-white/10 transition-all duration-300 hover:bg-white/[0.07] hover:border-white/20 shadow-xl"
             >
               {/* Photo */}
-              <div className="relative w-full aspect-[4/5] bg-zinc-900 border-b border-zinc-800">
-                <Image
-                  src={officer.photo}
-                  alt={officer.name}
-                  fill
-                  className="object-cover object-top transition-transform duration-500 hover:scale-105"
-                />
+              <div className="relative w-full aspect-[4/5] overflow-hidden p-2 pb-0">
+                <div className="relative w-full h-full rounded-t-xl overflow-hidden">
+                  <Image
+                    src={officer.photo}
+                    alt={officer.name}
+                    fill
+                    className="object-cover object-top transition-transform duration-500 hover:scale-105"
+                  />
+                  {/* Subtle vignette */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+                </div>
                 {/* Role badge */}
-                <div className="absolute top-4 left-4">
-                  <span className={`text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded ${roleBadgeColor[officer.role]}`}>
+                <div className="absolute top-5 left-5">
+                  <span className={`text-[10px] font-extrabold uppercase tracking-widest px-3 py-1.5 rounded-full shadow-sm ${roleBadgeColor[officer.role]}`}>
                     {officer.role}
                   </span>
                 </div>
               </div>
 
               {/* Info */}
-              <div className="p-5 flex flex-col gap-2">
-                <h2 className="text-base font-semibold text-zinc-100">{officer.name}</h2>
+              <div className="p-6 flex flex-col gap-2">
+                <h2 className="text-lg font-bold text-white tracking-tight">{officer.name}</h2>
                 <p className="text-sm text-zinc-400 leading-relaxed">{officer.bio}</p>
               </div>
             </div>
