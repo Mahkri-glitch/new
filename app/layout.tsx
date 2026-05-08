@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 
-import { DottedSurface } from '@/components/ui/dotted-surface';
 import './globals.css';
 
 export const metadata: Metadata = {
@@ -15,7 +14,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="en">
       <body>
-        <DottedSurface />
+        <div className="fixed inset-0 z-[-1] bg-[#0a0a0a]" />
         {children}
       </body>
     </html>
