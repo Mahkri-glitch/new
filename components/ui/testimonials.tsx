@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 import { Quote } from "lucide-react";
 
 interface Testimonial {
@@ -22,14 +22,14 @@ export const TestimonialSection = ({
   subtitle,
   testimonials,
 }: TestimonialSectionProps) => {
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: {},
     visible: {
       transition: { staggerChildren: 0.2 },
     },
   };
 
-  const itemVariants = {
+  const itemVariants: Variants = {
     hidden: { opacity: 0, y: 20 },
     visible: {
       opacity: 1,
