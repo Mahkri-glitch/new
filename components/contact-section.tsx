@@ -1,32 +1,26 @@
 import { MailIcon, MessageCircleIcon } from '@/lib/icons';
 
-import { SectionMotion } from '@/components/section-motion';
-import { Button } from '@/components/ui/button';
-
 export function ContactSection() {
   return (
-    <SectionMotion id="contact" className="bg-transparent py-16 sm:py-20">
-      <div className="mx-auto max-w-4xl rounded-3xl border border-[rgba(255,213,30,0.35)] bg-[rgba(255,213,30,0.06)] px-6 py-10 text-center sm:px-10">
-        <h2 className="text-3xl font-bold text-[var(--scro-white)] sm:text-4xl">Contact Us</h2>
-        <p className="mx-auto mt-4 max-w-2xl text-sm text-[rgba(255,255,255,0.86)]">
-          Interested in semiconductors, microelectronics, fabrication, materials, or career readiness? Reach out and get
-          connected.
-        </p>
+    <section id="contact" className="py-24 sm:py-32">
+      <div className="mx-auto max-w-4xl px-6">
+        <div className="rounded-2xl border border-zinc-800 bg-[#111] p-10 text-center sm:p-16">
+          <h2 className="text-2xl font-bold text-white tracking-tight mb-4">Contact Us</h2>
+          <p className="mx-auto max-w-xl text-zinc-400 leading-relaxed mb-8">
+            Interested in semiconductors, microelectronics, fabrication, materials, or career readiness? Reach out and get
+            connected.
+          </p>
 
-        <div className="mt-5 space-y-2 text-sm text-[var(--scro-white)]">
-          <p>Email: scro.ucf@gmail.com</p>
-          <p>Discord: https://discord.gg/F9PTT3FJFS</p>
-        </div>
-
-        <div className="mt-6 flex flex-wrap justify-center gap-3">
-          <Button href="mailto:scro.ucf@gmail.com" className="min-w-40">
-            <MailIcon className="mr-2 h-4 w-4" /> Email Us
-          </Button>
-          <Button href="https://discord.gg/F9PTT3FJFS" variant="outline" className="min-w-40">
-            <MessageCircleIcon className="mr-2 h-4 w-4" /> Join Our Discord
-          </Button>
+          <div className="flex flex-col sm:flex-row justify-center gap-4">
+            <a href="mailto:scro.ucf@gmail.com" className="inline-flex h-11 items-center justify-center rounded-lg bg-white px-8 text-sm font-semibold text-black transition-colors hover:bg-zinc-200">
+              <MailIcon className="mr-2 h-4 w-4" /> Email Us
+            </a>
+            <a href="https://discord.gg/F9PTT3FJFS" className="inline-flex h-11 items-center justify-center rounded-lg border border-zinc-800 bg-transparent px-8 text-sm font-medium text-zinc-300 transition-colors hover:bg-zinc-900 hover:text-white">
+              <MessageCircleIcon className="mr-2 h-4 w-4" /> Join Our Discord
+            </a>
+          </div>
         </div>
       </div>
-    </SectionMotion>
+    </section>
   );
 }
