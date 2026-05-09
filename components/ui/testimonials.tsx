@@ -1,5 +1,6 @@
 'use client';
 
+import Image from "next/image";
 import { motion, type Variants } from "framer-motion";
 import { Quote } from "lucide-react";
 
@@ -58,14 +59,15 @@ export const TestimonialSection = ({
           {testimonials.map((testimonial) => (
             <motion.div
               key={testimonial.id}
-              className="relative overflow-hidden rounded-lg bg-card shadow-sm"
+              className="relative overflow-hidden rounded-lg bg-card shadow-sm h-[480px]"
               variants={itemVariants}
             >
-              <div className="relative">
-                <img
+              <div className="relative h-full w-full">
+                <Image
                   src={testimonial.imageSrc}
                   alt={testimonial.name}
-                  className="h-120 w-full object-cover"
+                  fill
+                  className="object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent" />
               </div>
