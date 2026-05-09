@@ -1,88 +1,63 @@
 'use client';
 
-import { useRef, useEffect, useState } from 'react';
+import { useRef, useEffect } from 'react';
 import * as THREE from 'three';
 import { cn } from '@/lib/utils';
 
-// Silicon crystal lattice atoms (4 bonded in tetrahedral arrangement)
-interface LatticeAtom {
-  position: [number, number, number];
-  type: 'Si' | 'C' | 'I'; // Si=Silicon, C=Carbon (doping), I=Interstitial
-}
+type AtomPosition = [number, number, number];
+type LatticeAtom = { position: AtomPosition; type: 'Si' | 'C' | 'I' };
 
-interface LatticePoint {
-  x: number;
-  y: number;
-  z: number;
-  atoms: LatticeAtom[];
-}
+const LATTICE_COUNT = 10;
+const CELL_SIZE = 4.5;
+const ATOM_RADIUS = 0.6;
 
-const LATTICE_ORIGIN = [0, 0, 0];
-const BOND_LENGTH = 2.35; // ~2.35 Angstroms for Si-Si
-const CELL_SIZE = 4.71; // ~4.71 Angstroms for diamond cubic
-const LATTICE_COUNT = 12; // Number of unit cells
-const ATOM_RADIUS_BASE = 0.6; // Radius relative to cell size
-const BALLSTICK_RADIUS = 0.08;
+function generateLattice(): LatticeAtom[][][] {
+  const atoms: any[][][][] = [];
 
-// Generate silicon diamond cubic lattice
-function generateLattice(count: number): LatticePoint[][][] {
-  const points: LatticePoint[][][] = [];
-  const origin = LATTICE_ORIGIN;
+  for (let z = 0; z < LATTICE_COUNT; z++) {
+    atoms[z] = [];
+    for (let x = 0; x < LATTICE_COUNT; x++) {
+      atoms[z][x] = [];
+      for (let y = 0; y < LATTICE_COUNT; y++) {
+        atoms[z][x][y] = [];
+        const tetraOffset = CELL_SIZE / 4;
+        const isTetra = (x + y + z) % 2 === 0;
 
-  for (let z = 0; z < count; z++) {
-    points[z] = [];
-    for (let x = 0; x < count; x++) {
-      points[z][x] = [];
-      for (let y = 0; y < count; y++) {
-        const pos = [x * CELL_SIZE - (origin[0] * CELL_SIZE), y * CELL_SIZE - (origin[1] * CELL_SIZE), z * CELL_SIZE - (origin[2] * CELL_SIZE)];
-        points[z][x][y] = { x: pos[0], y: pos[1], z: pos[2], atoms: [] };
-      }
-    }
-  }
+        // Silicon atoms
+        atoms[z][x][y].push({ position: [x * CELL_SIZE, y * CELL_SIZE, z * CELL_SIZE], type: 'Si' });
 
-  // Add atoms to lattice points (tetrahedral arrangement)
-  for (let z = 0; z < count; z++) {
-    for (let x = 0; x < count; x++) {
-      for (let y = 0; y < count; y++) {
-        // Primary lattice atom (Si at corners)
-        points[z][x][y].atoms.push({ position: [x * CELL_SIZE, y * CELL_SIZE, z * CELL_SIZE], type: 'Si' });
-        // Tetrahedral positions (alternate lattice points)
-        if ((x + y + z) % 2 === 0) {
-          points[z][x][y].atoms.push({
-            position: [
-              x * CELL_SIZE + CELL_SIZE / 4,
-              y * CELL_SIZE + CELL_SIZE / 4,
-              z * CELL_SIZE + CELL_SIZE / 4,
-            ],
-            type: 'Si',
-          });
+        if (isTetra) {
+          atoms[z][x][y].push({ position: [x * CELL_SIZE + tetraOffset, y * CELL_SIZE + tetraOffset, z * CELL_SIZE + tetraOffset], type: 'Si' });
         }
-        // Random carbon doping (simulating doping)
-        if (Math.random() < 0.03 && z > 2 && z < count - 3) {
-          points[z][x][y].atoms.push({
-            position: [
-              x * CELL_SIZE + CELL_SIZE / 4,
-              y * CELL_SIZE + CELL_SIZE / 4,
-              z * CELL_SIZE + CELL_SIZE / 4,
-            ],
-            type: 'C',
-          });
+
+        // Carbon doping (gold - SCRO!)
+        if (Math.random() < 0.05 && z > 1 && z < LATTICE_COUNT - 2) {
+          const tetraPos = [x * CELL_SIZE + tetraOffset, y * CELL_SIZE + tetraOffset, z * CELL_SIZE + tetraOffset];
+          if (!atoms[z][x][y].some((a) =>
+            Math.abs(a.position[0] - tetraPos[0]) < CELL_SIZE / 2.5 &&
+            Math.abs(a.position[1] - tetraPos[1]) < CELL_SIZE / 2.5 &&
+            Math.abs(a.position[2] - tetraPos[2]) < CELL_SIZE / 2.5
+          )) {
+            atoms[z][x][y].push({ position: tetraPos, type: 'C' });
+          }
         }
-        // Occasional interstitial (defect)
-        if (Math.random() < 0.01 && z > 2 && z < count - 3) {
-          points[z][x][y].atoms.push({
-            position: [
-              x * CELL_SIZE + 1.5,
-              y * CELL_SIZE + 1.5,
-              z * CELL_SIZE + 1.5,
-            ],
-            type: 'I',
-          });
+
+        // Red interstitial defects
+        if (Math.random() < 0.01 && z > 1 && z < LATTICE_COUNT - 2) {
+          const defectPos = [x * CELL_SIZE + 1.2, y * CELL_SIZE + 1.2, z * CELL_SIZE + 1.2];
+          if (!atoms[z][x][y].some((a) =>
+            Math.abs(a.position[0] - defectPos[0]) < 0.8 &&
+            Math.abs(a.position[1] - defectPos[1]) < 0.8 &&
+            Math.abs(a.position[2] - defectPos[2]) < 0.8
+          )) {
+            atoms[z][x][y].push({ position: defectPos, type: 'I' });
+          }
         }
       }
     }
   }
-  return points;
+
+  return atoms as unknown as LatticeAtom[][][];
 }
 
 export function MolecularLattice({
@@ -94,10 +69,10 @@ export function MolecularLattice({
 } = {}) {
   const mountRef = useRef<HTMLDivElement>(null);
   const atomsRef = useRef<THREE.Mesh[]>([]);
-  const bondsRef = useRef<THREE.Line[]>([]);
   const rotationRef = useRef({ x: 0, y: 0 });
-  const mouseRef = useRef({ x: 0, y: 0 });
   const targetRotationRef = useRef({ x: 0, y: 0 });
+  const mouseRef = useRef({ x: 0, y: 0 });
+  const latticeRef = useRef<any[][][][]>([]);
 
   useEffect(() => {
     if (!mountRef.current) return;
@@ -107,127 +82,90 @@ export function MolecularLattice({
     const height = container.clientHeight;
 
     const scene = new THREE.Scene();
-    scene.fog = new THREE.Fog(0x0a0a0a, 600, 1200);
+    scene.fog = new THREE.Fog(0x050505, 250, 600);
 
-    const camera = new THREE.PerspectiveCamera(
-      60,
-      width / height,
-      1,
-      10000
-    );
-    camera.position.set(0, 300, 600);
+    const camera = new THREE.PerspectiveCamera(55, width / height, 1, 8000);
+    camera.position.set(0, 150, 450);
     camera.lookAt(0, 0, 0);
 
     const renderer = new THREE.WebGLRenderer({
       alpha: true,
-      antialias: false,
+      antialias: true,
       powerPreference: 'low-power',
     });
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.4));
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
     renderer.setSize(width, height);
-    renderer.setClearColor(0x0a0a0a, 0);
+    renderer.setClearColor(0x050505, 0);
     container.appendChild(renderer.domElement);
 
-    // Create lattice
-    const lattice = generateLattice(LATTICE_COUNT);
-    const latticeObjects: { type: 'atom' | 'bond'; mesh?: THREE.Mesh | THREE.Line }[] = [];
+    const lattice = generateLattice();
+    latticeRef.current = lattice as unknown as any;
+    const atomGeometry = new THREE.SphereGeometry(ATOM_RADIUS, 10, 10);
 
-    const atomGeometry = new THREE.SphereGeometry(ATOM_RADIUS_BASE, 16, 16);
-    const bondMaterial = new THREE.LineBasicMaterial({
-      transparent: true,
-      opacity: 0.25,
-      depthTest: false,
-    });
+    // Lighting setup for visibility
+    const dirLight = new THREE.DirectionalLight(0xffffff, 0.5);
+    dirLight.position.set(120, 120, 120);
+    scene.add(dirLight);
 
-    const getAtomColor = (type: LatticeAtom['type']) => {
-      switch (type) {
-        case 'Si': return new THREE.Color('#a0a0a0');
-        case 'C': return new THREE.Color('#FFD51E');
-        case 'I': return new THREE.Color('#ff4444');
+    const goldLight = new THREE.PointLight(0xFFD51E, 1.5, 600);
+    goldLight.position.set(-80, -80, -80);
+    scene.add(goldLight);
+
+    const ambient = new THREE.AmbientLight(0x333344, 0.5);
+    scene.add(ambient);
+
+    // Materials cache
+    const materials = new Map<string, THREE.MeshStandardMaterial>();
+
+    const getAtomMaterial = (type: LatticeAtom['type'], i: number) => {
+      const key = `${type}-${i % 2}`;
+      if (materials.has(key)) {
+        return materials.get(key)!;
       }
+
+      const isEven = i % 2 === 0;
+      const baseColor = type === 'Si' ? (isEven ? 0xd0d0d0 : 0xaaaaaa) :
+                        type === 'C' ? 0xFFD51E : 0xff5555;
+
+      let emissive = 0x0a0a0a;
+      let emissiveIntensity = 0.1;
+
+      if (type === 'C') {
+        emissive = 0x443300;
+        emissiveIntensity = 0.6;
+      } else if (type === 'I') {
+        emissive = 0x550000;
+        emissiveIntensity = 0.4;
+      }
+
+      const mat = new THREE.MeshStandardMaterial({
+        color: baseColor,
+        transparent: true,
+        opacity: type === 'C' ? 0.96 : 0.88,
+        roughness: 0.25,
+        metalness: type === 'C' ? 0.85 : 0.2,
+        emissive,
+        emissiveIntensity,
+      });
+      materials.set(key, mat);
+      return mat;
     };
 
-    // Create bond material
-    const materialMap = {
-      SiSi: new THREE.LineBasicMaterial({ color: 0x444444, transparent: true, opacity: 0.3 }),
-      SiC: new THREE.LineBasicMaterial({ color: 0xFFD51E, transparent: true, opacity: 0.5 }),
-      SiI: new THREE.LineBasicMaterial({ color: 0xff4444, transparent: true, opacity: 0.4 }),
-    };
-
-    // Process each lattice point
+    // Create atoms
     for (let z = 0; z < LATTICE_COUNT; z++) {
       for (let x = 0; x < LATTICE_COUNT; x++) {
         for (let y = 0; y < LATTICE_COUNT; y++) {
-          const point = lattice[z][x][y];
-
-          point.atoms.forEach((atom) => {
-            const atomMesh = new THREE.Mesh(
-              atomGeometry,
-              new THREE.MeshStandardMaterial({
-                color: getAtomColor(atom.type),
-                transparent: true,
-                opacity: atom.type === 'Si' ? 0.8 : 0.9,
-                roughness: 0.6,
-                metalness: 0.1,
-              })
-            );
-
-            atomMesh.position.set(atom.position[0], atom.position[1], atom.position[2]);
-            atomMesh.userData = { type: atom.type, originalPosition: atom.position };
-            atomsRef.current.push(atomMesh);
-            latticeObjects.push({ type: 'atom', mesh: atomMesh });
+          (lattice[z][x][y] as unknown as LatticeAtom[]).forEach((atom) => {
+            const mat = getAtomMaterial(atom.type, atom.position[0] + atom.position[1] + atom.position[2]);
+            const mesh = new THREE.Mesh(atomGeometry, mat);
+            mesh.position.set(...atom.position);
+            atomsRef.current.push(mesh);
           });
-
-          // Add bonds between atoms at same point
-          const primaryAtom = point.atoms.find((a) => a.position[0] === x * CELL_SIZE);
-          if (primaryAtom) {
-            point.atoms.slice(1).forEach((secondaryAtom) => {
-              if (
-                Math.abs(primaryAtom.position[0] - secondaryAtom.position[0]) < CELL_SIZE / 2 &&
-                Math.abs(primaryAtom.position[1] - secondaryAtom.position[1]) < CELL_SIZE / 2 &&
-                Math.abs(primaryAtom.position[2] - secondaryAtom.position[2]) < CELL_SIZE / 2
-              ) {
-                // Check if bond should exist
-                const dx = primaryAtom.position[0] - secondaryAtom.position[0];
-                const dy = primaryAtom.position[1] - secondaryAtom.position[1];
-                const dz = primaryAtom.position[2] - secondaryAtom.position[2];
-                const dist = Math.sqrt(dx * dx + dy * dy + dz * dz);
-                if (dist <= BOND_LENGTH * 1.5) {
-                  const bondGeometry = new THREE.BufferGeometry().setFromPoints([
-                    new THREE.Vector3(primaryAtom.position[0], primaryAtom.position[1], primaryAtom.position[2]),
-                    new THREE.Vector3(secondaryAtom.position[0], secondaryAtom.position[1], secondaryAtom.position[2]),
-                  ]);
-
-                  const bondMaterialType =
-                    primaryAtom.type === 'C' ? 'SiC' :
-                    secondaryAtom.type === 'C' ? 'SiC' :
-                    primaryAtom.type === 'I' ? 'SiI' :
-                    secondaryAtom.type === 'I' ? 'SiI' : 'SiSi';
-
-                  const bond = new THREE.Line(bondGeometry, materialMap[bondMaterialType as keyof typeof materialMap] || materialMap['SiSi']);
-                  bondsRef.current.push(bond);
-                  latticeObjects.push({ type: 'bond', mesh: bond });
-                }
-              }
-            });
-          }
         }
       }
     }
 
-    // Ambient and directional lighting
-    const ambientLight = new THREE.AmbientLight(0x404040, 0.5);
-    scene.add(ambientLight);
-
-    const dirLight = new THREE.DirectionalLight(0xffffff, 0.8);
-    dirLight.position.set(100, 100, 100);
-    scene.add(dirLight);
-
-    const dirLight2 = new THREE.DirectionalLight(0xffd51e, 0.3);
-    dirLight2.position.set(-100, -100, -100);
-    scene.add(dirLight2);
-
-    // Mouse interaction
+    // Mouse tracking
     const handleMouseMove = (e: MouseEvent) => {
       const rect = container.getBoundingClientRect();
       mouseRef.current = {
@@ -237,12 +175,13 @@ export function MolecularLattice({
     };
 
     container.addEventListener('mousemove', handleMouseMove);
+
+    // Click to explode
     container.addEventListener('click', () => {
-      // Explode atoms on click
-      atomsRef.current.forEach((atom, i) => {
-        atom.position.x = atom.userData.originalPosition[0] + (Math.random() - 0.5) * 400;
-        atom.position.y = atom.userData.originalPosition[1] + (Math.random() - 0.5) * 400;
-        atom.position.z = atom.userData.originalPosition[2] + (Math.random() - 0.5) * 400;
+      atomsRef.current.forEach((atom) => {
+        atom.position.x += (Math.random() - 0.5) * 350;
+        atom.position.y += (Math.random() - 0.5) * 350;
+        atom.position.z += (Math.random() - 0.5) * 350;
       });
     });
 
@@ -250,44 +189,31 @@ export function MolecularLattice({
 
     const animate = () => {
       requestAnimationFrame(animate);
-
       const time = clock.getElapsedTime();
 
-      // Auto-rotate
       if (autoRotate) {
-        targetRotationRef.current.y = time * 0.3;
-        targetRotationRef.current.x = (time * 0.15) % Math.PI * 2 - Math.PI;
+        targetRotationRef.current.y = time * 0.22;
+        targetRotationRef.current.x = (time * 0.11) % (Math.PI * 2) - Math.PI;
       }
 
-      // Smooth rotation
-      rotationRef.current.y += (targetRotationRef.current.y - rotationRef.current.y) * 0.05;
-      rotationRef.current.x += (targetRotationRef.current.x - rotationRef.current.x) * 0.05;
+      rotationRef.current.y += (targetRotationRef.current.y - rotationRef.current.y) * 0.025;
+      rotationRef.current.x += (targetRotationRef.current.x - rotationRef.current.x) * 0.025;
 
-      // Apply rotation
       scene.rotation.y = rotationRef.current.y;
       scene.rotation.x = rotationRef.current.x;
 
-      // Pulse atoms
+      // Subtle breathing
       atomsRef.current.forEach((atom, i) => {
-        const baseSize = i % 3 === 0 ? 1.0 : 0.9;
-        atom.scale.set(
-          baseSize + Math.sin(time * 3 + i) * 0.05,
-          baseSize + Math.sin(time * 3 + i) * 0.05,
-          baseSize + Math.sin(time * 3 + i) * 0.05
-        );
+        atom.scale.setScalar(1 + Math.sin(time * 1.8 + i) * 0.03);
       });
 
-      // Mouse interaction: attract atoms towards mouse
+      // Mouse attraction
       if (mouseRef.current.x > 0) {
-        const mouseVector = new THREE.Vector3(
-          mouseRef.current.x * 2 - width / 2,
-          mouseRef.current.y * 2 - height / 2,
-          0
-        );
-        atomsRef.current.forEach((atom) => {
-          const distance = atom.position.distanceTo(new THREE.Vector3(mouseVector.x, mouseVector.y, 0));
-          if (distance < 400) {
-            atom.position.lerp(new THREE.Vector3(mouseVector.x, mouseVector.y, atom.position.z), 0.01);
+        const mousePos = new THREE.Vector3(mouseRef.current.x * 2 - width / 2, mouseRef.current.y * 2 - height / 2, 0);
+        atomsRef.current.forEach((atom: any) => {
+          const dist = atom.position.distanceTo(mousePos);
+          if (dist < 350) {
+            atom.position.lerp(mousePos, 0.003);
           }
         });
       }
@@ -300,7 +226,6 @@ export function MolecularLattice({
     return () => {
       container.removeChild(renderer.domElement);
       atomsRef.current = [];
-      bondsRef.current = [];
     };
   }, [autoRotate]);
 
@@ -308,7 +233,7 @@ export function MolecularLattice({
     <div
       ref={mountRef}
       className={cn(
-        'absolute inset-0 z-[-1] pointer-events-auto',
+        'absolute inset-0 z-[-1]',
         className
       )}
     />
