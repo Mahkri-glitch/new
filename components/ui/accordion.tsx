@@ -9,7 +9,7 @@ import { cn } from '@/lib/utils';
 type Props = { items: FaqItem[] };
 
 export function Accordion({ items }: Props) {
-  const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
     <div className="space-y-3">

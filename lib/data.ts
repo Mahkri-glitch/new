@@ -69,22 +69,22 @@ export const navLinks: NavLink[] = [
 export const missionCards: ValueCard[] = [
   {
     title: 'Professional Development',
-    description: 'Build confidence with resume support, interview readiness, and practical career guidance for the semiconductor space.',
+    description: 'Get help with your resume, practice for interviews, and figure out how to actually land a job in the semiconductor industry.',
     icon: BriefcaseBusinessIcon
   },
   {
     title: 'Industry Exposure',
-    description: 'Learn how semiconductor ecosystems work through speaker sessions, roadmap discussions, and real-world career insight.',
+    description: 'Hear directly from professionals working in the field. We bring in guest speakers and talk about what it\'s really like out there.',
     icon: MegaphoneIcon
   },
   {
     title: 'Technical Learning',
-    description: 'Explore microelectronics, devices, fabrication fundamentals, and materials in a student-friendly environment.',
+    description: 'Learn the basics of microelectronics, fabrication, and materials science without the stress of a graded class.',
     icon: AtomIcon
   },
   {
     title: 'Community',
-    description: 'Connect with peers across majors who are serious about learning, building skills, and growing together.',
+    description: 'Hang out and network with other engineering and science majors who are trying to get their foot in the door.',
     icon: UsersIcon
   }
 ];
@@ -113,31 +113,31 @@ export const events: EventItem[] = [
 export const benefits: BenefitCard[] = [
   {
     title: 'Explore Semiconductor Careers',
-    description: 'Understand pathways across design, process, materials, manufacturing, and emerging hardware roles.',
+    description: 'Find out what kind of jobs are actually out there—whether you want to do design, manufacturing, or materials research.',
     icon: RocketIcon
   },
   {
-    title: 'Build Professional Confidence',
-    description: 'Gain practical communication and career readiness skills before internship and full-time recruiting seasons.',
+    title: 'Get Ready for Recruiting',
+    description: 'Brush up on your networking and interview skills before the big career fairs and internship application drops.',
     icon: HandshakeIcon
   },
   {
-    title: 'Learn with a Motivated Community',
-    description: 'Stay accountable with students who care about technical growth and long-term career development.',
+    title: 'Meet Like-Minded Students',
+    description: 'Join a group of people who are just as driven as you are about getting into the hardware and semiconductor space.',
     icon: UsersIcon
   },
   {
-    title: 'Stay Connected to Opportunities',
-    description: 'Discover club events, networking channels, and resources that keep you plugged into momentum.',
+    title: 'Find Opportunities',
+    description: 'We share job postings, internships, research opportunities, and upcoming networking events in our Discord.',
     icon: LightbulbIcon
   }
 ];
 
 export const joinSteps: JoinStep[] = [
-  { title: 'Join the Discord', description: 'Enter the main communication hub for announcements and conversations.' },
-  { title: 'Attend an event', description: 'Show up to a meeting or session to understand the club rhythm and focus.' },
-  { title: 'Introduce yourself', description: 'Share your interests, goals, and what you want to learn.' },
-  { title: 'Stay engaged with meetings and opportunities', description: 'Keep participating and growing with the community.' }
+  { title: 'Join our Discord', description: 'This is where we post all our announcements, meeting times, and job opportunities.' },
+  { title: 'Come to a meeting', description: 'Stop by one of our GBMs or workshops to see what we\'re all about.' },
+  { title: 'Introduce yourself', description: 'Let us know what your major is and what kind of stuff you\'re interested in.' },
+  { title: 'Stay active', description: 'Keep coming to events, ask questions, and hang out with the community.' }
 ];
 
 export const checklistItems: string[] = [
@@ -150,24 +150,24 @@ export const checklistItems: string[] = [
 
 export const faqItems: FaqItem[] = [
   {
-    question: 'Do I need semiconductor experience?',
-    answer: 'No. Beginners are welcome, and SCRO is designed to support students from their first steps onward.'
+    question: 'Do I need any prior experience?',
+    answer: 'Not at all! We welcome everyone, whether you\'re a freshman who just heard the word "semiconductor" today or a senior working on a research project.'
   },
   {
     question: 'What majors can join?',
-    answer: 'Students from engineering, physics, chemistry, materials science, and other related fields can join.'
+    answer: 'Most of our members are in Electrical Engineering, Materials Science, Physics, or Chemistry, but literally anyone interested can join.'
   },
   {
     question: 'How do I hear about events?',
-    answer: 'Event announcements and reminders are shared through the club Discord and member communication channels.'
+    answer: 'Make sure you join our Discord! We post all our meeting times, locations, and updates in the announcements channel.'
   },
   {
-    question: 'Is the club only for advanced students?',
-    answer: 'Not at all. SCRO supports students at every stage, from exploratory learners to advanced members.'
+    question: 'Is there a membership fee?',
+    answer: 'Nope, joining SCRO is completely free. Just show up to our meetings and get involved.'
   },
   {
     question: 'How can I get more involved?',
-    answer: 'Attend meetings consistently, participate in discussions, and volunteer when opportunities are posted.'
+    answer: 'The best way is to come to our meetings, ask questions when we have guest speakers, and chat with people in the Discord.'
   }
 ];
 
@@ -187,23 +187,23 @@ export const whoShouldJoin = [
 
 export const whatToExpect: ValueCard[] = [
   {
-    title: 'Club Meetings',
-    description: 'Regular sessions that keep members informed, connected, and aligned on upcoming opportunities.',
+    title: 'General Body Meetings',
+    description: 'We meet regularly to go over club updates, talk about the industry, and hang out.',
     icon: UsersIcon
   },
   {
-    title: 'Technical Exposure',
-    description: 'Accessible discussions around semiconductor concepts, tools, and real-world applications.',
+    title: 'Technical Deep Dives',
+    description: 'We break down complicated semiconductor topics so they actually make sense, even if you haven\'t taken the upper-level classes yet.',
     icon: AtomIcon
   },
   {
-    title: 'Professional Development',
-    description: 'Career-focused sessions covering networking, internships, and preparation strategies.',
+    title: 'Career Prep',
+    description: 'Workshops focused on fixing your resume, prepping for technical interviews, and applying for internships.',
     icon: BriefcaseBusinessIcon
   },
   {
-    title: 'Community & Networking',
-    description: 'A collaborative environment where students support each other academically and professionally.',
+    title: 'Networking',
+    description: 'Meet alumni, recruiters, and other students who can help you figure out your career path.',
     icon: HandshakeIcon
   }
 ];

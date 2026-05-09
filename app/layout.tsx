@@ -1,7 +1,9 @@
 import type { Metadata } from 'next';
+import { Inter } from 'next/font/google';
 
-import { DottedSurface } from '@/components/ui/dotted-surface';
 import './globals.css';
+
+const inter = Inter({ subsets: ['latin'], display: 'swap' });
 
 export const metadata: Metadata = {
   title: 'SCRO @ UCF',
@@ -13,9 +15,9 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en">
+    <html lang="en" className={inter.className}>
       <body>
-        <DottedSurface />
+        <div className="fixed inset-0 z-[-1] bg-[#0a0a0a]" />
         {children}
       </body>
     </html>

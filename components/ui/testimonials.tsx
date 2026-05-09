@@ -1,6 +1,7 @@
 'use client';
 
-import { motion } from "framer-motion";
+import Image from "next/image";
+import { motion, type Variants } from "framer-motion";
 import { Quote } from "lucide-react";
 
 interface Testimonial {
@@ -22,14 +23,14 @@ export const TestimonialSection = ({
   subtitle,
   testimonials,
 }: TestimonialSectionProps) => {
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: {},
     visible: {
       transition: { staggerChildren: 0.2 },
     },
   };
 
-  const itemVariants = {
+  const itemVariants: Variants = {
     hidden: { opacity: 0, y: 20 },
     visible: {
       opacity: 1,
@@ -58,14 +59,15 @@ export const TestimonialSection = ({
           {testimonials.map((testimonial) => (
             <motion.div
               key={testimonial.id}
-              className="relative overflow-hidden rounded-lg bg-card shadow-sm"
+              className="relative overflow-hidden rounded-lg bg-card shadow-sm h-[480px]"
               variants={itemVariants}
             >
-              <div className="relative">
-                <img
+              <div className="relative h-full w-full">
+                <Image
                   src={testimonial.imageSrc}
                   alt={testimonial.name}
-                  className="h-120 w-full object-cover"
+                  fill
+                  className="object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent" />
               </div>

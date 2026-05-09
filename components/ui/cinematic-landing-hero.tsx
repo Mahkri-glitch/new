@@ -171,16 +171,16 @@ export interface SCROCinematicHeroProps extends React.HTMLAttributes<HTMLDivElem
 export function SCROCinematicHero({
   tagline1 = "Build the future of",
   tagline2 = "semiconductors.",
-  cardHeading = "Career readiness, redefined.",
+  cardHeading = "Jumpstart your career.",
   cardDescription = (
     <>
-      <span className="font-semibold" style={{ color: "#FFD51E" }}>SCRO @ UCF</span> connects students with the semiconductor industry through hands-on workshops, industry tours, and real career opportunities — no prior experience required.
+      <span className="font-semibold" style={{ color: "#FFD51E" }}>SCRO @ UCF</span> is the place to learn about the semiconductor industry. We do hands-on workshops, host guest speakers, and help you land internships. No experience needed!
     </>
   ),
   metricValue = 24,
   metricLabel = "Events Hosted",
   ctaHeading = "Join SCRO @ UCF.",
-  ctaDescription = "Connect with the semiconductor industry, build technical skills, and launch your career in microelectronics — all from UCF.",
+  ctaDescription = "Get involved with the semiconductor industry, pick up some new skills, and hang out with people who want to build cool hardware.",
   className,
   ...props
 }: SCROCinematicHeroProps) {

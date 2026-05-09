@@ -2,105 +2,136 @@ import { CheckCircle2Icon } from '@/lib/icons';
 
 import { Footer } from '@/components/footer';
 import { Navbar } from '@/components/navbar';
-import { SectionMotion } from '@/components/section-motion';
 import { Accordion } from '@/components/ui/accordion';
-import { Button } from '@/components/ui/button';
 import { faqItems, joinSteps, whatToExpect, whoShouldJoin } from '@/lib/data';
+
+function DevCard({ children, className = "" }: { children: React.ReactNode; className?: string }) {
+  return (
+    <div className={`rounded-xl border border-zinc-800 bg-[#111] p-6 sm:p-8 ${className}`}>
+      {children}
+    </div>
+  );
+}
 
 export default function NewMembersPage() {
   return (
     <>
       <Navbar />
-      <main className="pt-24">
-        <SectionMotion className="bg-black py-16">
-          <div className="mx-auto max-w-5xl px-4 text-center sm:px-6 lg:px-8">
-            <h1 className="text-4xl font-bold text-[var(--scro-white)] sm:text-5xl">New Member Page</h1>
-            <p className="mt-4 text-sm text-[rgba(255,255,255,0.85)]">Everything you need to get started with SCRO @ UCF.</p>
-          </div>
-        </SectionMotion>
-
-        <SectionMotion className="bg-[rgba(255,213,30,0.08)] py-14">
-          <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-            <h2 className="text-2xl font-bold text-black">Welcome</h2>
-            <p className="mt-3 text-sm text-[rgba(0,0,0,0.82)]">
-              SCRO is a space for students interested in semiconductors, microelectronics, materials, fabrication, and
-              related careers. You do not need prior experience to get involved.
+      <main className="pt-24 min-h-screen bg-black text-zinc-100 selection:bg-[#FFD51E] selection:text-black">
+        {/* Header */}
+        <section className="py-16 sm:py-24 border-b border-zinc-800">
+          <div className="mx-auto max-w-4xl px-6 text-center">
+            <h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-white mb-6">
+              Welcome to SCRO
+            </h1>
+            <p className="text-lg text-zinc-400 max-w-2xl mx-auto leading-relaxed">
+              We're a community of students learning about semiconductors, microelectronics, and hardware engineering. It's awesome to meet you!
             </p>
           </div>
-        </SectionMotion>
+        </section>
 
-        <SectionMotion className="bg-white py-14">
-          <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-            <h2 className="text-2xl font-bold text-black">Who Should Join</h2>
-            <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-              {whoShouldJoin.map((item) => (
-                <div key={item} className="rounded-xl border border-[rgba(204,170,24,0.45)] bg-[rgba(255,213,30,0.1)] p-4 text-sm text-black">
-                  {item}
+        {/* Welcome & Who Should Join */}
+        <section className="py-16 sm:py-24 border-b border-zinc-800">
+          <div className="mx-auto max-w-5xl px-6">
+            <DevCard>
+              <div className="grid lg:grid-cols-2 gap-12 items-center">
+                <div>
+                  <h2 className="text-2xl font-bold tracking-tight text-white mb-4">You belong here.</h2>
+                  <p className="text-zinc-400 leading-relaxed mb-6">
+                    Whether you're a freshman who just discovered what a semiconductor is or a senior building your own chips, SCRO is for everyone. <span className="text-zinc-200 font-medium">You do not need any prior experience.</span>
+                  </p>
                 </div>
-              ))}
-            </div>
-            <p className="mt-6 inline-flex rounded-full border border-[rgba(204,170,24,0.45)] bg-[rgba(255,213,30,0.2)] px-4 py-1 text-sm font-semibold text-black">
-              Beginners are welcome.
-            </p>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {whoShouldJoin.map((item) => (
+                    <div key={item} className="rounded-lg border border-zinc-800 bg-zinc-900/50 p-4 text-sm font-medium text-zinc-300 flex items-center gap-3">
+                      <div className="w-1.5 h-1.5 rounded-full bg-[#FFD51E]" />
+                      {item}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </DevCard>
           </div>
-        </SectionMotion>
+        </section>
 
-        <SectionMotion className="bg-black py-14">
-          <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-            <h2 className="text-2xl font-bold text-[var(--scro-white)]">What to Expect</h2>
-            <div className="mt-6 grid gap-4 sm:grid-cols-2">
+        {/* What to Expect */}
+        <section className="py-16 sm:py-24 border-b border-zinc-800">
+          <div className="mx-auto max-w-6xl px-6">
+            <div className="mb-12">
+              <h2 className="text-2xl font-bold tracking-tight text-white mb-2">What to Expect</h2>
+              <p className="text-zinc-400">Here's what goes down when you join the club.</p>
+            </div>
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
               {whatToExpect.map((item) => {
                 const Icon = item.icon;
                 return (
-                  <article key={item.title} className="rounded-xl border border-[rgba(255,213,30,0.35)] bg-[rgba(255,213,30,0.07)] p-5">
-                    <Icon className="h-5 w-5 text-[var(--scro-gold)]" />
-                    <h3 className="mt-2 font-semibold text-[var(--scro-white)]">{item.title}</h3>
-                    <p className="mt-2 text-sm text-[rgba(255,255,255,0.82)]">{item.description}</p>
+                  <article key={item.title} className="rounded-xl border border-zinc-800 bg-[#111] p-6 hover:border-zinc-700 transition-colors">
+                    <div className="w-10 h-10 rounded-lg bg-zinc-900 border border-zinc-800 flex items-center justify-center mb-5">
+                      <Icon className="h-5 w-5 text-zinc-300" />
+                    </div>
+                    <h3 className="font-semibold text-zinc-100 mb-2">{item.title}</h3>
+                    <p className="text-sm text-zinc-400 leading-relaxed">{item.description}</p>
                   </article>
                 );
               })}
             </div>
           </div>
-        </SectionMotion>
+        </section>
 
-        <SectionMotion className="bg-[rgba(255,213,30,0.08)] py-14">
-          <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-            <h2 className="text-2xl font-bold text-black">How to Get Involved</h2>
-            <ol className="mt-6 space-y-3">
+        {/* How to Get Involved */}
+        <section className="py-16 sm:py-24 border-b border-zinc-800">
+          <div className="mx-auto max-w-4xl px-6">
+            <div className="mb-12">
+              <h2 className="text-2xl font-bold tracking-tight text-white mb-2">Your Next Steps</h2>
+              <p className="text-zinc-400">Getting involved is super easy.</p>
+            </div>
+            <div className="grid gap-4">
               {joinSteps.map((step, index) => (
-                <li key={step.title} className="flex gap-3 rounded-xl border border-[rgba(204,170,24,0.45)] bg-white p-4">
-                  <span className="mt-0.5 text-sm font-bold text-[var(--scro-gold-dark)]">Step {index + 1}</span>
-                  <div>
-                    <p className="text-sm font-semibold text-black">{step.title}</p>
-                    <p className="text-sm text-[rgba(0,0,0,0.75)]">{step.description}</p>
+                <div key={step.title} className="flex gap-6 rounded-xl border border-zinc-800 bg-[#111] p-6 items-start hover:border-zinc-700 transition-colors">
+                  <div className="flex-shrink-0 w-8 h-8 rounded bg-zinc-900 border border-zinc-800 flex items-center justify-center font-bold text-sm text-zinc-300">
+                    {index + 1}
                   </div>
-                </li>
+                  <div>
+                    <h3 className="text-base font-semibold text-zinc-100 mb-1">{step.title}</h3>
+                    <p className="text-sm text-zinc-400">{step.description}</p>
+                  </div>
+                </div>
               ))}
-            </ol>
+            </div>
           </div>
-        </SectionMotion>
+        </section>
 
-        <SectionMotion className="bg-black py-14">
-          <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-            <h2 className="text-2xl font-bold text-[var(--scro-white)]">FAQ</h2>
-            <div className="mt-5">
+        {/* FAQ Section */}
+        <section className="py-16 sm:py-24 border-b border-zinc-800">
+          <div className="mx-auto max-w-3xl px-6">
+            <div className="mb-12">
+              <h2 className="text-2xl font-bold tracking-tight text-white mb-2">Got Questions?</h2>
+              <p className="text-zinc-400">We've got answers.</p>
+            </div>
+            <DevCard>
               <Accordion items={faqItems} />
-            </div>
+            </DevCard>
           </div>
-        </SectionMotion>
+        </section>
 
-        <SectionMotion className="bg-black pb-20">
-          <div className="mx-auto max-w-5xl rounded-3xl border border-[rgba(255,213,30,0.35)] bg-[rgba(255,213,30,0.08)] px-6 py-9 text-center sm:px-10">
-            <CheckCircle2Icon className="mx-auto h-8 w-8 text-[var(--scro-gold)]" />
-            <h2 className="mt-3 text-2xl font-bold text-[var(--scro-white)]">Ready to get started?</h2>
-            <div className="mt-6 flex flex-wrap justify-center gap-3">
-              <Button href="https://discord.gg/hFK2s8eh">Join the Discord</Button>
-              <Button href="mailto:scro.ucf@gmail.com" variant="outline">
-                Contact SCRO
-              </Button>
+        {/* CTA */}
+        <section className="py-24 sm:py-32">
+          <div className="mx-auto max-w-3xl px-6 text-center">
+            <div className="w-12 h-12 rounded-lg bg-zinc-900 border border-zinc-800 mx-auto flex items-center justify-center mb-6">
+              <CheckCircle2Icon className="h-6 w-6 text-[#FFD51E]" />
+            </div>
+            <h2 className="text-3xl font-bold tracking-tight text-white mb-4">Ready to jump in?</h2>
+            <p className="text-zinc-400 mb-8 max-w-md mx-auto">Join the Discord and say hello. We'll let you know when the next meeting is!</p>
+            <div className="flex flex-col sm:flex-row justify-center gap-4">
+              <a href="https://discord.gg/F9PTT3FJFS" className="inline-flex h-11 items-center justify-center rounded-lg bg-white px-8 text-sm font-semibold text-black transition-colors hover:bg-zinc-200">
+                Join the Discord
+              </a>
+              <a href="mailto:scro.ucf@gmail.com" className="inline-flex h-11 items-center justify-center rounded-lg border border-zinc-800 bg-transparent px-8 text-sm font-medium text-zinc-300 transition-colors hover:bg-zinc-900 hover:text-white">
+                Contact Us
+              </a>
             </div>
           </div>
-        </SectionMotion>
+        </section>
       </main>
       <Footer />
     </>
