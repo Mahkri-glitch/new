@@ -233,7 +233,7 @@ export function MolecularLattice({
     <div
       ref={mountRef}
       className={cn(
-        'absolute inset-0 z-[-1]',
+        'absolute inset-0 z-0',
         className
       )}
     />
