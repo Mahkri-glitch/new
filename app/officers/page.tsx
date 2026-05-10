@@ -1,5 +1,5 @@
-import { Navbar } from '@/components/navbar';
 import Image from 'next/image';
+import { Navbar } from '@/components/navbar';
 import { Footer } from '@/components/footer';
 
 // Define the types and data needed for the officers page
@@ -12,37 +12,37 @@ export type Officer = {
 
 const officers: Officer[] = [
   {
-    name: 'Alex Johnson',
+    name: 'Leeann Louis',
     role: 'President',
-    photo: '/alex.jpg',
-    bio: 'Senior Electrical Engineering student with experience in semiconductor fabrication.'
+    photo: '/officer-leeann.png',
+    bio: 'Leading SCRO @ UCF with a passion for building community and opening doors for students to explore the semiconductor industry.'
   },
   {
-    name: 'Maria Garcia',
+    name: 'Maahir Rani',
     role: 'Vice President',
-    photo: '/maria.jpg',
-    bio: 'Junior Materials Science student focused on semiconductor materials research.'
+    photo: '/officer-maahir.png',
+    bio: 'Driving operations and helping shape the vision for SCRO\'s events, partnerships, and member experience.'
   },
   {
-    name: 'David Chen',
+    name: 'Mikayla Python',
     role: 'Treasurer',
-    photo: '/david.jpg',
-    bio: 'Sophomore Electrical Engineering student managing club finances and budgets.'
+    photo: '/officer-mikayla.png',
+    bio: 'Managing club finances and ensuring SCRO can bring meaningful resources and opportunities to every member.'
   },
   {
-    name: 'Sarah Wilson',
+    name: 'Mohannad Kamyani',
     role: 'Secretary',
-    photo: '/sarah.jpg',
-    bio: 'Freshman Physics student handling club communications and documentation.'
+    photo: '/officer-mohannad.png',
+    bio: 'Keeping SCRO organized and members informed, from meeting notes to communications and club records.'
   }
 ];
 
 // Define the role-based color mapping
 const roleBadgeColor: Record<string, string> = {
-  President: 'bg-blue-500',
-  'Vice President': 'bg-green-500',
-  Treasurer: 'bg-yellow-500',
-  Secretary: 'bg-purple-500',
+  President: 'bg-white text-black',
+  'Vice President': 'bg-zinc-800 text-zinc-300',
+  Treasurer: 'bg-zinc-800 text-zinc-300',
+  Secretary: 'bg-zinc-800 text-zinc-300',
   'Public Relations': 'bg-pink-500',
   'Event Coordinator': 'bg-orange-500',
   'Technical Lead': 'bg-red-500',
@@ -81,7 +81,7 @@ export default function OfficersPage() {
                 />
                 {/* Role badge */}
                 <div className="absolute top-4 left-4">
-                  <span className={`text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded ${roleBadgeColor[officer.role]}`}>
+                  <span className={`text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded ${roleBadgeColor[officer.role] || 'bg-zinc-800 text-zinc-300'}`}>
                     {officer.role}
                   </span>
                 </div>

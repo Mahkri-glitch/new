@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
-import { MolecularLattice } from '@/components/ui/molecular-lattice';
+import { SemiconductorModel } from '@/components/ui/semiconductor-model';
 
 import './globals.css';
 
@@ -18,9 +18,9 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="en" className={inter.className}>
       <body>
-        {/* Molecular lattice background - visible on all pages */}
-        <MolecularLattice autoRotate={true} className="fixed inset-0 z-[-3]" />
-        {/* Readability overlay - very subtle to let molecular lattice show through */}
+        {/* Semiconductor model background with explode interaction */}
+        <SemiconductorModel autoRotate={true} className="fixed inset-0 z-[-3]" />
+        {/* Readability overlay - very subtle to let semiconductor model show through */}
         <div className="fixed inset-0 z-[-2] bg-black/5"></div>
         {/* Main content area */}
         <div className="relative z-[0] min-h-screen">
