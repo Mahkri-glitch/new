@@ -8,8 +8,8 @@ type AtomPosition = [number, number, number];
 type LatticeAtom = { position: AtomPosition; type: 'Si' | 'C' | 'I' };
 
 const LATTICE_COUNT = 10;
-const CELL_SIZE = 4.5;
-const ATOM_RADIUS = 0.6;
+const CELL_SIZE = 3.5;
+const ATOM_RADIUS = 1.0;
 
 function generateLattice(): LatticeAtom[][][] {
   const atoms: any[][][][] = [];
@@ -82,10 +82,10 @@ export function MolecularLattice({
     const height = container.clientHeight;
 
     const scene = new THREE.Scene();
-    scene.fog = new THREE.Fog(0x050505, 250, 600);
+    scene.fog = new THREE.Fog(0x050505, 200, 550);
 
     const camera = new THREE.PerspectiveCamera(55, width / height, 1, 8000);
-    camera.position.set(0, 150, 450);
+    camera.position.set(0, 180, 550);
     camera.lookAt(0, 0, 0);
 
     const renderer = new THREE.WebGLRenderer({
@@ -103,16 +103,24 @@ export function MolecularLattice({
     const atomGeometry = new THREE.SphereGeometry(ATOM_RADIUS, 10, 10);
 
     // Lighting setup for visibility
-    const dirLight = new THREE.DirectionalLight(0xffffff, 0.5);
-    dirLight.position.set(120, 120, 120);
+    const dirLight = new THREE.DirectionalLight(0xffffff, 0.8);
+    dirLight.position.set(150, 150, 150);
     scene.add(dirLight);
 
-    const goldLight = new THREE.PointLight(0xFFD51E, 1.5, 600);
-    goldLight.position.set(-80, -80, -80);
+    const goldLight = new THREE.PointLight(0xFFD51E, 2.0, 800);
+    goldLight.position.set(-100, -100, -100);
     scene.add(goldLight);
 
-    const ambient = new THREE.AmbientLight(0x333344, 0.5);
+    const sideLight = new THREE.DirectionalLight(0x6688cc, 0.4);
+    sideLight.position.set(-150, 150, 50);
+    scene.add(sideLight);
+
+    const ambient = new THREE.AmbientLight(0x444455, 0.6);
     scene.add(ambient);
+
+    const pointLight2 = new THREE.PointLight(0x8888ff, 0.5, 700);
+    pointLight2.position.set(100, -150, 100);
+    scene.add(pointLight2);
 
     // Materials cache
     const materials = new Map<string, THREE.MeshStandardMaterial>();
@@ -124,28 +132,31 @@ export function MolecularLattice({
       }
 
       const isEven = i % 2 === 0;
-      const baseColor = type === 'Si' ? (isEven ? 0xd0d0d0 : 0xaaaaaa) :
-                        type === 'C' ? 0xFFD51E : 0xff5555;
 
-      let emissive = 0x0a0a0a;
-      let emissiveIntensity = 0.1;
+      let emissive = 0x1a1a1a;
+      let emissiveIntensity = 0.3;
+      let baseColorHex = 0xe0e0e0;
 
       if (type === 'C') {
-        emissive = 0x443300;
-        emissiveIntensity = 0.6;
+        emissive = 0x554400;
+        emissiveIntensity = 0.7;
+        baseColorHex = 0xFFE045;
       } else if (type === 'I') {
-        emissive = 0x550000;
-        emissiveIntensity = 0.4;
+        emissive = 0x660000;
+        emissiveIntensity = 0.5;
+        baseColorHex = 0xff7777;
       }
 
       const mat = new THREE.MeshStandardMaterial({
-        color: baseColor,
+        color: baseColorHex,
         transparent: true,
-        opacity: type === 'C' ? 0.96 : 0.88,
-        roughness: 0.25,
-        metalness: type === 'C' ? 0.85 : 0.2,
+        opacity: type === 'C' ? 0.98 : 0.9,
+        roughness: 0.2,
+        metalness: type === 'C' ? 0.9 : 0.15,
         emissive,
         emissiveIntensity,
+        polygonOffset: true,
+        polygonOffsetFactor: -1,
       });
       materials.set(key, mat);
       return mat;
