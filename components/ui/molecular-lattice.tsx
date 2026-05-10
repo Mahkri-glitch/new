@@ -241,7 +241,7 @@ export function MolecularLattice({
     <div
       ref={mountRef}
       className={cn(
-        'fixed inset-0 z-[0]',
+        'fixed inset-0 z-[-2]',
         className
       )}
     />
