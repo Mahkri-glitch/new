@@ -1,4 +1,53 @@
-import Navbar from '@/components/navbar';
+import { Navbar } from '@/components/navbar';
+import Image from 'next/image';
+import { Footer } from '@/components/footer';
+
+// Define the types and data needed for the officers page
+export type Officer = {
+  name: string;
+  role: string;
+  photo: string;
+  bio: string;
+};
+
+const officers: Officer[] = [
+  {
+    name: 'Alex Johnson',
+    role: 'President',
+    photo: '/alex.jpg',
+    bio: 'Senior Electrical Engineering student with experience in semiconductor fabrication.'
+  },
+  {
+    name: 'Maria Garcia',
+    role: 'Vice President',
+    photo: '/maria.jpg',
+    bio: 'Junior Materials Science student focused on semiconductor materials research.'
+  },
+  {
+    name: 'David Chen',
+    role: 'Treasurer',
+    photo: '/david.jpg',
+    bio: 'Sophomore Electrical Engineering student managing club finances and budgets.'
+  },
+  {
+    name: 'Sarah Wilson',
+    role: 'Secretary',
+    photo: '/sarah.jpg',
+    bio: 'Freshman Physics student handling club communications and documentation.'
+  }
+];
+
+// Define the role-based color mapping
+const roleBadgeColor: Record<string, string> = {
+  President: 'bg-blue-500',
+  'Vice President': 'bg-green-500',
+  Treasurer: 'bg-yellow-500',
+  Secretary: 'bg-purple-500',
+  'Public Relations': 'bg-pink-500',
+  'Event Coordinator': 'bg-orange-500',
+  'Technical Lead': 'bg-red-500',
+  'Outreach Coordinator': 'bg-indigo-500'
+};
 
 export default function OfficersPage() {
   return (

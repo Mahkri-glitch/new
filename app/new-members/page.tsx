@@ -1,3 +1,10 @@
+import { Navbar } from '@/components/navbar';
+import { Footer } from '@/components/footer';
+import { Card } from '@/components/ui/card';
+import { Accordion } from '@/components/ui/accordion';
+import { CheckCircle2Icon } from '@/lib/icons';
+import { whoShouldJoin, whatToExpect, joinSteps, faqItems } from '@/lib/data';
+
 export default function NewMembersPage() {
   return (
     <>
@@ -18,7 +25,7 @@ export default function NewMembersPage() {
         {/* Welcome & Who Should Join */}
         <section className="py-16 sm:py-24 border-b border-zinc-800">
           <div className="mx-auto max-w-5xl px-6">
-            <DevCard>
+            <Card>
               <div className="grid lg:grid-cols-2 gap-12 items-center">
                 <div>
                   <h2 className="text-2xl font-bold tracking-tight text-white mb-4">You belong here.</h2>
@@ -35,7 +42,7 @@ export default function NewMembersPage() {
                   ))}
                 </div>
               </div>
-            </DevCard>
+            </Card>
           </div>
         </section>
 
@@ -93,9 +100,9 @@ export default function NewMembersPage() {
               <h2 className="text-2xl font-bold tracking-tight text-white mb-2">Got Questions?</h2>
               <p className="text-zinc-400">We've got answers.</p>
             </div>
-            <DevCard>
+            <Card>
               <Accordion items={faqItems} />
-            </DevCard>
+            </Card>
           </div>
         </section>
 
@@ -108,7 +115,7 @@ export default function NewMembersPage() {
             <h2 className="text-3xl font-bold tracking-tight text-white mb-4">Ready to jump in?</h2>
             <p className="text-zinc-400 mb-8 max-w-md mx-auto">Join the Discord and say hello. We'll let you know when the next meeting is!</p>
             <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <a href="https://discord.gg/F9PTT3FJFS" className="inline-flex h-11 items-center justify-center rounded-bg-white px-8 text-sm font-semibold text-black transition-colors hover:bg-zinc-200">
+              <a href="https://discord.gg/F9PTT3FJFS" className="inline-flex h-11 items-center justify-center rounded-lg bg-white px-8 text-sm font-semibold text-black transition-colors hover:bg-zinc-200">
                 Join the Discord
               </a>
               <a href="mailto:scro.ucf@gmail.com" className="inline-flex h-11 items-center justify-center rounded-lg border border-zinc-800 bg-transparent px-8 text-sm font-medium text-zinc-300 transition-colors hover:bg-zinc-900 hover:text-white">
