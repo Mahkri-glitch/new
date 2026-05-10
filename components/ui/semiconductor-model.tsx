@@ -27,7 +27,7 @@ export function SemiconductorModel({
     scene.fog = new THREE.Fog(0x000000, 10, 25);
 
     const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 100);
-    camera.position.set(0, 2, 8);
+    camera.position.set(0, 4, 10); // Higher angle for better perspective
     camera.lookAt(0, 0, 0);
 
     const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
@@ -36,44 +36,49 @@ export function SemiconductorModel({
     renderer.setClearColor(0x000000, 0);
     container.appendChild(renderer.domElement);
 
-    const ambientLight = new THREE.AmbientLight(0x404040, 2);
+    // Dramatic Lighting
+    const ambientLight = new THREE.AmbientLight(0x404040, 1);
     scene.add(ambientLight);
 
     const mainLight = new THREE.DirectionalLight(0xffffff, 2);
     mainLight.position.set(5, 10, 7);
     scene.add(mainLight);
 
-    const fillLight = new THREE.PointLight(0x00aaff, 1);
-    fillLight.position.set(-5, 2, -5);
-    scene.add(fillLight);
+    const accentLight = new THREE.PointLight(0xFFD700, 5, 10); // Gold accent
+    accentLight.position.set(2, 2, 2);
+    scene.add(accentLight);
 
-    // Generate a synthetic semiconductor model (layers)
-    const layerCount = 5;
-    const layerThickness = 0.1;
-    const size = 2;
+    const rimLight = new THREE.SpotLight(0x00aaff, 10); // Tech blue rim
+    rimLight.position.set(-5, 5, -5);
+    scene.add(rimLight);
 
-    for (let i = 0; i < layerCount; i++) {
-      const geometry = new THREE.BoxGeometry(size, layerThickness, size);
+    // Synthetic "Silicon Wafer" Model
+    const layers = 7;
+    const radius = 3;
+    const thickness = 0.05;
 
-      // Alternate colors for layers (Silicon grey, Gold contacts, etc)
-      let color = 0x444444;
-      if (i === 0) color = 0x222222; // Substrate
-      if (i === layerCount - 1) color = 0xFFD700; // Top contacts
+    for (let i = 0; i < layers; i++) {
+      // Main wafer disk
+      const geometry = new THREE.CylinderGeometry(radius, radius, thickness, 64);
+
+      let color = 0x2a2a2a; // Dark silicon
+      if (i === 0) color = 0x1a1a1a; // Base
+      if (i === layers - 1) color = 0xFFD700; // Gold circuitry layer
 
       const material = new THREE.MeshStandardMaterial({
         color,
-        metalness: 0.8,
-        roughness: 0.2,
+        metalness: 0.9,
+        roughness: 0.1,
         transparent: true,
-        opacity: 0.9
+        opacity: 0.85
       });
 
       const mesh = new THREE.Mesh(geometry, material);
-      const yPos = (i - (layerCount - 1) / 2) * (layerThickness * 2);
+      const yPos = (i - (layers - 1) / 2) * 0.2;
       mesh.position.set(0, yPos, 0);
 
-      // For "explosion", we'll move them along their Y axis
-      const direction = new THREE.Vector3(0, i > (layerCount-1)/2 ? 1 : -1, 0);
+      // Explosion direction: push layers away from center Y
+      const direction = new THREE.Vector3(0, i > (layers-1)/2 ? 1 : -1, 0);
 
       partsRef.current.push({
         mesh,
@@ -84,10 +89,33 @@ export function SemiconductorModel({
       scene.add(mesh);
     }
 
+    // Add some "circuits" as small cubes around the wafer
+    for (let j = 0; j < 20; j++) {
+        const circGeo = new THREE.BoxGeometry(0.1, 0.1, 0.1);
+        const circMat = new THREE.MeshStandardMaterial({ color: 0xFFD700, emissive: 0xFFD700, emissiveIntensity: 0.5 });
+        const circMesh = new THREE.Mesh(circGeo, circMat);
+
+        const angle = Math.random() * Math.PI * 2;
+        const dist = Math.random() * radius;
+        const x = Math.cos(angle) * dist;
+        const z = Math.sin(angle) * dist;
+        const y = (Math.random() - 0.5) * 1;
+
+        circMesh.position.set(x, y, z);
+        const direction = new THREE.Vector3(x, y, z).normalize();
+
+        partsRef.current.push({
+            mesh: circMesh,
+            originalPos: circMesh.position.clone(),
+            direction: direction,
+        });
+        scene.add(circMesh);
+    }
+
     const raycaster = new THREE.Raycaster();
     const handleMouseMove = (e: MouseEvent) => {
       const rect = container.getBoundingClientRect();
-      mouseRef.current = new THREE.Vector2(
+      mouseRef.current.set(
         ((e.clientX - rect.left) / width) * 2 - 1,
         -((e.clientY - rect.top) / height) * 2 + 1,
       );
@@ -100,8 +128,11 @@ export function SemiconductorModel({
     const animate = () => {
       requestAnimationFrame(animate);
       const delta = clock.getDelta();
+      const time = clock.getElapsedTime();
 
-      scene.rotation.y += delta * 0.1;
+      // Slow, cinematic rotation
+      scene.rotation.y += delta * 0.05;
+      scene.rotation.z = Math.sin(time * 0.2) * 0.1;
 
       raycaster.setFromCamera(mouseRef.current, camera);
       const intersects = raycaster.intersectObjects(scene.children, true);
@@ -109,18 +140,18 @@ export function SemiconductorModel({
       if (intersects.length > 0) {
         isHovered.current = true;
       } else {
-        if (Math.abs(mouseRef.current.x) > 0.6 || Math.abs(mouseRef.current.y) > 0.6) {
+        if (Math.abs(mouseRef.current.x) > 0.7 || Math.abs(mouseRef.current.y) > 0.7) {
             isHovered.current = false;
         }
       }
 
       const targetProgress = isHovered.current ? 1 : 0;
-      explosionProgress.current += (targetProgress - explosionProgress.current) * 0.1;
+      explosionProgress.current += (targetProgress - explosionProgress.current) * 0.05;
 
       partsRef.current.forEach(({ mesh, originalPos, direction }) => {
-        const explosionDistance = 1.5;
+        const explosionDistance = 2.5;
         const targetPos = originalPos.clone().add(direction.clone().multiplyScalar(explosionDistance * explosionProgress.current));
-        mesh.position.lerp(targetPos, 0.1);
+        mesh.position.lerp(targetPos, 0.08);
       });
 
       renderer.render(scene, camera);
