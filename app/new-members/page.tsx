@@ -47,7 +47,7 @@ export default function NewMembersPage() {
               <p className="text-zinc-400">Here's what goes down when you join the club.</p>
             </div>
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-              {whatToExpect.map(item => ({
+              {whatToExpect.map(item => {
                 const Icon = item.icon;
                 return (
                   <article key={item.title} className="rounded-xl border border-zinc-800 bg-[#111] p-6 hover:border-zinc-700 transition-colors">
