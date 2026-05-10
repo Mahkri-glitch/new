@@ -78,10 +78,10 @@ export function MolecularLattice({
     const height = container.clientHeight;
 
     const scene = new THREE.Scene();
-    scene.fog = new THREE.Fog(0x020202, 180, 500);
+    scene.fog = new THREE.Fog(0x020202, 10, 80);
 
-    const camera = new THREE.PerspectiveCamera(50, width / height, 1, 7000);
-    camera.position.set(0, 160, 520);
+    const camera = new THREE.PerspectiveCamera(50, width / height, 1, 1000);
+    camera.position.set(0, 40, 100);
     camera.lookAt(0, 0, 0);
 
     const renderer = new THREE.WebGLRenderer({
@@ -91,7 +91,7 @@ export function MolecularLattice({
     });
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
     renderer.setSize(width, height);
-    renderer.setClearColor(0x020202, 0);
+    renderer.setClearColor(0x020202, 1); // Opaque dark gray background
     container.appendChild(renderer.domElement);
 
     const lattice = generateLattice();
@@ -100,29 +100,29 @@ export function MolecularLattice({
 
     // Main bright light
     const mainLight = new THREE.DirectionalLight(0xffffff, 0.9);
-    mainLight.position.set(100, 100, 100);
+    mainLight.position.set(20, 20, 20);
     scene.add(mainLight);
 
     // Warm gold light from back-left
-    const goldLight = new THREE.PointLight(0xFFD51E, 2.5, 700);
-    goldLight.position.set(-80, -100, -80);
+    const goldLight = new THREE.PointLight(0xFFD51E, 2.5, 200);
+    goldLight.position.set(-15, -20, -15);
     scene.add(goldLight);
 
     // Cool blue light from front-right
-    const blueLight = new THREE.PointLight(0x66aaff, 1.5, 700);
-    blueLight.position.set(120, 80, 120);
+    const blueLight = new THREE.PointLight(0x66aaff, 1.5, 200);
+    blueLight.position.set(25, 15, 25);
     scene.add(blueLight);
 
     // Side lighting for depth
     const sideLight = new THREE.DirectionalLight(0xccddff, 0.5);
-    sideLight.position.set(-180, 150, 50);
+    sideLight.position.set(-30, 30, 10);
     scene.add(sideLight);
 
     const ambient = new THREE.AmbientLight(0x555566, 0.7);
     scene.add(ambient);
 
-    const pointBlue = new THREE.PointLight(0x8899aa, 0.6, 600);
-    pointBlue.position.set(100, -150, 100);
+    const pointBlue = new THREE.PointLight(0x8899aa, 0.6, 150);
+    pointBlue.position.set(20, -25, 20);
     scene.add(pointBlue);
 
     const materials = new Map<string, THREE.MeshStandardMaterial>();
@@ -189,9 +189,9 @@ export function MolecularLattice({
 
     container.addEventListener('click', () => {
       atomsRef.current.forEach((atom) => {
-        atom.position.x += (Math.random() - 0.5) * 350;
-        atom.position.y += (Math.random() - 0.5) * 350;
-        atom.position.z += (Math.random() - 0.5) * 350;
+        atom.position.x += (Math.random() - 0.5) * 20;
+        atom.position.y += (Math.random() - 0.5) * 20;
+        atom.position.z += (Math.random() - 0.5) * 20;
       });
     });
 
@@ -220,8 +220,8 @@ export function MolecularLattice({
         const mousePos = new THREE.Vector3(mouseRef.current.x * 2 - width / 2, mouseRef.current.y * 2 - height / 2, 0);
         atomsRef.current.forEach((atom) => {
           const dist = atom.position.distanceTo(mousePos);
-          if (dist < 400) {
-            atom.position.lerp(mousePos, 0.004);
+          if (dist < 30) {
+            atom.position.lerp(mousePos, 0.02);
           }
         });
       }
