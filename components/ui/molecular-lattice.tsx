@@ -4,12 +4,11 @@ import { useRef, useEffect } from 'react';
 import * as THREE from 'three';
 import { cn } from '@/lib/utils';
 
-type AtomPosition = [number, number, number];
-type LatticeAtom = { position: AtomPosition; type: 'Si' | 'C' | 'I' };
+type LatticeAtom = { position: [number, number, number]; type: 'Si' | 'C' | 'I' };
 
 const LATTICE_COUNT = 10;
-const CELL_SIZE = 3.5;
-const ATOM_RADIUS = 1.0;
+const CELL_SIZE = 3.2;
+const ATOM_RADIUS = 0.9;
 
 function generateLattice(): LatticeAtom[][][] {
   const atoms: any[][][][] = [];
@@ -23,15 +22,13 @@ function generateLattice(): LatticeAtom[][][] {
         const tetraOffset = CELL_SIZE / 4;
         const isTetra = (x + y + z) % 2 === 0;
 
-        // Silicon atoms
         atoms[z][x][y].push({ position: [x * CELL_SIZE, y * CELL_SIZE, z * CELL_SIZE], type: 'Si' });
 
         if (isTetra) {
           atoms[z][x][y].push({ position: [x * CELL_SIZE + tetraOffset, y * CELL_SIZE + tetraOffset, z * CELL_SIZE + tetraOffset], type: 'Si' });
         }
 
-        // Carbon doping (gold - SCRO!)
-        if (Math.random() < 0.05 && z > 1 && z < LATTICE_COUNT - 2) {
+        if (Math.random() < 0.06 && z > 1 && z < LATTICE_COUNT - 2) {
           const tetraPos = [x * CELL_SIZE + tetraOffset, y * CELL_SIZE + tetraOffset, z * CELL_SIZE + tetraOffset];
           if (!atoms[z][x][y].some((a) =>
             Math.abs(a.position[0] - tetraPos[0]) < CELL_SIZE / 2.5 &&
@@ -42,7 +39,6 @@ function generateLattice(): LatticeAtom[][][] {
           }
         }
 
-        // Red interstitial defects
         if (Math.random() < 0.01 && z > 1 && z < LATTICE_COUNT - 2) {
           const defectPos = [x * CELL_SIZE + 1.2, y * CELL_SIZE + 1.2, z * CELL_SIZE + 1.2];
           if (!atoms[z][x][y].some((a) =>
@@ -82,10 +78,10 @@ export function MolecularLattice({
     const height = container.clientHeight;
 
     const scene = new THREE.Scene();
-    scene.fog = new THREE.Fog(0x050505, 200, 550);
+    scene.fog = new THREE.Fog(0x020202, 180, 500);
 
-    const camera = new THREE.PerspectiveCamera(55, width / height, 1, 8000);
-    camera.position.set(0, 180, 550);
+    const camera = new THREE.PerspectiveCamera(50, width / height, 1, 7000);
+    camera.position.set(0, 160, 520);
     camera.lookAt(0, 0, 0);
 
     const renderer = new THREE.WebGLRenderer({
@@ -95,34 +91,40 @@ export function MolecularLattice({
     });
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
     renderer.setSize(width, height);
-    renderer.setClearColor(0x050505, 0);
+    renderer.setClearColor(0x020202, 0);
     container.appendChild(renderer.domElement);
 
     const lattice = generateLattice();
     latticeRef.current = lattice as unknown as any;
-    const atomGeometry = new THREE.SphereGeometry(ATOM_RADIUS, 10, 10);
+    const atomGeometry = new THREE.SphereGeometry(ATOM_RADIUS, 12, 12);
 
-    // Lighting setup for visibility
-    const dirLight = new THREE.DirectionalLight(0xffffff, 0.8);
-    dirLight.position.set(150, 150, 150);
-    scene.add(dirLight);
+    // Main bright light
+    const mainLight = new THREE.DirectionalLight(0xffffff, 0.9);
+    mainLight.position.set(100, 100, 100);
+    scene.add(mainLight);
 
-    const goldLight = new THREE.PointLight(0xFFD51E, 2.0, 800);
-    goldLight.position.set(-100, -100, -100);
+    // Warm gold light from back-left
+    const goldLight = new THREE.PointLight(0xFFD51E, 2.5, 700);
+    goldLight.position.set(-80, -100, -80);
     scene.add(goldLight);
 
-    const sideLight = new THREE.DirectionalLight(0x6688cc, 0.4);
-    sideLight.position.set(-150, 150, 50);
+    // Cool blue light from front-right
+    const blueLight = new THREE.PointLight(0x66aaff, 1.5, 700);
+    blueLight.position.set(120, 80, 120);
+    scene.add(blueLight);
+
+    // Side lighting for depth
+    const sideLight = new THREE.DirectionalLight(0xccddff, 0.5);
+    sideLight.position.set(-180, 150, 50);
     scene.add(sideLight);
 
-    const ambient = new THREE.AmbientLight(0x444455, 0.6);
+    const ambient = new THREE.AmbientLight(0x555566, 0.7);
     scene.add(ambient);
 
-    const pointLight2 = new THREE.PointLight(0x8888ff, 0.5, 700);
-    pointLight2.position.set(100, -150, 100);
-    scene.add(pointLight2);
+    const pointBlue = new THREE.PointLight(0x8899aa, 0.6, 600);
+    pointBlue.position.set(100, -150, 100);
+    scene.add(pointBlue);
 
-    // Materials cache
     const materials = new Map<string, THREE.MeshStandardMaterial>();
 
     const getAtomMaterial = (type: LatticeAtom['type'], i: number) => {
@@ -132,37 +134,36 @@ export function MolecularLattice({
       }
 
       const isEven = i % 2 === 0;
-
-      let emissive = 0x1a1a1a;
-      let emissiveIntensity = 0.3;
-      let baseColorHex = 0xe0e0e0;
+      let emissiveHex = 0x151515;
+      let emissiveIntensity = 0.25;
+      let baseColorHex = isEven ? 0xd5d5d5 : 0xa5a5a5;
+      let baseOpacity = 0.92;
 
       if (type === 'C') {
-        emissive = 0x554400;
-        emissiveIntensity = 0.7;
-        baseColorHex = 0xFFE045;
+        emissiveHex = 0x665500;
+        emissiveIntensity = 0.8;
+        baseColorHex = 0xFFE040;
+        baseOpacity = 0.98;
       } else if (type === 'I') {
-        emissive = 0x660000;
-        emissiveIntensity = 0.5;
-        baseColorHex = 0xff7777;
+        emissiveHex = 0x770000;
+        emissiveIntensity = 0.6;
+        baseColorHex = 0xff8888;
+        baseOpacity = 0.94;
       }
 
       const mat = new THREE.MeshStandardMaterial({
         color: baseColorHex,
         transparent: true,
-        opacity: type === 'C' ? 0.98 : 0.9,
-        roughness: 0.2,
-        metalness: type === 'C' ? 0.9 : 0.15,
-        emissive,
+        opacity: baseOpacity,
+        roughness: 0.15,
+        metalness: type === 'C' ? 0.9 : 0.1,
+        emissive: emissiveHex,
         emissiveIntensity,
-        polygonOffset: true,
-        polygonOffsetFactor: -1,
       });
       materials.set(key, mat);
       return mat;
     };
 
-    // Create atoms
     for (let z = 0; z < LATTICE_COUNT; z++) {
       for (let x = 0; x < LATTICE_COUNT; x++) {
         for (let y = 0; y < LATTICE_COUNT; y++) {
@@ -176,7 +177,6 @@ export function MolecularLattice({
       }
     }
 
-    // Mouse tracking
     const handleMouseMove = (e: MouseEvent) => {
       const rect = container.getBoundingClientRect();
       mouseRef.current = {
@@ -187,7 +187,6 @@ export function MolecularLattice({
 
     container.addEventListener('mousemove', handleMouseMove);
 
-    // Click to explode
     container.addEventListener('click', () => {
       atomsRef.current.forEach((atom) => {
         atom.position.x += (Math.random() - 0.5) * 350;
@@ -203,28 +202,26 @@ export function MolecularLattice({
       const time = clock.getElapsedTime();
 
       if (autoRotate) {
-        targetRotationRef.current.y = time * 0.22;
-        targetRotationRef.current.x = (time * 0.11) % (Math.PI * 2) - Math.PI;
+        targetRotationRef.current.y = time * 0.2;
+        targetRotationRef.current.x = (time * 0.1) % (Math.PI * 2) - Math.PI;
       }
 
-      rotationRef.current.y += (targetRotationRef.current.y - rotationRef.current.y) * 0.025;
-      rotationRef.current.x += (targetRotationRef.current.x - rotationRef.current.x) * 0.025;
+      rotationRef.current.y += (targetRotationRef.current.y - rotationRef.current.y) * 0.02;
+      rotationRef.current.x += (targetRotationRef.current.x - rotationRef.current.x) * 0.02;
 
       scene.rotation.y = rotationRef.current.y;
       scene.rotation.x = rotationRef.current.x;
 
-      // Subtle breathing
       atomsRef.current.forEach((atom, i) => {
-        atom.scale.setScalar(1 + Math.sin(time * 1.8 + i) * 0.03);
+        atom.scale.setScalar(1 + Math.sin(time * 2 + i) * 0.04);
       });
 
-      // Mouse attraction
       if (mouseRef.current.x > 0) {
         const mousePos = new THREE.Vector3(mouseRef.current.x * 2 - width / 2, mouseRef.current.y * 2 - height / 2, 0);
-        atomsRef.current.forEach((atom: any) => {
+        atomsRef.current.forEach((atom) => {
           const dist = atom.position.distanceTo(mousePos);
-          if (dist < 350) {
-            atom.position.lerp(mousePos, 0.003);
+          if (dist < 400) {
+            atom.position.lerp(mousePos, 0.004);
           }
         });
       }
