@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
+import { MolecularLattice } from '@/components/ui/molecular-lattice';
 
 import './globals.css';
 
@@ -17,7 +18,16 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="en" className={inter.className}>
       <body>
-        {children}
+        {/* Molecular lattice background - visible on all pages */}
+        <MolecularLattice autoRotate={true} className="fixed inset-0 z-[-3]" />
+        {/* Readability overlay - very subtle to let molecular lattice show through */}
+        <div className="fixed inset-0 z-[-2] bg-black/5"></div>
+        {/* Main content area */}
+        <div className="relative z-[0] min-h-screen">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            {children}
+          </div>
+        </div>
       </body>
     </html>
   );

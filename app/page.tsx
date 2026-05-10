@@ -1,4 +1,3 @@
-
 import { Hero } from '@/components/hero';
 import { AboutSection } from '@/components/about-section';
 import { ContactSection } from '@/components/contact-section';
@@ -7,14 +6,12 @@ import { Footer } from '@/components/footer';
 import { Navbar } from '@/components/navbar';
 import { NewMemberPreview } from '@/components/new-member-preview';
 import { WhyJoinSection } from '@/components/why-join-section';
-import { MolecularLattice } from '@/components/ui/molecular-lattice';
 
 export default function HomePage() {
   return (
     <>
       <Navbar />
       <main>
-        <MolecularLattice autoRotate={true} />
         <Hero />
         <AboutSection />
         <EventsSection />

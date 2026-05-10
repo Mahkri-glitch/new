@@ -1,46 +1,10 @@
-import Image from 'next/image';
-import { Navbar } from '@/components/navbar';
-import { Footer } from '@/components/footer';
-
-const officers = [
-  {
-    name: 'Leeann Louis',
-    role: 'President',
-    bio: 'Leading SCRO @ UCF with a passion for building community and opening doors for students to explore the semiconductor industry.',
-    photo: '/officer-leeann.png',
-  },
-  {
-    name: 'Maahir Rani',
-    role: 'Vice President',
-    bio: 'Driving operations and helping shape the vision for SCRO\'s events, partnerships, and member experience.',
-    photo: '/officer-maahir.png',
-  },
-  {
-    name: 'Mikayla Python',
-    role: 'Treasurer',
-    bio: 'Managing club finances and ensuring SCRO can bring meaningful resources and opportunities to every member.',
-    photo: '/officer-mikayla.png',
-  },
-  {
-    name: 'Mohannad Kamyani',
-    role: 'Secretary',
-    bio: 'Keeping SCRO organized and members informed, from meeting notes to communications and club records.',
-    photo: '/officer-mohannad.png',
-  },
-];
-
-const roleBadgeColor: Record<string, string> = {
-  President: 'bg-white text-black',
-  'Vice President': 'bg-zinc-800 text-zinc-300',
-  Treasurer: 'bg-zinc-800 text-zinc-300',
-  Secretary: 'bg-zinc-800 text-zinc-300',
-};
+import Navbar from '@/components/navbar';
 
 export default function OfficersPage() {
   return (
     <>
       <Navbar />
-      <main className="min-h-screen bg-black text-white pt-32 pb-24 px-6">
+      <main className="min-h-screen text-white pt-32 pb-24 px-6">
         {/* Header */}
         <div className="max-w-6xl mx-auto mb-16">
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mb-4">

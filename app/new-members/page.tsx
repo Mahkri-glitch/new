@@ -1,23 +1,8 @@
-import { CheckCircle2Icon } from '@/lib/icons';
-
-import { Footer } from '@/components/footer';
-import { Navbar } from '@/components/navbar';
-import { Accordion } from '@/components/ui/accordion';
-import { faqItems, joinSteps, whatToExpect, whoShouldJoin } from '@/lib/data';
-
-function DevCard({ children, className = "" }: { children: React.ReactNode; className?: string }) {
-  return (
-    <div className={`rounded-xl border border-zinc-800 bg-[#111] p-6 sm:p-8 ${className}`}>
-      {children}
-    </div>
-  );
-}
-
 export default function NewMembersPage() {
   return (
     <>
       <Navbar />
-      <main className="pt-24 min-h-screen bg-black text-zinc-100 selection:bg-[#FFD51E] selection:text-black">
+      <main className="pt-24 min-h-screen text-zinc-100 selection:bg-[#FFD51E] selection:text-black">
         {/* Header */}
         <section className="py-16 sm:py-24 border-b border-zinc-800">
           <div className="mx-auto max-w-4xl px-6 text-center">
@@ -42,7 +27,7 @@ export default function NewMembersPage() {
                   </p>
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  {whoShouldJoin.map((item) => (
+                  {whoShouldJoin.map(item => (
                     <div key={item} className="rounded-lg border border-zinc-800 bg-zinc-900/50 p-4 text-sm font-medium text-zinc-300 flex items-center gap-3">
                       <div className="w-1.5 h-1.5 rounded-full bg-[#FFD51E]" />
                       {item}
@@ -62,7 +47,7 @@ export default function NewMembersPage() {
               <p className="text-zinc-400">Here's what goes down when you join the club.</p>
             </div>
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-              {whatToExpect.map((item) => {
+              {whatToExpect.map(item => ({
                 const Icon = item.icon;
                 return (
                   <article key={item.title} className="rounded-xl border border-zinc-800 bg-[#111] p-6 hover:border-zinc-700 transition-colors">
@@ -123,7 +108,7 @@ export default function NewMembersPage() {
             <h2 className="text-3xl font-bold tracking-tight text-white mb-4">Ready to jump in?</h2>
             <p className="text-zinc-400 mb-8 max-w-md mx-auto">Join the Discord and say hello. We'll let you know when the next meeting is!</p>
             <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <a href="https://discord.gg/F9PTT3FJFS" className="inline-flex h-11 items-center justify-center rounded-lg bg-white px-8 text-sm font-semibold text-black transition-colors hover:bg-zinc-200">
+              <a href="https://discord.gg/F9PTT3FJFS" className="inline-flex h-11 items-center justify-center rounded-bg-white px-8 text-sm font-semibold text-black transition-colors hover:bg-zinc-200">
                 Join the Discord
               </a>
               <a href="mailto:scro.ucf@gmail.com" className="inline-flex h-11 items-center justify-center rounded-lg border border-zinc-800 bg-transparent px-8 text-sm font-medium text-zinc-300 transition-colors hover:bg-zinc-900 hover:text-white">
