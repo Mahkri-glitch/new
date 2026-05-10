@@ -12,7 +12,7 @@ export function SemiconductorModel({
   const mountRef = useRef<HTMLDivElement>(null);
   const explosionProgress = useRef(0);
   const partsRef = useRef<{ mesh: THREE.Mesh; originalPos: THREE.Vector3; direction: THREE.Vector3 }[]>([]);
-  const mouseRef = useRef({ x: 0, y: 0 });
+  const mouseRef = useRef(new THREE.Vector2());
   const isHovered = useRef(false);
 
   useEffect(() => {
@@ -87,10 +87,10 @@ export function SemiconductorModel({
     const raycaster = new THREE.Raycaster();
     const handleMouseMove = (e: MouseEvent) => {
       const rect = container.getBoundingClientRect();
-      mouseRef.current = {
-        x: ((e.clientX - rect.left) / width) * 2 - 1,
-        y: -((e.clientY - rect.top) / height) * 2 + 1,
-      };
+      mouseRef.current = new THREE.Vector2(
+        ((e.clientX - rect.left) / width) * 2 - 1,
+        -((e.clientY - rect.top) / height) * 2 + 1,
+      );
     };
 
     container.addEventListener('mousemove', handleMouseMove);

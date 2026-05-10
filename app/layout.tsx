@@ -19,7 +19,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     <html lang="en" className={inter.className}>
       <body>
         {/* Semiconductor model background with explode interaction */}
-        <SemiconductorModel autoRotate={true} className="fixed inset-0 z-[-3]" />
+        <SemiconductorModel className="fixed inset-0 z-[-3]" />
         {/* Readability overlay - very subtle to let semiconductor model show through */}
         <div className="fixed inset-0 z-[-2] bg-black/5"></div>
         {/* Main content area */}
