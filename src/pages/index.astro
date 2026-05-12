@@ -1,7 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
-import Hero from '../components/Hero.astro';
+import { SCROCinematicHero } from '../components/ui/cinematic-landing-hero';
 import AboutSection from '../components/AboutSection.astro';
 import EventsSection from '../components/EventsSection.astro';
 import WhyJoinSection from '../components/WhyJoinSection.astro';
@@ -14,7 +14,7 @@ import '../styles/globals.css';
 <Layout title="SCRO @ UCF | Semiconductor Career Readiness Organization">
   <Navbar />
   <main>
-    <Hero />
+    <SCROCinematicHero client:load />
     <AboutSection />
     <EventsSection />
     <WhyJoinSection />
