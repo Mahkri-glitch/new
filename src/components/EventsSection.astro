@@ -1,6 +1,6 @@
 ---
-import { events } from '../../lib/data.ts';
-import { CalendarClockIcon, MapPinIcon } from '../../lib/icons.tsx';
+import { events } from '../lib/data.ts';
+import { CalendarClockIcon, MapPinIcon } from '../lib/icons.tsx';
 ---
 
 <section id="events" class="py-20 sm:py-24 border-b border-zinc-800">
@@ -13,7 +13,6 @@ import { CalendarClockIcon, MapPinIcon } from '../../lib/icons.tsx';
     <div class="grid gap-6 lg:grid-cols-2">
       {events.map((event) => (
         <article
-          key={event.title}
           class="rounded-xl border border-zinc-800 bg-[#111] p-6 hover:border-zinc-700 transition-colors flex flex-col"
         >
           <div class="mb-4">
@@ -24,11 +23,11 @@ import { CalendarClockIcon, MapPinIcon } from '../../lib/icons.tsx';
           <h3 class="text-lg font-semibold text-zinc-100 mb-4">{event.title}</h3>
           <div class="space-y-2 text-sm text-zinc-400 mb-6">
             <p class="flex items-center gap-2">
-              <CalendarClockIcon class="h-4 w-4 text-zinc-500" />
+              <CalendarClockIcon className="h-4 w-4 text-zinc-500" />
               {event.time}
             </p>
             <p class="flex items-center gap-2">
-              <MapPinIcon class="h-4 w-4 text-zinc-500" />
+              <MapPinIcon className="h-4 w-4 text-zinc-500" />
               {event.location}
             </p>
           </div>

@@ -1,6 +1,6 @@
 ---
-import { CheckIcon } from '../../lib/icons.astro';
-import { checklistItems } from '../../lib/data.ts';
+import { CheckIcon } from '../lib/icons.tsx';
+import { checklistItems } from '../lib/data.ts';
 ---
 
 <section class="py-20 sm:py-24 border-b border-zinc-800">
@@ -21,9 +21,9 @@ import { checklistItems } from '../../lib/data.ts';
         <h3 class="text-sm font-semibold text-zinc-100 mb-6 uppercase tracking-wider">Quick Start Checklist</h3>
         <ul class="space-y-4">
           {checklistItems.map((item) => (
-            <li key={item} class="flex items-start gap-3 text-sm text-zinc-400">
+            <li class="flex items-start gap-3 text-sm text-zinc-400">
               <span class="mt-0.5 inline-flex h-4 w-4 flex-shrink-0 items-center justify-center rounded bg-zinc-800 text-zinc-300">
-                <CheckIcon class="h-3 w-3" />
+                <CheckIcon className="h-3 w-3" />
               </span>
               <span>{item}</span>
             </li>

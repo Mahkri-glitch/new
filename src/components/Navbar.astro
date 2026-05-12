@@ -1,18 +1,21 @@
 ---
-import { navLinks } from '../../lib/data.ts';
+import { navLinks } from '../lib/data.ts';
+import { MenuIcon, XIcon } from '../lib/icons.tsx';
+
+const links = navLinks.filter((l) => l.label !== 'Home');
 ---
 
-<header class="fixed top-0 inset-x-0 z-50 hidden sm:block border-b border-zinc-800 bg-black/80 backdrop-blur-md">
+<header class="fixed top-0 inset-x-0 z-50 border-b border-zinc-800 bg-black/80 backdrop-blur-md">
   <div class="mx-auto max-w-7xl px-6 h-16 flex items-center justify-between">
     <a href="/" aria-label="SCRO homepage" class="flex items-center gap-3">
       <img src="/scro-logo.png" alt="SCRO @ UCF" class="rounded" width="24" height="24" />
       <span class="text-sm font-semibold tracking-wide text-zinc-100">SCRO</span>
     </a>
 
-    <nav class="flex items-center gap-6">
-      {navLinks.filter((l) => l.label !== 'Home').map((link) => (
+    <!-- Desktop Nav -->
+    <nav class="hidden sm:flex items-center gap-6">
+      {links.map((link) => (
         <a
-          key={link.label}
           href={link.href}
           class="text-sm font-medium text-zinc-400 hover:text-white transition-colors"
         >
@@ -28,5 +31,68 @@ import { navLinks } from '../../lib/data.ts';
         Join Discord
       </a>
     </nav>
+
+    <!-- Mobile Menu Button -->
+    <button
+      id="mobile-menu-button"
+      type="button"
+      class="sm:hidden text-zinc-400 hover:text-white p-2 -mr-2"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+    >
+      <MenuIcon id="menu-icon" className="h-5 w-5" />
+      <XIcon id="close-icon" className="h-5 w-5 hidden" />
+    </button>
+  </div>
+
+  <!-- Mobile Nav -->
+  <div
+    id="mobile-menu"
+    class="hidden sm:hidden border-t border-zinc-800 bg-black px-6 py-4"
+  >
+    <nav class="flex flex-col gap-4">
+      {links.map((l) => (
+        <a
+          href={l.href}
+          class="mobile-link text-sm font-medium text-zinc-400 hover:text-white transition-colors"
+        >
+          {l.label}
+        </a>
+      ))}
+      <a
+        href="https://discord.gg/F9PTT3FJFS"
+        target="_blank"
+        rel="noreferrer"
+        class="text-sm font-medium text-black bg-white px-4 py-2 rounded-md hover:bg-zinc-200 transition-colors inline-block text-center mt-2"
+      >
+        Join Discord
+      </a>
+    </nav>
   </div>
 </header>
+
+<script>
+  const button = document.getElementById('mobile-menu-button');
+  const menu = document.getElementById('mobile-menu');
+  const menuIcon = document.getElementById('menu-icon');
+  const closeIcon = document.getElementById('close-icon');
+  const links = document.querySelectorAll('.mobile-link');
+
+  function toggleMenu() {
+    const isExpanded = button?.getAttribute('aria-expanded') === 'true';
+    button?.setAttribute('aria-expanded', (!isExpanded).toString());
+    menu?.classList.toggle('hidden');
+    menuIcon?.classList.toggle('hidden');
+    closeIcon?.classList.toggle('hidden');
+  }
+
+  button?.addEventListener('click', toggleMenu);
+
+  links.forEach(link => {
+    link.addEventListener('click', () => {
+      if (!menu?.classList.contains('hidden')) {
+        toggleMenu();
+      }
+    });
+  });
+</script>

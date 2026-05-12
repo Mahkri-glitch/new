@@ -1,41 +1,42 @@
 ---
 import { cn } from '../../lib/utils';
 
-interface ButtonProps {
+interface Props {
   href?: string;
   variant?: 'primary' | 'outline' | 'ghost';
   class?: string;
-  children: string;
   target?: string;
   rel?: string;
 }
 
-export function Button({ href, variant = 'primary', class: className = '', children, target, rel }: ButtonProps) {
-  const variantClass = {
-    primary: 'bg-[var(--scro-gold)] text-black hover:bg-[var(--scro-gold-dark)]',
-    outline: 'border border-[var(--scro-gold)] text-[var(--scro-gold)] hover:bg-[rgba(255,213,30,0.1)]',
-    ghost: 'text-[var(--scro-white)] hover:bg-[rgba(255,255,255,0.08)]'
-  };
+const { href, variant = 'primary', class: className = '', target, rel } = Astro.props;
 
-  const classes = cn(
-    'inline-flex items-center justify-center rounded-full px-5 py-2.5 text-sm font-semibold transition-all duration-300 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--scro-gold)] focus-visible:ring-offset-2 focus-visible:ring-offset-black',
-    variantClass[variant],
-    className
-  );
+const variantClass = {
+  primary: 'bg-[#FFD51E] text-black hover:bg-[#e6c01b]',
+  outline: 'border border-[#FFD51E] text-[#FFD51E] hover:bg-[#FFD51E]/10',
+  ghost: 'text-white hover:bg-white/10'
+};
 
-  if (href) {
-    const isExternal = href.startsWith('http');
-    return (
-      <a
-        href={href}
-        class={classes}
-        target={isExternal ? '_blank' : undefined}
-        rel={isExternal ? 'noreferrer noopener' : undefined}
-      >
-        {children}
-      </a>
-    );
-  }
+const classes = cn(
+  'inline-flex items-center justify-center rounded-lg px-5 py-2.5 text-sm font-semibold transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FFD51E]',
+  variantClass[variant],
+  className
+);
 
-  return null;
-}
+const isExternal = href?.startsWith('http');
+---
+
+{href ? (
+  <a
+    href={href}
+    class={classes}
+    target={target || (isExternal ? '_blank' : undefined)}
+    rel={rel || (isExternal ? 'noreferrer noopener' : undefined)}
+  >
+    <slot />
+  </a>
+) : (
+  <button class={classes}>
+    <slot />
+  </button>
+)}

@@ -1,5 +1,5 @@
 ---
-import Image from '@astrojs/image';
+// Hero component
 ---
 
 <section class="relative pt-32 pb-20 sm:pt-40 sm:pb-24 border-b border-zinc-800">
@@ -32,7 +32,6 @@ import Image from '@astrojs/image';
         <div class="flex flex-wrap gap-2">
           {['Student-Led', 'Career-Focused', 'Semiconductor Community'].map((badge) => (
             <span
-              key={badge}
               class="inline-flex items-center rounded-md border border-zinc-800 bg-zinc-900/50 px-3 py-1 text-xs font-medium text-zinc-400"
             >
               {badge}
@@ -42,7 +41,7 @@ import Image from '@astrojs/image';
       </div>
 
       <div class="hidden md:block w-full aspect-square relative rounded-2xl overflow-hidden border border-zinc-800 bg-zinc-900">
-        <img src="/scro-logo.png" alt="SCRO @ UCF" class="object-cover opacity-90" />
+        <img src="/scro-logo.png" alt="SCRO @ UCF" class="object-cover opacity-90 w-full h-full" />
       </div>
     </div>
   </div>

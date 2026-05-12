@@ -1,31 +1,14 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { faqItems, joinSteps, whatToExpect, whoShouldJoin } from '../../lib/data.ts';
-import { CheckCircle2Icon } from '../../lib/icons.tsx';
-import { Accordion } from '../components/ui/Accordion.astro';
-
-interface WhoShouldJoinItem {
-  item: string;
-}
-
-interface WhatToExpectItem {
-  title: string;
-  description: string;
-  icon: any;
-}
-
-interface JoinStepItem {
-  title: string;
-  description: string;
-}
-
-interface FaqItem {
-  question: string;
-  answer: string;
-}
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import { faqItems, joinSteps, whatToExpect, whoShouldJoin } from '../lib/data.ts';
+import { CheckCircle2Icon } from '../lib/icons.tsx';
+import Accordion from '../components/ui/Accordion.astro';
 ---
 
-<Layout>
+<Layout title="New Members | SCRO @ UCF">
+  <Navbar />
   <main class="pt-24 min-h-screen bg-black text-zinc-100 selection:bg-[#FFD51E] selection:text-black">
     <section class="py-16 sm:py-24 border-b border-zinc-800">
       <div class="mx-auto max-w-4xl px-6 text-center">
@@ -48,7 +31,7 @@ interface FaqItem {
             </div>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {whoShouldJoin.map((item) => (
-                <div key={item} class="rounded-lg border border-zinc-800 bg-zinc-900/50 p-4 text-sm font-medium text-zinc-300 flex items-center gap-3">
+                <div class="rounded-lg border border-zinc-800 bg-zinc-900/50 p-4 text-sm font-medium text-zinc-300 flex items-center gap-3">
                   <div class="w-1.5 h-1.5 rounded-full bg-[#FFD51E]" />
                   {item}
                 </div>
@@ -69,9 +52,9 @@ interface FaqItem {
           {whatToExpect.map((item) => {
             const Icon = item.icon;
             return (
-              <article key={item.title} class="rounded-xl border border-zinc-800 bg-[#111] p-6 hover:border-zinc-700 transition-colors">
+              <article class="rounded-xl border border-zinc-800 bg-[#111] p-6 hover:border-zinc-700 transition-colors">
                 <div class="w-10 h-10 rounded-lg bg-zinc-900 border border-zinc-800 flex items-center justify-center mb-5">
-                  <Icon class="h-5 w-5 text-zinc-300" />
+                  <Icon className="h-5 w-5 text-zinc-300" />
                 </div>
                 <h3 class="font-semibold text-zinc-100 mb-2">{item.title}</h3>
                 <p class="text-sm text-zinc-400 leading-relaxed">{item.description}</p>
@@ -90,7 +73,7 @@ interface FaqItem {
         </div>
         <div class="grid gap-4">
           {joinSteps.map((step, index) => (
-            <div key={step.title} class="flex gap-6 rounded-xl border border-zinc-800 bg-[#111] p-6 items-start hover:border-zinc-700 transition-colors">
+            <div class="flex gap-6 rounded-xl border border-zinc-800 bg-[#111] p-6 items-start hover:border-zinc-700 transition-colors">
               <div class="flex-shrink-0 w-8 h-8 rounded bg-zinc-900 border border-zinc-800 flex items-center justify-center font-bold text-sm text-zinc-300">
                 {index + 1}
               </div>
@@ -119,7 +102,7 @@ interface FaqItem {
     <section class="py-24 sm:py-32">
       <div class="mx-auto max-w-3xl px-6 text-center">
         <div class="w-12 h-12 rounded-lg bg-zinc-900 border border-zinc-800 mx-auto flex items-center justify-center mb-6">
-          <CheckCircle2Icon class="h-6 w-6 text-[#FFD51E]" />
+          <CheckCircle2Icon className="h-6 w-6 text-[#FFD51E]" />
         </div>
         <h2 class="text-3xl font-bold tracking-tight text-white mb-4">Ready to jump in?</h2>
         <p class="text-zinc-400 mb-8 max-w-md mx-auto">Join the Discord and say hello. We'll let you know when the next meeting is!</p>
@@ -134,4 +117,5 @@ interface FaqItem {
       </div>
     </section>
   </main>
+  <Footer />
 </Layout>

@@ -6,33 +6,56 @@ interface AccordionItem {
   answer: string;
 }
 
-interface AccordionProps {
+interface Props {
   items: AccordionItem[];
 }
 
-export function Accordion({ items }: AccordionProps) {
-  return (
-    <div class="space-y-3">
-      {items.map((item) => (
-        <div
-          key={item.question}
-          class="rounded-xl border border-[rgba(255,213,30,0.35)] bg-[rgba(0,0,0,0.9)]"
-        >
-          <button
-            type="button"
-            class="flex w-full items-center justify-between gap-3 px-4 py-4 text-left text-sm font-semibold text-[var(--scro-white)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--scro-gold)] cursor-pointer"
-            onClick={() => {
-              const el = document.querySelector(`[data-faq-question="${item.question}"]`);
-              el?.classList.toggle('hidden');
-            }}
-          >
-            <span>{item.question}</span>
-            <ChevronDownIcon class="h-4 w-4 text-[var(--scro-gold)] transition-transform rotate-180" />
-          </button>
-          <p class="hidden px-4 pb-4 text-sm text-[rgba(255,255,255,0.82)]">{item.answer}</p>
-        </div>
-      ))}
-    </div>
-  );
-}
+const { items } = Astro.props;
 ---
+
+<div class="space-y-3 accordion-container">
+  {items.map((item) => (
+    <div
+      class="accordion-item rounded-xl border border-zinc-800 bg-[#111]"
+    >
+      <button
+        type="button"
+        class="accordion-trigger flex w-full items-center justify-between gap-3 px-6 py-4 text-left text-sm font-semibold text-zinc-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white cursor-pointer"
+      >
+        <span>{item.question}</span>
+        <ChevronDownIcon className="h-4 w-4 text-zinc-500 transition-transform duration-200" />
+      </button>
+      <div class="accordion-content hidden px-6 pb-4 text-sm text-zinc-400">
+        <p class="leading-relaxed">{item.answer}</p>
+      </div>
+    </div>
+  ))}
+</div>
+
+<script>
+  const containers = document.querySelectorAll('.accordion-container');
+  
+  containers.forEach(container => {
+    const items = container.querySelectorAll('.accordion-item');
+    
+    items.forEach(item => {
+      const trigger = item.querySelector('.accordion-trigger');
+      const content = item.querySelector('.accordion-content');
+      const icon = trigger?.querySelector('svg');
+      
+      trigger?.addEventListener('click', () => {
+        const isOpen = !content?.classList.contains('hidden');
+        
+        // Close others (optional, let's keep it simple for now)
+        
+        if (isOpen) {
+          content?.classList.add('hidden');
+          icon?.classList.remove('rotate-180');
+        } else {
+          content?.classList.remove('hidden');
+          icon?.classList.add('rotate-180');
+        }
+      });
+    });
+  });
+</script>

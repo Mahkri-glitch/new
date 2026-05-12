@@ -1,6 +1,5 @@
 ---
-import { navLinks } from '../../lib/data.ts';
-import Image from '@astrojs/image';
+import { navLinks } from '../lib/data.ts';
 ---
 
 <footer class="border-t border-zinc-800 bg-black py-16">
@@ -20,7 +19,7 @@ import Image from '@astrojs/image';
         <p class="text-sm font-semibold text-zinc-100 mb-6">Resources</p>
         <ul class="space-y-4 text-sm text-zinc-500">
           {navLinks.map((link) => (
-            <li key={link.label}>
+            <li>
               <a href={link.href} class="hover:text-white transition-colors">
                 {link.label}
               </a>
