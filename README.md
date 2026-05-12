@@ -1,6 +1,6 @@
 # SCRO @ UCF Website
 
-Production-quality Next.js website for the **Semiconductor Career Readiness Organization at UCF**.
+Production-quality Astro website for the **Semiconductor Career Readiness Organization at UCF**.
 
 ## Start the site
 
@@ -11,30 +11,30 @@ npm install
 npm run dev
 ```
 
-The dev server is configured to bind to `0.0.0.0:3000`.
+The dev server is configured to bind to `0.0.0.0:4321`.
 
 ## Open the pages
 
-- Homepage: `http://localhost:3000/`
-- New member page: `http://localhost:3000/new-members`
-- Officers: `http://localhost:3000/officers`
-- Gallery: `http://localhost:3000/gallery`
+- Homepage: `http://localhost:4321/`
+- New member page: `http://localhost:4321/new-members`
+- Officers: `http://localhost:4321/officers`
+- Gallery: `http://localhost:4321/gallery`
 
-If you are using a cloud IDE/container, open the **forwarded URL for port 3000** (not your local machine's localhost).
+If you are using a cloud IDE/container, open the **forwarded URL for port 4321** (not your local machine's localhost).
 
 ## If "site cannot be reached"
 
 1. Confirm the server is running and prints `ready` in the terminal.
-2. If port 3000 is busy, run:
+2. If port 4321 is busy, run:
    ```bash
-   lsof -i :3000
+   lsof -i :4321
    ```
    then stop the existing process.
-3. In remote environments, use the platform's "Open Port 3000" action.
+3. In remote environments, use the platform's "Open Port 4321" action.
 
 ## Stack
 
-- Next.js 16.2 (App Router)
+- Astro 4.4+ (React Integration)
 - React 19 + TypeScript (strict)
 - Tailwind CSS
 - Framer Motion

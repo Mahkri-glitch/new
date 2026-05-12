@@ -10,10 +10,6 @@ node_modules
 # Astro
 .astro/
 
-# Next.js (now Astro)
-.next/
-out/
-
 # misc
 .DS_Store
 *.pem
@@ -28,7 +24,3 @@ yarn-error.log*
 
 # typescript
 *.tsbuildinfo
-next-env.d.ts
-
-# Next.js dev type validation
-.next/dev/types/validator.ts
