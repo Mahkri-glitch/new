@@ -1,8 +1,11 @@
 import react from '@astrojs/react';
 import tailwind from '@astrojs/tailwind';
+import netlify from '@astrojs/netlify';
 import { defineConfig } from 'astro/config';
 
 export default defineConfig({
+  outDir: '.next',
+  adapter: netlify(),
   integrations: [
     react(),
     tailwind({
