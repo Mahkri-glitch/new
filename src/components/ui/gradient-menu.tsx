@@ -8,7 +8,6 @@ import {
   IoMailOutline,
   IoLogoDiscord,
 } from 'react-icons/io5';
-import Link from 'next/link';
 
 const menuItems = [
   {
@@ -67,7 +66,7 @@ export default function GradientMenu() {
           {/* Glow */}
           <span className="absolute top-[10px] inset-x-0 h-full rounded-full bg-[linear-gradient(45deg,var(--gradient-from),var(--gradient-to))] blur-[14px] opacity-0 -z-10 transition-all duration-500 group-hover:opacity-40 pointer-events-none" />
 
-          <Link
+          <a
             href={href}
             {...(external ? { target: '_blank', rel: 'noreferrer noopener' } : {})}
             className="absolute inset-0 flex items-center justify-center"
@@ -82,7 +81,7 @@ export default function GradientMenu() {
             <span className="absolute z-10 text-white font-semibold text-[0.7rem] tracking-widest uppercase transition-all duration-300 scale-0 opacity-0 group-hover:scale-100 group-hover:opacity-100 delay-100 whitespace-nowrap select-none">
               {title}
             </span>
-          </Link>
+          </a>
         </li>
       ))}
     </ul>

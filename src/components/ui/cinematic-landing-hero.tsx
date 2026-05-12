@@ -3,7 +3,7 @@
 import React, { useEffect, useLayoutEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { cn } from "@/lib/utils";
+import { cn } from "../../lib/utils";
 
 const INJECTED_STYLES = `
   .gsap-reveal { visibility: hidden; }

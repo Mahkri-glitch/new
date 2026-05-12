@@ -1,21 +1,29 @@
 ---
 import '../styles/globals.css';
 
-const fontClass = 'font-sans';
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { 
+  title = "SCRO @ UCF | Semiconductor Career Readiness Organization",
+  description = "Semiconductor Career Readiness Organization at the University of Central Florida. Building the next generation of semiconductor professionals."
+} = Astro.props;
 ---
 
-<html lang="en" class={fontClass}>
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SCRO @ UCF</title>
-    <meta name="description" content="Semiconductor Career Readiness Organization at the University of Central Florida." />
+    <title>{title}</title>
+    <meta name="description" content={description} />
     <link rel="icon" type="image/png" href="/scro-logo.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   </head>
-  <body class="font-sans">
-    <div class="fixed inset-0 z-[-1] bg-[#0a0a0a]" />
+  <body class="bg-black font-sans text-zinc-100 selection:bg-[#FFD51E] selection:text-black">
+    <div class="fixed inset-0 z-[-1] bg-[#050505]" />
     <slot />
   </body>
 </html>
