@@ -1,0 +1,65 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+interface GalleryItem {
+  id: number;
+  src: string;
+  caption: string;
+  event: string;
+  date: string;
+}
+
+const galleryItems: GalleryItem[] = [
+  {
+    id: 1,
+    src: '/gallery-gbm1.png',
+    caption: 'Our first General Body Meeting — an industry speaker from UCF presented on Semiconductor Education and Readiness Pathways, introducing students to degree programs, research labs, and career tracks in the semiconductor space.',
+    event: 'First General Body Meeting',
+    date: 'March 24, 2026',
+  },
+  {
+    id: 2,
+    src: '/gallery-gbm2.png',
+    caption: 'GBM 2 brought the energy — officer elections for 2026–27 were held, a SkyWater industry speaker joined us, we ran a semiconductor pitch competition, and closed it all out with free pizza.',
+    event: 'Elections & Speaker Night',
+    date: 'April 14, 2026',
+  },
+];
+---
+
+<Layout>
+  <main class="min-h-screen bg-black text-white pt-32 pb-24 px-6">
+    <div class="max-w-6xl mx-auto mb-12">
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mb-4">
+        Gallery
+      </h1>
+      <p class="text-zinc-400 text-lg max-w-2xl leading-relaxed">
+        A look back at our events, meetings, and moments from the SCRO community.
+      </p>
+    </div>
+
+    <div class="mx-auto max-w-6xl grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+      {galleryItems.map((item) => (
+        <div
+          class="group cursor-pointer rounded-xl overflow-hidden border border-zinc-800 bg-[#111] hover:border-zinc-700 transition-colors flex flex-col"
+        >
+          <div class="relative w-full aspect-video overflow-hidden bg-zinc-900 border-b border-zinc-800">
+            <img
+              src={item.src}
+              alt={item.event}
+              class="object-cover opacity-90 group-hover:opacity-100 transition-opacity"
+            />
+          </div>
+
+          <div class="p-5 flex-grow flex flex-col">
+            <div class="flex justify-between items-start gap-4 mb-2">
+              <h3 class="text-sm font-semibold text-zinc-100">{item.event}</h3>
+              <span class="text-xs font-medium text-zinc-500 whitespace-nowrap">{item.date}</span>
+            </div>
+            <p class="text-sm text-zinc-400 line-clamp-2 leading-relaxed">{item.caption}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </main>
+</Layout>

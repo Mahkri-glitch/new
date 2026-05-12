@@ -1,0 +1,64 @@
+---
+import { navLinks } from '../../lib/data.ts';
+import Image from '@astrojs/image';
+---
+
+<footer class="border-t border-zinc-800 bg-black py-16">
+  <div class="mx-auto max-w-7xl px-6 lg:px-8">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+      <div class="md:col-span-2">
+        <div class="flex items-center gap-3 mb-6">
+          <img src="/scro-logo.png" alt="SCRO @ UCF logo" class="rounded" width="28" height="28" />
+          <p class="font-semibold text-zinc-100 text-sm tracking-wide">SCRO @ UCF</p>
+        </div>
+        <p class="max-w-sm text-sm text-zinc-500 leading-relaxed">
+          Semiconductor Career Readiness Organization helping students explore technical and professional pathways at the University of Central Florida.
+        </p>
+      </div>
+
+      <div>
+        <p class="text-sm font-semibold text-zinc-100 mb-6">Resources</p>
+        <ul class="space-y-4 text-sm text-zinc-500">
+          {navLinks.map((link) => (
+            <li key={link.label}>
+              <a href={link.href} class="hover:text-white transition-colors">
+                {link.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div>
+        <p class="text-sm font-semibold text-zinc-100 mb-6">Connect</p>
+        <ul class="space-y-4 text-sm text-zinc-500">
+          <li>
+            <a href="mailto:scro.ucf@gmail.com" class="hover:text-white transition-colors">
+              Contact Support
+            </a>
+          </li>
+          <li>
+            <a href="https://discord.gg/hFK2s8eh" target="_blank" rel="noreferrer" class="hover:text-white transition-colors">
+              Discord Server
+            </a>
+          </li>
+          <li>
+            <a href="#" class="hover:text-white transition-colors">
+              GitHub
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="border-t border-zinc-800 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
+      <p class="text-xs text-zinc-600">
+        &copy; {new Date().getFullYear()} SCRO @ UCF. All rights reserved.
+      </p>
+      <div class="flex gap-4 text-xs text-zinc-600">
+        <a href="#" class="hover:text-zinc-400 transition-colors">Privacy Policy</a>
+        <a href="#" class="hover:text-zinc-400 transition-colors">Terms of Service</a>
+      </div>
+    </div>
+  </div>
+</footer>

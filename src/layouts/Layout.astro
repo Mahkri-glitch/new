@@ -1,0 +1,21 @@
+---
+import '../styles/globals.css';
+
+const fontClass = 'font-sans';
+---
+
+<html lang="en" class={fontClass}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SCRO @ UCF</title>
+    <meta name="description" content="Semiconductor Career Readiness Organization at the University of Central Florida." />
+    <link rel="icon" type="image/png" href="/scro-logo.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  </head>
+  <body class="font-sans">
+    <div class="fixed inset-0 z-[-1] bg-[#0a0a0a]" />
+    <slot />
+  </body>
+</html>

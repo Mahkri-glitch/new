@@ -1,0 +1,42 @@
+---
+import { missionCards } from '../../lib/data.ts';
+---
+
+<section id="about" class="py-20 sm:py-24 border-b border-zinc-800">
+  <div class="mx-auto max-w-7xl px-6 lg:px-8">
+    <div class="mb-16">
+      <h2 class="text-2xl font-bold text-white tracking-tight">About SCRO @ UCF</h2>
+      <p class="mt-4 max-w-3xl text-zinc-400 leading-relaxed">
+        SCRO @ UCF is a student organization for students interested in semiconductors and related technology fields. We
+        help members build technical awareness, industry familiarity, and professional readiness. Interdisciplinary
+        students are welcome, beginners are welcome, and we support exploration across microelectronics, devices,
+        fabrication, materials, and career pathways.
+      </p>
+    </div>
+
+    <div class="mb-12 rounded-xl border border-zinc-800 bg-[#111] p-6">
+      <p class="text-zinc-300 font-medium">
+        Our mission is to help students explore and prepare for opportunities in the semiconductor industry through
+        education, professional development, and community.
+      </p>
+    </div>
+
+    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      {missionCards.map((item) => {
+        const Icon = item.icon;
+        return (
+          <article
+            key={item.title}
+            class="rounded-xl border border-zinc-800 bg-transparent p-6 hover:bg-[#111] transition-colors"
+          >
+            <div class="mb-4 text-zinc-400">
+              <Icon class="h-5 w-5" />
+            </div>
+            <h3 class="font-semibold text-zinc-100 mb-2">{item.title}</h3>
+            <p class="text-sm text-zinc-500 leading-relaxed">{item.description}</p>
+          </article>
+        );
+      })}
+    </div>
+  </div>
+</section>

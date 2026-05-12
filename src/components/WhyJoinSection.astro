@@ -1,0 +1,28 @@
+---
+import { benefits } from '../../lib/data.ts';
+---
+
+<section class="py-20 sm:py-24 border-b border-zinc-800">
+  <div class="mx-auto max-w-7xl px-6 lg:px-8">
+    <div class="mb-12">
+      <h2 class="text-2xl font-bold text-white tracking-tight">Why Join SCRO?</h2>
+    </div>
+    <div class="grid gap-6 sm:grid-cols-2 xl:grid-cols-4">
+      {benefits.map((item) => {
+        const Icon = item.icon;
+        return (
+          <article
+            key={item.title}
+            class="rounded-xl border border-zinc-800 bg-[#111] p-6 hover:border-zinc-700 transition-colors"
+          >
+            <div class="mb-4 text-zinc-400">
+              <Icon class="h-5 w-5" />
+            </div>
+            <h3 class="font-semibold text-zinc-100 mb-2">{item.title}</h3>
+            <p class="text-sm text-zinc-500 leading-relaxed">{item.description}</p>
+          </article>
+        );
+      })}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,16 @@
+---
+export function Card({ class: className = '', children }: { class?: string; children: string }) {
+  return <div class={cn('rounded-2xl border border-[rgba(255,213,30,0.24)] bg-black/90', className)}>{children}</div>;
+}
+
+export function CardHeader({ class: className = '', children }: { class?: string; children: string }) {
+  return <div class={cn('space-y-2 p-6', className)}>{children}</div>;
+}
+
+export function CardTitle({ class: className = '', children }: { class?: string; children: string }) {
+  return <h3 class={cn('text-xl font-bold text-black', className)}>{children}</h3>;
+}
+
+export function CardContent({ class: className = '', children }: { class?: string; children: string }) {
+  return <div class={cn('px-6 pb-6', className)}>{children}</div>;
+}

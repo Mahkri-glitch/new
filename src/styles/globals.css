@@ -19,7 +19,7 @@ body {
   background: transparent;
   color: var(--scro-white);
   text-rendering: optimizeLegibility;
-  @apply text-slate-100 antialiased;
+  @apply text-white antialiased;
 }
 
 ::selection {

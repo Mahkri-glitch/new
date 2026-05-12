@@ -3,12 +3,12 @@ node_modules
 .pnp
 .pnp.js
 
-# next.js
+# Astro
+.astro/
+
+# Next.js (now Astro)
 .next/
 out/
-
-# production
-build/
 
 # misc
 .DS_Store

@@ -1,0 +1,137 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { faqItems, joinSteps, whatToExpect, whoShouldJoin } from '../../lib/data.ts';
+import { CheckCircle2Icon } from '../../lib/icons.tsx';
+import { Accordion } from '../components/ui/Accordion.astro';
+
+interface WhoShouldJoinItem {
+  item: string;
+}
+
+interface WhatToExpectItem {
+  title: string;
+  description: string;
+  icon: any;
+}
+
+interface JoinStepItem {
+  title: string;
+  description: string;
+}
+
+interface FaqItem {
+  question: string;
+  answer: string;
+}
+---
+
+<Layout>
+  <main class="pt-24 min-h-screen bg-black text-zinc-100 selection:bg-[#FFD51E] selection:text-black">
+    <section class="py-16 sm:py-24 border-b border-zinc-800">
+      <div class="mx-auto max-w-4xl px-6 text-center">
+        <h1 class="text-4xl sm:text-5xl font-bold tracking-tight text-white mb-6">Welcome to SCRO</h1>
+        <p class="text-lg text-zinc-400 max-w-2xl mx-auto leading-relaxed">
+          We're a community of students learning about semiconductors, microelectronics, and hardware engineering. It's awesome to meet you!
+        </p>
+      </div>
+    </section>
+
+    <section class="py-16 sm:py-24 border-b border-zinc-800">
+      <div class="mx-auto max-w-5xl px-6">
+        <div class="rounded-xl border border-zinc-800 bg-[#111] p-6 sm:p-8">
+          <div class="grid lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <h2 class="text-2xl font-bold tracking-tight text-white mb-4">You belong here.</h2>
+              <p class="text-zinc-400 leading-relaxed mb-6">
+                Whether you're a freshman who just discovered what a semiconductor is or a senior building your own chips, SCRO is for everyone. <span class="text-zinc-200 font-medium">You do not need any prior experience.</span>
+              </p>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {whoShouldJoin.map((item) => (
+                <div key={item} class="rounded-lg border border-zinc-800 bg-zinc-900/50 p-4 text-sm font-medium text-zinc-300 flex items-center gap-3">
+                  <div class="w-1.5 h-1.5 rounded-full bg-[#FFD51E]" />
+                  {item}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-16 sm:py-24 border-b border-zinc-800">
+      <div class="mx-auto max-w-6xl px-6">
+        <div class="mb-12">
+          <h2 class="text-2xl font-bold tracking-tight text-white mb-2">What to Expect</h2>
+          <p class="text-zinc-400">Here's what goes down when you join the club.</p>
+        </div>
+        <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {whatToExpect.map((item) => {
+            const Icon = item.icon;
+            return (
+              <article key={item.title} class="rounded-xl border border-zinc-800 bg-[#111] p-6 hover:border-zinc-700 transition-colors">
+                <div class="w-10 h-10 rounded-lg bg-zinc-900 border border-zinc-800 flex items-center justify-center mb-5">
+                  <Icon class="h-5 w-5 text-zinc-300" />
+                </div>
+                <h3 class="font-semibold text-zinc-100 mb-2">{item.title}</h3>
+                <p class="text-sm text-zinc-400 leading-relaxed">{item.description}</p>
+              </article>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+
+    <section class="py-16 sm:py-24 border-b border-zinc-800">
+      <div class="mx-auto max-w-4xl px-6">
+        <div class="mb-12">
+          <h2 class="text-2xl font-bold tracking-tight text-white mb-2">Your Next Steps</h2>
+          <p class="text-zinc-400">Getting involved is super easy.</p>
+        </div>
+        <div class="grid gap-4">
+          {joinSteps.map((step, index) => (
+            <div key={step.title} class="flex gap-6 rounded-xl border border-zinc-800 bg-[#111] p-6 items-start hover:border-zinc-700 transition-colors">
+              <div class="flex-shrink-0 w-8 h-8 rounded bg-zinc-900 border border-zinc-800 flex items-center justify-center font-bold text-sm text-zinc-300">
+                {index + 1}
+              </div>
+              <div>
+                <h3 class="text-base font-semibold text-zinc-100 mb-1">{step.title}</h3>
+                <p class="text-sm text-zinc-400">{step.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="py-16 sm:py-24 border-b border-zinc-800">
+      <div class="mx-auto max-w-3xl px-6">
+        <div class="mb-12">
+          <h2 class="text-2xl font-bold tracking-tight text-white mb-2">Got Questions?</h2>
+          <p class="text-zinc-400">We've got answers.</p>
+        </div>
+        <div class="rounded-xl border border-zinc-800 bg-[#111] p-6 sm:p-8">
+          <Accordion items={faqItems} />
+        </div>
+      </div>
+    </section>
+
+    <section class="py-24 sm:py-32">
+      <div class="mx-auto max-w-3xl px-6 text-center">
+        <div class="w-12 h-12 rounded-lg bg-zinc-900 border border-zinc-800 mx-auto flex items-center justify-center mb-6">
+          <CheckCircle2Icon class="h-6 w-6 text-[#FFD51E]" />
+        </div>
+        <h2 class="text-3xl font-bold tracking-tight text-white mb-4">Ready to jump in?</h2>
+        <p class="text-zinc-400 mb-8 max-w-md mx-auto">Join the Discord and say hello. We'll let you know when the next meeting is!</p>
+        <div class="flex flex-col sm:flex-row justify-center gap-4">
+          <a href="https://discord.gg/F9PTT3FJFS" class="inline-flex h-11 items-center justify-center rounded-lg bg-white px-8 text-sm font-semibold text-black transition-colors hover:bg-zinc-200">
+            Join the Discord
+          </a>
+          <a href="mailto:scro.ucf@gmail.com" class="inline-flex h-11 items-center justify-center rounded-lg border border-zinc-800 bg-transparent px-8 text-sm font-medium text-zinc-300 transition-colors hover:bg-zinc-900 hover:text-white">
+            Contact Us
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>
