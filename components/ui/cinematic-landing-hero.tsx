@@ -95,24 +95,6 @@ const INJECTED_STYLES = `
 `;
 
 function SemiconductorChip({ className }: { className?: string }) {
-  const glowRefs = useRef<(HTMLDivElement | null)[]>([]);
-
-  useEffect(() => {
-    // Animate traces/glow lines on the chip
-    glowRefs.current.forEach((el, i) => {
-      if (!el) return;
-      gsap.to(el, {
-        opacity: 0.8,
-        duration: 0.1,
-        repeat: -1,
-        repeatDelay: Math.random() * 5 + 2,
-        yoyo: true,
-        ease: "none",
-        delay: i * 0.2
-      });
-    });
-  }, []);
-
   const pins = Array.from({ length: 8 });
 
   return (
@@ -136,28 +118,6 @@ function SemiconductorChip({ className }: { className?: string }) {
 
       {/* Main Body */}
       <div className="w-full h-full chip-body rounded-3xl p-10 flex items-center justify-center overflow-hidden">
-        {/* Tracer Lines */}
-        <div 
-          ref={(el) => { if (el) glowRefs.current[0] = el; }} 
-          className="glow-line top-1/4 left-0 w-full h-[1px]" 
-        />
-        <div 
-          ref={(el) => { if (el) glowRefs.current[1] = el; }} 
-          className="glow-line top-1/2 left-0 w-full h-[1px]" 
-        />
-        <div 
-          ref={(el) => { if (el) glowRefs.current[2] = el; }} 
-          className="glow-line top-3/4 left-0 w-full h-[1px]" 
-        />
-        <div 
-          ref={(el) => { if (el) glowRefs.current[3] = el; }} 
-          className="glow-line left-1/4 top-0 h-full w-[1px]" 
-        />
-        <div 
-          ref={(el) => { if (el) glowRefs.current[4] = el; }} 
-          className="glow-line left-1/2 top-0 h-full w-[1px]" 
-        />
-
         {/* Heat Spreader / Core */}
         <div className="w-full h-full chip-core rounded-2xl flex flex-col items-center justify-center p-6 text-center">
           <div className="text-scro-gold font-black text-4xl mb-1 tracking-tighter">SCRO</div>
