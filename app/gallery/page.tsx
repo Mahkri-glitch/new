@@ -35,13 +35,14 @@ function GalleryCard({ item, onClick }: { item: GalleryItem; onClick: () => void
   return (
     <div
       onClick={onClick}
-      className="group cursor-pointer rounded-2xl overflow-hidden border border-scro-gold/10 bg-[#0a0a0a] hover:border-scro-gold/40 transition-all duration-300 flex flex-col hover:-translate-y-2 hover:shadow-[0_20px_40px_-15px_rgba(255,201,4,0.15)]"
+      className="group cursor-pointer rounded-2xl overflow-hidden border border-scro-gold/10 bg-[#0a0a0a] hover:border-scro-gold/40 transition-all duration-300 flex flex-col hover:-translate-y-2 hover:shadow-[0_20px_40px_-15px_rgba(255,201,4,0.15)] will-change-transform"
     >
       <div className="relative w-full aspect-video overflow-hidden bg-black border-b border-scro-gold/10">
         <Image
           src={item.src}
           alt={item.event}
           fill
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
           className="object-cover opacity-80 group-hover:opacity-100 transition-all duration-500 group-hover:scale-105"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />

@@ -60,7 +60,7 @@ export default function OfficersPage() {
           {officers.map((officer) => (
             <div
               key={officer.name}
-              className="group flex flex-col rounded-2xl overflow-hidden bg-[#0a0a0a] border border-scro-gold/10 transition-all duration-500 hover:border-scro-gold/50 hover:-translate-y-2 hover:shadow-[0_20px_50px_-12px_rgba(255,201,4,0.2)]"
+              className="group flex flex-col rounded-2xl overflow-hidden bg-[#0a0a0a] border border-scro-gold/10 transition-all duration-500 hover:border-scro-gold/50 hover:-translate-y-2 hover:shadow-[0_20px_50px_-12px_rgba(255,201,4,0.2)] will-change-transform"
             >
               {/* Photo */}
               <div className="relative w-full aspect-[4/5] bg-black border-b border-scro-gold/10 overflow-hidden">
@@ -68,6 +68,7 @@ export default function OfficersPage() {
                   src={officer.photo}
                   alt={officer.name}
                   fill
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                   className="object-cover object-top transition-transform duration-700 group-hover:scale-110 grayscale-[0.2] group-hover:grayscale-0"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity" />
