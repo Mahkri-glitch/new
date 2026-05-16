@@ -30,54 +30,60 @@ const officers = [
 ];
 
 const roleBadgeColor: Record<string, string> = {
-  President: 'bg-white text-black',
-  'Vice President': 'bg-zinc-800 text-zinc-300',
-  Treasurer: 'bg-zinc-800 text-zinc-300',
-  Secretary: 'bg-zinc-800 text-zinc-300',
+  President: 'bg-scro-gold text-black shadow-[0_0_15px_rgba(255,201,4,0.4)]',
+  'Vice President': 'bg-black/50 text-scro-gold border border-scro-gold/30 backdrop-blur-md',
+  Treasurer: 'bg-black/50 text-scro-gold border border-scro-gold/30 backdrop-blur-md',
+  Secretary: 'bg-black/50 text-scro-gold border border-scro-gold/30 backdrop-blur-md',
 };
 
 export default function OfficersPage() {
   return (
     <>
       <Navbar />
-      <main className="min-h-screen bg-black text-white pt-32 pb-24 px-6">
+      <main className="min-h-screen bg-black text-white pt-32 pb-24 px-6 relative overflow-hidden">
+        {/* Subtle background glow */}
+        <div className="absolute top-1/4 right-0 w-[600px] h-[600px] bg-scro-gold/5 rounded-full blur-[150px] pointer-events-none" />
+        
         {/* Header */}
-        <div className="max-w-6xl mx-auto mb-16">
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mb-4">
+        <div className="max-w-6xl mx-auto mb-20 relative z-10">
+          <h1 className="text-4xl sm:text-5xl lg:text-7xl font-black tracking-tighter mb-6 uppercase italic text-white">
             Meet the Officers
           </h1>
-          <p className="text-zinc-400 text-lg max-w-2xl leading-relaxed">
-            The people building SCRO from the ground up — connecting students with the semiconductor industry at UCF.
+          <div className="h-1.5 w-32 bg-scro-gold mb-8" />
+          <p className="text-zinc-400 text-xl max-w-2xl leading-relaxed font-medium">
+            The people building <span className="text-white font-bold tracking-widest uppercase">SCRO</span> from the ground up — connecting students with the semiconductor industry at <span className="text-scro-gold">UCF</span>.
           </p>
         </div>
 
         {/* Officers grid */}
-        <div className="mx-auto max-w-6xl grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="mx-auto max-w-6xl grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 relative z-10">
           {officers.map((officer) => (
             <div
               key={officer.name}
-              className="flex flex-col rounded-xl overflow-hidden bg-[#111] border border-zinc-800 transition-colors duration-300 hover:border-zinc-700"
+              className="group flex flex-col rounded-2xl overflow-hidden bg-[#0a0a0a] border border-scro-gold/10 transition-all duration-500 hover:border-scro-gold/50 hover:-translate-y-2 hover:shadow-[0_20px_50px_-12px_rgba(255,201,4,0.2)]"
             >
               {/* Photo */}
-              <div className="relative w-full aspect-[4/5] bg-zinc-900 border-b border-zinc-800">
+              <div className="relative w-full aspect-[4/5] bg-black border-b border-scro-gold/10 overflow-hidden">
                 <Image
                   src={officer.photo}
                   alt={officer.name}
                   fill
-                  className="object-cover object-top transition-transform duration-500 hover:scale-105"
+                  className="object-cover object-top transition-transform duration-700 group-hover:scale-110 grayscale-[0.2] group-hover:grayscale-0"
                 />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity" />
+                
                 {/* Role badge */}
-                <div className="absolute top-4 left-4">
-                  <span className={`text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded ${roleBadgeColor[officer.role]}`}>
+                <div className="absolute top-5 left-5">
+                  <span className={`text-[10px] font-black uppercase tracking-widest px-4 py-1.5 rounded-full ${roleBadgeColor[officer.role]}`}>
                     {officer.role}
                   </span>
                 </div>
               </div>
 
               {/* Info */}
-              <div className="p-5 flex flex-col gap-2">
-                <h2 className="text-base font-semibold text-zinc-100">{officer.name}</h2>
-                <p className="text-sm text-zinc-400 leading-relaxed">{officer.bio}</p>
+              <div className="p-6 flex flex-col gap-3">
+                <h2 className="text-xl font-bold text-white group-hover:text-scro-gold transition-colors">{officer.name}</h2>
+                <p className="text-sm text-zinc-400 leading-relaxed group-hover:text-zinc-300 transition-colors font-medium">{officer.bio}</p>
               </div>
             </div>
           ))}

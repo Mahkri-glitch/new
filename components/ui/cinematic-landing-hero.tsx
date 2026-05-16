@@ -19,8 +19,8 @@ const INJECTED_STYLES = `
   .bg-grid-theme {
     background-size: 60px 60px;
     background-image:
-      linear-gradient(to right, rgba(255,213,30,0.06) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(255,213,30,0.06) 1px, transparent 1px);
+      linear-gradient(to right, rgba(255, 201, 4,0.06) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 201, 4,0.06) 1px, transparent 1px);
     mask-image: radial-gradient(ellipse at center, black 0%, transparent 70%);
     -webkit-mask-image: radial-gradient(ellipse at center, black 0%, transparent 70%);
   }
@@ -29,25 +29,25 @@ const INJECTED_STYLES = `
   .text-3d-matte {
     color: #ffffff;
     text-shadow:
-      0 10px 30px rgba(255,213,30,0.18),
-      0 2px 4px rgba(255,213,30,0.08);
+      0 10px 30px rgba(255, 201, 4,0.18),
+      0 2px 4px rgba(255, 201, 4,0.08);
   }
 
   /* Outside card: gold gradient tagline */
   .text-silver-matte {
-    background: linear-gradient(180deg, #FFD51E 0%, rgba(255,213,30,0.5) 100%);
+    background: linear-gradient(180deg, #FFC904 0%, rgba(255, 201, 4,0.5) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
     transform: translateZ(0);
     filter:
-      drop-shadow(0px 10px 20px rgba(255,213,30,0.22))
-      drop-shadow(0px 2px 4px rgba(255,213,30,0.12));
+      drop-shadow(0px 10px 20px rgba(255, 201, 4,0.22))
+      drop-shadow(0px 2px 4px rgba(255, 201, 4,0.12));
   }
 
   /* Inside card: SCRO gold brand text */
   .text-card-silver-matte {
-    background: linear-gradient(180deg, #FFD51E 0%, #A07A00 100%);
+    background: linear-gradient(180deg, #FFC904 0%, #A07A00 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -63,16 +63,16 @@ const INJECTED_STYLES = `
     box-shadow:
       0 40px 100px -20px rgba(0,0,0,0.98),
       0 20px 40px -20px rgba(0,0,0,0.9),
-      inset 0 1px 2px rgba(255,213,30,0.14),
+      inset 0 1px 2px rgba(255, 201, 4,0.14),
       inset 0 -2px 4px rgba(0,0,0,0.9);
-    border: 1px solid rgba(255,213,30,0.07);
+    border: 1px solid rgba(255, 201, 4,0.07);
     position: relative;
   }
 
   /* Mouse-tracked gold sheen */
   .card-sheen {
     position: absolute; inset: 0; border-radius: inherit; pointer-events: none; z-index: 50;
-    background: radial-gradient(800px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255,213,30,0.05) 0%, transparent 40%);
+    background: radial-gradient(800px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255, 201, 4,0.05) 0%, transparent 40%);
     mix-blend-mode: screen; transition: opacity 0.3s ease;
   }
 
@@ -84,7 +84,7 @@ const INJECTED_STYLES = `
       inset 0 0 0 7px #000,
       0 40px 80px -15px rgba(0,0,0,0.95),
       0 15px 25px -5px rgba(0,0,0,0.8),
-      0 0 60px rgba(255,213,30,0.04);
+      0 0 60px rgba(255, 201, 4,0.04);
     transform-style: preserve-3d;
   }
 
@@ -105,46 +105,46 @@ const INJECTED_STYLES = `
     background: linear-gradient(180deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%);
     box-shadow:
       0 10px 20px rgba(0,0,0,0.4),
-      inset 0 1px 1px rgba(255,213,30,0.06),
+      inset 0 1px 1px rgba(255, 201, 4,0.06),
       inset 0 -1px 1px rgba(0,0,0,0.6);
-    border: 1px solid rgba(255,213,30,0.07);
+    border: 1px solid rgba(255, 201, 4,0.07);
   }
 
   .floating-ui-badge {
-    background: linear-gradient(135deg, rgba(255,213,30,0.08) 0%, rgba(255,213,30,0.02) 100%);
+    background: linear-gradient(135deg, rgba(255, 201, 4,0.08) 0%, rgba(255, 201, 4,0.02) 100%);
     backdrop-filter: blur(24px);
     -webkit-backdrop-filter: blur(24px);
     box-shadow:
-      0 0 0 1px rgba(255,213,30,0.12),
+      0 0 0 1px rgba(255, 201, 4,0.12),
       0 25px 50px -12px rgba(0,0,0,0.85),
-      inset 0 1px 1px rgba(255,213,30,0.15),
+      inset 0 1px 1px rgba(255, 201, 4,0.15),
       inset 0 -1px 1px rgba(0,0,0,0.6);
   }
 
   /* CTA buttons */
   .btn-scro-gold {
-    background: linear-gradient(180deg, #FFD51E 0%, #CCAA18 100%);
+    background: linear-gradient(180deg, #FFC904 0%, #C9A003 100%);
     color: #000000;
     transition: all 0.35s cubic-bezier(0.25, 1, 0.5, 1);
-    box-shadow: 0 0 0 1px rgba(255,213,30,0.3), 0 2px 4px rgba(0,0,0,0.4), 0 12px 24px -4px rgba(255,213,30,0.25), inset 0 1px 1px rgba(255,255,255,0.5);
+    box-shadow: 0 0 0 1px rgba(255, 201, 4,0.3), 0 2px 4px rgba(0,0,0,0.4), 0 12px 24px -4px rgba(255, 201, 4,0.25), inset 0 1px 1px rgba(255,255,255,0.5);
   }
   .btn-scro-gold:hover {
     transform: translateY(-3px);
-    box-shadow: 0 0 0 1px rgba(255,213,30,0.5), 0 6px 12px -2px rgba(0,0,0,0.3), 0 20px 32px -6px rgba(255,213,30,0.35), inset 0 1px 1px rgba(255,255,255,0.5);
+    box-shadow: 0 0 0 1px rgba(255, 201, 4,0.5), 0 6px 12px -2px rgba(0,0,0,0.3), 0 20px 32px -6px rgba(255, 201, 4,0.35), inset 0 1px 1px rgba(255,255,255,0.5);
   }
   .btn-scro-gold:active { transform: translateY(1px); }
 
   .btn-scro-dark {
     background: linear-gradient(180deg, #1a1a1a 0%, #0d0d0d 100%);
-    color: #FFD51E;
-    border: 1px solid rgba(255,213,30,0.35);
+    color: #FFC904;
+    border: 1px solid rgba(255, 201, 4,0.35);
     transition: all 0.35s cubic-bezier(0.25, 1, 0.5, 1);
-    box-shadow: 0 2px 4px rgba(0,0,0,0.7), 0 12px 24px -4px rgba(0,0,0,0.9), inset 0 1px 1px rgba(255,213,30,0.08);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.7), 0 12px 24px -4px rgba(0,0,0,0.9), inset 0 1px 1px rgba(255, 201, 4,0.08);
   }
   .btn-scro-dark:hover {
     transform: translateY(-3px);
-    border-color: rgba(255,213,30,0.7);
-    box-shadow: 0 6px 12px -2px rgba(0,0,0,0.7), 0 20px 32px -6px rgba(0,0,0,1), 0 0 30px rgba(255,213,30,0.12), inset 0 1px 1px rgba(255,213,30,0.1);
+    border-color: rgba(255, 201, 4,0.7);
+    box-shadow: 0 6px 12px -2px rgba(0,0,0,0.7), 0 20px 32px -6px rgba(0,0,0,1), 0 0 30px rgba(255, 201, 4,0.12), inset 0 1px 1px rgba(255, 201, 4,0.1);
   }
   .btn-scro-dark:active { transform: translateY(1px); }
 
@@ -174,7 +174,7 @@ export function SCROCinematicHero({
   cardHeading = "Jumpstart your career.",
   cardDescription = (
     <>
-      <span className="font-semibold" style={{ color: "#FFD51E" }}>SCRO @ UCF</span> is the place to learn about the semiconductor industry. We do hands-on workshops, host guest speakers, and help you land internships. No experience needed!
+      <span className="font-semibold" style={{ color: "#FFC904" }}>SCRO @ UCF</span> is the place to learn about the semiconductor industry. We do hands-on workshops, host guest speakers, and help you land internships. No experience needed!
     </>
   ),
   metricValue = 24,
@@ -390,7 +390,7 @@ export function SCROCinematicHero({
 
                     {/* Dynamic Island */}
                     <div className="absolute top-[5px] left-1/2 -translate-x-1/2 w-[100px] h-[28px] bg-black rounded-full z-50 flex items-center justify-end px-3">
-                      <div className="w-1.5 h-1.5 rounded-full bg-[#FFD51E] shadow-[0_0_8px_rgba(255,213,30,0.9)] animate-pulse" />
+                      <div className="w-1.5 h-1.5 rounded-full bg-[#FFC904] shadow-[0_0_8px_rgba(255, 201, 4,0.9)] animate-pulse" />
                     </div>
 
                     {/* App UI */}
@@ -398,89 +398,89 @@ export function SCROCinematicHero({
                       {/* Header */}
                       <div className="phone-widget flex justify-between items-center mb-8">
                         <div className="flex flex-col">
-                          <span className="text-[10px] text-[rgba(255,213,30,0.5)] uppercase tracking-widest font-bold mb-1">Dashboard</span>
+                          <span className="text-[10px] text-[rgba(255, 201, 4,0.5)] uppercase tracking-widest font-bold mb-1">Dashboard</span>
                           <span className="text-xl font-bold tracking-tight text-white">Career Hub</span>
                         </div>
-                        <div className="w-9 h-9 rounded-full bg-[rgba(255,213,30,0.08)] text-[#FFD51E] flex items-center justify-center font-bold text-sm border border-[rgba(255,213,30,0.2)] shadow-lg">SC</div>
+                        <div className="w-9 h-9 rounded-full bg-[rgba(255, 201, 4,0.08)] text-[#FFC904] flex items-center justify-center font-bold text-sm border border-[rgba(255, 201, 4,0.2)] shadow-lg">SC</div>
                       </div>
 
                       {/* Progress ring */}
                       <div className="phone-widget relative w-44 h-44 mx-auto flex items-center justify-center mb-8 drop-shadow-[0_15px_25px_rgba(0,0,0,0.9)]">
                         <svg className="absolute inset-0 w-full h-full" aria-hidden="true">
-                          <circle cx="88" cy="88" r="64" fill="none" stroke="rgba(255,213,30,0.06)" strokeWidth="12" />
+                          <circle cx="88" cy="88" r="64" fill="none" stroke="rgba(255, 201, 4,0.06)" strokeWidth="12" />
                           <circle
                             className="progress-ring"
                             cx="88" cy="88" r="64"
                             fill="none"
-                            stroke="#FFD51E"
+                            stroke="#FFC904"
                             strokeWidth="12"
                           />
                         </svg>
                         <div className="text-center z-10 flex flex-col items-center">
                           <span className="counter-val text-4xl font-extrabold tracking-tighter text-white">0</span>
-                          <span className="text-[8px] text-[rgba(255,213,30,0.45)] uppercase tracking-[0.1em] font-bold mt-0.5">{metricLabel}</span>
+                          <span className="text-[8px] text-[rgba(255, 201, 4,0.45)] uppercase tracking-[0.1em] font-bold mt-0.5">{metricLabel}</span>
                         </div>
                       </div>
 
                       {/* Widgets */}
                       <div className="space-y-3">
                         <div className="phone-widget widget-depth rounded-2xl p-3 flex items-center">
-                          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[rgba(255,213,30,0.15)] to-[rgba(255,213,30,0.03)] flex items-center justify-center mr-3 border border-[rgba(255,213,30,0.15)]">
+                          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[rgba(255, 201, 4,0.15)] to-[rgba(255, 201, 4,0.03)] flex items-center justify-center mr-3 border border-[rgba(255, 201, 4,0.15)]">
                             {/* Chip icon */}
-                            <svg className="w-4 h-4 text-[#FFD51E]" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <svg className="w-4 h-4 text-[#FFC904]" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                               <rect x="7" y="7" width="10" height="10" rx="1" strokeWidth="2" />
                               <path strokeWidth="2" d="M9 7V4M12 7V4M15 7V4M9 20v-3M12 20v-3M15 20v-3M4 9h3M4 12h3M4 15h3M17 9h3M17 12h3M17 15h3" />
                             </svg>
                           </div>
                           <div className="flex-1">
-                            <div className="h-2 w-24 bg-[rgba(255,213,30,0.2)] rounded-full mb-2" />
+                            <div className="h-2 w-24 bg-[rgba(255, 201, 4,0.2)] rounded-full mb-2" />
                             <div className="h-1.5 w-14 bg-[rgba(255,255,255,0.08)] rounded-full" />
                           </div>
-                          <div className="w-4 h-4 rounded-full bg-[#FFD51E] flex items-center justify-center ml-2">
+                          <div className="w-4 h-4 rounded-full bg-[#FFC904] flex items-center justify-center ml-2">
                             <svg className="w-2.5 h-2.5 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>
                           </div>
                         </div>
                         <div className="phone-widget widget-depth rounded-2xl p-3 flex items-center">
-                          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[rgba(255,213,30,0.15)] to-[rgba(255,213,30,0.03)] flex items-center justify-center mr-3 border border-[rgba(255,213,30,0.15)]">
+                          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[rgba(255, 201, 4,0.15)] to-[rgba(255, 201, 4,0.03)] flex items-center justify-center mr-3 border border-[rgba(255, 201, 4,0.15)]">
                             {/* Network/people icon */}
-                            <svg className="w-4 h-4 text-[#FFD51E]" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <svg className="w-4 h-4 text-[#FFC904]" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                               <path strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" />
                             </svg>
                           </div>
                           <div className="flex-1">
-                            <div className="h-2 w-20 bg-[rgba(255,213,30,0.2)] rounded-full mb-2" />
+                            <div className="h-2 w-20 bg-[rgba(255, 201, 4,0.2)] rounded-full mb-2" />
                             <div className="h-1.5 w-28 bg-[rgba(255,255,255,0.08)] rounded-full" />
                           </div>
-                          <div className="w-4 h-4 rounded-full bg-[#FFD51E] flex items-center justify-center ml-2">
+                          <div className="w-4 h-4 rounded-full bg-[#FFC904] flex items-center justify-center ml-2">
                             <svg className="w-2.5 h-2.5 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>
                           </div>
                         </div>
                       </div>
 
                       {/* Home bar */}
-                      <div className="absolute bottom-2 left-1/2 -translate-x-1/2 w-[120px] h-[4px] bg-[rgba(255,213,30,0.15)] rounded-full" />
+                      <div className="absolute bottom-2 left-1/2 -translate-x-1/2 w-[120px] h-[4px] bg-[rgba(255, 201, 4,0.15)] rounded-full" />
                     </div>
                   </div>
                 </div>
 
                 {/* Floating badges */}
                 <div className="floating-badge absolute flex top-6 lg:top-12 left-[-15px] lg:left-[-80px] floating-ui-badge rounded-xl lg:rounded-2xl p-3 lg:p-4 items-center gap-3 z-30">
-                  <div className="w-8 h-8 lg:w-10 lg:h-10 rounded-full bg-[rgba(255,213,30,0.08)] flex items-center justify-center border border-[rgba(255,213,30,0.2)]">
+                  <div className="w-8 h-8 lg:w-10 lg:h-10 rounded-full bg-[rgba(255, 201, 4,0.08)] flex items-center justify-center border border-[rgba(255, 201, 4,0.2)]">
                     <span className="text-base lg:text-xl drop-shadow-lg" aria-hidden="true">🔬</span>
                   </div>
                   <div>
                     <p className="text-white text-xs lg:text-sm font-bold tracking-tight">Industry Ready</p>
-                    <p className="text-[rgba(255,213,30,0.45)] text-[10px] lg:text-xs font-medium">Milestone unlocked</p>
+                    <p className="text-[rgba(255, 201, 4,0.45)] text-[10px] lg:text-xs font-medium">Milestone unlocked</p>
                   </div>
                 </div>
 
                 <div className="floating-badge absolute flex bottom-12 lg:bottom-20 right-[-15px] lg:right-[-80px] floating-ui-badge rounded-xl lg:rounded-2xl p-3 lg:p-4 items-center gap-3 z-30">
-                  <div className="w-8 h-8 lg:w-10 lg:h-10 rounded-full bg-[rgba(255,213,30,0.08)] flex items-center justify-center border border-[rgba(255,213,30,0.2)]">
+                  <div className="w-8 h-8 lg:w-10 lg:h-10 rounded-full bg-[rgba(255, 201, 4,0.08)] flex items-center justify-center border border-[rgba(255, 201, 4,0.2)]">
                     <span className="text-base lg:text-lg drop-shadow-lg" aria-hidden="true">⚡</span>
                   </div>
                   <div>
                     <p className="text-white text-xs lg:text-sm font-bold tracking-tight">UCF Chapter</p>
-                    <p className="text-[rgba(255,213,30,0.45)] text-[10px] lg:text-xs font-medium">Spring 2025 active</p>
+                    <p className="text-[rgba(255, 201, 4,0.45)] text-[10px] lg:text-xs font-medium">Spring 2025 active</p>
                   </div>
                 </div>
               </div>

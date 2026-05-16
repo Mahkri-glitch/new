@@ -4,8 +4,8 @@
 
 :root {
   --scro-black: #000000;
-  --scro-gold: #ffd51e;
-  --scro-gold-dark: #ccaa18;
+  --scro-gold: #FFC904;
+  --scro-gold-dark: #C9A003;
   --scro-white: #ffffff;
 }
 
@@ -23,16 +23,16 @@ body {
 }
 
 ::selection {
-  background: rgba(255, 213, 30, 0.25);
-  color-scheme: dark;
+  background: rgba(255, 201, 4, 0.35);
+  color: #000000;
 }
 
 .gradient-grid {
   background-image:
-    linear-gradient(rgba(148, 163, 184, 0.12) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(148, 163, 184, 0.12) 1px, transparent 1px),
-    radial-gradient(circle at top right, rgba(79, 70, 229, 0.35), transparent 40%),
-    radial-gradient(circle at bottom left, rgba(14, 165, 233, 0.25), transparent 35%);
+    linear-gradient(rgba(255, 201, 4, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 201, 4, 0.05) 1px, transparent 1px),
+    radial-gradient(circle at top right, rgba(255, 201, 4, 0.15), transparent 40%),
+    radial-gradient(circle at bottom left, rgba(201, 160, 3, 0.1), transparent 35%);
   background-size: 40px 40px, 40px 40px, cover, cover;
 }
 
@@ -58,14 +58,14 @@ body {
   width: 10rem;
   height: 200px;
   background: radial-gradient(circle at 200px, #050505, #111);
-  box-shadow: inset 0px -10px 18px rgba(255, 213, 30, 0.05), 8px 0px 20px rgba(0, 0, 0, 0.6);
+  box-shadow: inset 0px -10px 18px rgba(255, 201, 4, 0.05), 8px 0px 20px rgba(0, 0, 0, 0.6);
   position: absolute;
   left: 50%;
   transform: translate(-50%, 0%);
   border-radius: 3px;
 }
 .scro-watch-inner::before {
-  box-shadow: inset 0px 10px 18px rgba(255, 213, 30, 0.05), 8px 0px 20px rgba(0, 0, 0, 0.6);
+  box-shadow: inset 0px 10px 18px rgba(255, 201, 4, 0.05), 8px 0px 20px rgba(0, 0, 0, 0.6);
   transform: translate(-50%, -100%);
 }
 
@@ -85,7 +85,7 @@ body {
   border-radius: 100px;
   display: block;
   margin-bottom: 50px;
-  box-shadow: inset 2px 0 5px rgba(255, 213, 30, 0.15);
+  box-shadow: inset 2px 0 5px rgba(255, 201, 4, 0.15);
 }
 
 /* Watch frame body */
@@ -96,7 +96,7 @@ body {
     inset 0 0 24px 1px #050505,
     inset 0 0 0 12px #1c1c1e,
     0 24px 60px rgba(0, 0, 0, 0.95),
-    0 0 120px rgba(255, 213, 30, 0.03);
+    0 0 120px rgba(255, 201, 4, 0.03);
   height: 380px;
   margin: 0 20px;
   padding: 28px 26px;
@@ -113,7 +113,7 @@ body {
 .scro-watch-frame::before {
   border: 1px solid #1c1c1e;
   border-radius: 80px;
-  box-shadow: 0 0 28px rgba(255, 213, 30, 0.07), inset 0 0 20px rgba(255, 213, 30, 0.03);
+  box-shadow: 0 0 28px rgba(255, 201, 4, 0.07), inset 0 0 20px rgba(255, 201, 4, 0.03);
   content: "";
   height: 356px;
   left: 12px;
@@ -134,8 +134,8 @@ body {
     0deg,
     transparent,
     transparent 2px,
-    rgba(255, 213, 30, 0.008) 2px,
-    rgba(255, 213, 30, 0.008) 4px
+    rgba(255, 201, 4, 0.008) 2px,
+    rgba(255, 201, 4, 0.008) 4px
   );
   pointer-events: none;
   z-index: 2;
@@ -143,18 +143,18 @@ body {
 
 /* Time display */
 .scro-watch-time {
-  color: #ffd51e;
+  color: #FFC904;
   font-size: 3.6rem;
   font-family: ui-monospace, 'SF Mono', 'Courier New', monospace;
   font-weight: 700;
   line-height: 1;
   letter-spacing: -0.03em;
-  text-shadow: 0 0 40px rgba(255, 213, 30, 0.55), 0 0 80px rgba(255, 213, 30, 0.18);
+  text-shadow: 0 0 40px rgba(255, 201, 4, 0.55), 0 0 80px rgba(255, 201, 4, 0.18);
 }
 
 /* Date string */
 .scro-watch-date {
-  color: rgba(255, 213, 30, 0.5);
+  color: rgba(255, 201, 4, 0.5);
   font-size: 0.6rem;
   font-family: ui-monospace, 'SF Mono', monospace;
   letter-spacing: 0.28em;
@@ -167,22 +167,22 @@ body {
   margin-top: 6px;
   padding: 7px 22px;
   border-radius: 9999px;
-  border: 1px solid rgba(255, 213, 30, 0.3);
-  color: #ffd51e;
+  border: 1px solid rgba(255, 201, 4, 0.3);
+  color: #FFC904;
   font-size: 0.6rem;
   font-family: ui-monospace, 'SF Mono', monospace;
   letter-spacing: 0.32em;
   text-transform: uppercase;
-  background: rgba(255, 213, 30, 0.04);
+  background: rgba(255, 201, 4, 0.04);
   cursor: pointer;
   transition: background 0.25s, border-color 0.25s, box-shadow 0.25s;
   position: relative;
   z-index: 10;
 }
 .scro-enter-btn:hover {
-  background: rgba(255, 213, 30, 0.1);
-  border-color: rgba(255, 213, 30, 0.65);
-  box-shadow: 0 0 22px rgba(255, 213, 30, 0.18);
+  background: rgba(255, 201, 4, 0.1);
+  border-color: rgba(255, 201, 4, 0.65);
+  box-shadow: 0 0 22px rgba(255, 201, 4, 0.18);
 }
 
 /* Side crown button */
