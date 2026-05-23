@@ -7,8 +7,8 @@ const config: Config = {
       colors: {
         scro: {
           black: '#000000',
-          gold: '#FFD51E',
-          'gold-dark': '#CCAA18',
+          gold: '#FFC904',
+          'gold-dark': '#C9A003',
           white: '#FFFFFF'
         }
       }

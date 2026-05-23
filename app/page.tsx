@@ -1,5 +1,5 @@
 
-import { Hero } from '@/components/hero';
+import { SCROCinematicHero } from '@/components/ui/cinematic-landing-hero';
 import { AboutSection } from '@/components/about-section';
 import { ContactSection } from '@/components/contact-section';
 import { EventsSection } from '@/components/events-section';
@@ -13,7 +13,7 @@ export default function HomePage() {
     <>
       <Navbar />
       <main>
-        <Hero />
+        <SCROCinematicHero />
         <AboutSection />
         <EventsSection />
         <WhyJoinSection />
