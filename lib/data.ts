@@ -104,7 +104,7 @@ export const events: EventItem[] = [
     date: 'April 14th, 2026',
     time: '5:00 PM - 6:30 PM',
     location: 'Classroom Building 1 Room 109',
-    description: 'Fun event packed with officer elections, semiconductor pitch competition, a SkyWater speaker, and some free pizza to top it off.',
+    description: 'Officer elections for 2026–27, a speaker from SkyWater, a semiconductor pitch competition, and free pizza.',
     ctaLabel: 'View in Gallery',
     ctaHref: '/gallery'
   }

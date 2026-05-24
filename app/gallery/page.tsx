@@ -25,7 +25,7 @@ const galleryItems: GalleryItem[] = [
   {
     id: 2,
     src: '/gallery-gbm2.png',
-    caption: 'GBM 2 brought the energy — officer elections for 2026–27 were held, a SkyWater industry speaker joined us, we ran a semiconductor pitch competition, and closed it all out with free pizza.',
+    caption: 'Our second General Body Meeting — officer elections for 2026–27, a speaker from SkyWater, a semiconductor pitch competition, and free pizza.',
     event: 'Elections & Speaker Night',
     date: 'April 14, 2026',
   },
