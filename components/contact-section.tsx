@@ -10,6 +10,7 @@ export function ContactSection() {
             Interested in semiconductors, microelectronics, fabrication, materials, or career readiness? Reach out and get
             connected.
           </p>
+          
 
           <div className="flex flex-col sm:flex-row justify-center gap-4">
             <a href="mailto:scro.ucf@gmail.com" className="inline-flex h-11 items-center justify-center rounded-lg bg-white px-8 text-sm font-semibold text-black transition-colors hover:bg-zinc-200">
