@@ -294,12 +294,6 @@ export function SCROCinematicHero({
         >
           <div className="relative w-full h-full max-w-7xl mx-auto px-4 lg:px-12 flex flex-col justify-evenly lg:grid lg:grid-cols-3 items-center lg:gap-8 z-10 py-6 lg:py-0">
             
-            <div className="card-right-text gsap-reveal order-1 lg:order-3 flex justify-center lg:justify-end z-20 w-full">
-              <h2 className="text-6xl md:text-[6rem] lg:text-[8rem] font-black uppercase tracking-tighter text-silver-matte italic">
-                CHIP
-              </h2>
-            </div>
-
             <div className="chip-wrapper order-2 lg:order-2 relative w-full flex items-center justify-center z-10">
               <div ref={chipRef} className="transform scale-[0.8] md:scale-110 lg:scale-125">
                 <SemiconductorChip />
