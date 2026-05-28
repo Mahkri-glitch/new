@@ -171,7 +171,7 @@ export function SCROCinematicHero({
       gsap.set(".text-track", { autoAlpha: 0, y: 40, scale: 0.95, rotationX: -10 });
       gsap.set(".text-days", { autoAlpha: 1, clipPath: "inset(0 100% 0 0)" });
       gsap.set(".main-card", { y: window.innerHeight + 100, autoAlpha: 1 });
-      gsap.set([".card-left-text", ".card-right-text", ".chip-wrapper", ".floating-badge"], { autoAlpha: 0 });
+      gsap.set([".card-left-text", ".chip-wrapper", ".floating-badge"], { autoAlpha: 0 });
       gsap.set(".cta-wrapper", { autoAlpha: 0, scale: 0.9 });
 
       // Intro
@@ -202,12 +202,11 @@ export function SCROCinematicHero({
         )
         .fromTo(".floating-badge", { y: 60, autoAlpha: 0, scale: 0.8 }, { y: 0, autoAlpha: 1, scale: 1, ease: "back.out(1.2)", duration: 1.2, stagger: 0.15 }, "-=1.5")
         .fromTo(".card-left-text", { x: -30, autoAlpha: 0 }, { x: 0, autoAlpha: 1, ease: "power3.out", duration: 1.2 }, "-=1.2")
-        .fromTo(".card-right-text", { x: 30, autoAlpha: 0, scale: 0.9 }, { x: 0, autoAlpha: 1, scale: 1, ease: "power3.out", duration: 1.2 }, "<")
         .to({}, { duration: 2 })
         .set(".hero-text-wrapper", { autoAlpha: 0 })
         .set(".cta-wrapper", { autoAlpha: 1 })
         .to({}, { duration: 1 })
-        .to([".chip-wrapper", ".floating-badge", ".card-left-text", ".card-right-text"], {
+        .to([".chip-wrapper", ".floating-badge", ".card-left-text"], {
           scale: 0.95, y: -20, autoAlpha: 0, ease: "power2.in", duration: 1, stagger: 0.04,
         })
         .to(".main-card", {
@@ -292,7 +291,7 @@ export function SCROCinematicHero({
           ref={mainCardRef}
           className="main-card premium-depth-card relative overflow-hidden gsap-reveal flex items-center justify-center pointer-events-auto w-[92vw] md:w-[85vw] h-[92vh] md:h-[85vh] rounded-[32px] md:rounded-[40px]"
         >
-          <div className="relative w-full h-full max-w-7xl mx-auto px-4 lg:px-12 flex flex-col justify-evenly lg:grid lg:grid-cols-3 items-center lg:gap-8 z-10 py-6 lg:py-0">
+          <div className="relative w-full h-full max-w-7xl mx-auto px-4 lg:px-12 flex flex-col justify-evenly lg:grid lg:grid-cols-2 items-center lg:gap-12 z-10 py-6 lg:py-0">
             
             <div className="chip-wrapper order-2 lg:order-2 relative w-full flex items-center justify-center z-10">
               <div ref={chipRef} className="transform scale-[0.8] md:scale-110 lg:scale-125">
@@ -321,7 +320,7 @@ export function SCROCinematicHero({
               </div>
             </div>
 
-            <div className="card-left-text gsap-reveal order-3 lg:order-1 flex flex-col justify-center text-center lg:text-left z-20 w-full px-4 lg:px-0">
+            <div className="card-left-text gsap-reveal order-2 lg:order-1 flex flex-col justify-center text-center lg:text-left z-20 w-full px-4 lg:px-0">
               <h3 className="text-white text-2xl md:text-3xl lg:text-4xl font-bold mb-4 tracking-tight uppercase">
                 {cardHeading}
               </h3>
